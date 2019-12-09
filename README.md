@@ -22,7 +22,11 @@
 
 ## Introduction
 
-Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up and fix my computer. Because these tweaks are optimized for my system, I have to mention that my computer configuration: `Gnome`, `Intel i7 CPU`, `16GB memory`, `HDD`, `Wifi` and `a dead battery`.
+Here are some tweaks for **Ubuntu 18.04** to speed up and fix problems. Because some of these tweaks are optimized for my system, I have to mention that my computer configuration: 
+
+- `Ubuntu 18.04` with `Gnome`
+
+- `Laptop` with `Intel i7 CPU`, `16GB RAM`, `HDD`, `Wifi (intel chipset)` and `a dead battery`.
 
 **Note: Configurations listed in this guide are not recommended for server environments.**
 
