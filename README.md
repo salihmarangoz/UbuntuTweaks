@@ -32,6 +32,7 @@ Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up a
 
 - [ ] CPU Scaling Governor -> Make it Permanent
 - [ ] Decrease log amount with filtering
+- [ ] Add sources where they are missing
 
 
 
