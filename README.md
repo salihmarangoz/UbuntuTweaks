@@ -30,7 +30,6 @@ Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up a
 
 ## To-Do
 
-- [ ] CPU Scaling Governor -> Make it Permanent (TESTING)
 - [ ] Decrease log amount with filtering
 - [ ] Add sources where they are missing
 
@@ -38,27 +37,19 @@ Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up a
 
 ## 1. Change CPU Scaling Governor to Performance
 
-**Source:** https://www.gamingonlinux.com/articles/you-will-want-to-force-your-cpu-into-high-performance-mode-for-vulkan-games-on-linux.9369/
+**Source:** https://askubuntu.com/questions/1021748/set-cpu-governor-to-performance-in-18-04#comment1820782_1049313
 
-- Check current CPU scaling governor with the following command:
+- Running the following command is enough:
+
+```bash
+$ sudo systemctl disable ondemand
+```
+
+- Check the CPU governor after reboot:
 
 ```bash
 $ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 ```
-
-- To change the governor to performance on boot edit cron:
-
-```bash
-$ sudo crontab -e
-```
-
-- Add the following line then reboot:
-
-```bash
-@reboot /bin/sleep 30; /bin/echo performance | /usr/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-```
-
-**Note: If you are using with also battery install `indicator-cpufreq` to control the governor.**
 
 
 
