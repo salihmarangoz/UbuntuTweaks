@@ -30,7 +30,7 @@ Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up a
 
 ## To-Do
 
-- [ ] CPU Scaling Governor -> Make it Permanent
+- [ ] CPU Scaling Governor -> Make it Permanent (TESTING)
 - [ ] Decrease log amount with filtering
 - [ ] Add sources where they are missing
 
@@ -46,15 +46,19 @@ Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up a
 $ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 ```
 
-- To change the governor to performance run:
+- To change the governor to performance on boot edit cron:
 
 ```bash
-$ echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+$ sudo crontab -e
 ```
 
-**Note(1): If you are using with also battery install `indicator-cpufreq` to control the governor.**
+- Add the following line then reboot:
 
-**Note(2): Check the CPU temperature after configurations**
+```bash
+@reboot /bin/sleep 30; /bin/echo performance | /usr/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+```
+
+**Note: If you are using with also battery install `indicator-cpufreq` to control the governor.**
 
 
 
