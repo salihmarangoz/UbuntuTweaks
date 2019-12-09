@@ -18,7 +18,7 @@
          * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
          * [2.3. Hide User List in Ubuntu 18.04 Login Screen](#23-hide-user-list-in-ubuntu-1804-login-screen)
          * [2.4. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#24-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
-         * [2.5 Disable Touchpad When Mouse is Plugged](#25-disable-touchpad-when-mouse-is-plugged)
+         * [2.5. Disable Touchpad When Mouse is Plugged](#25-disable-touchpad-when-mouse-is-plugged)
 
 ## Introduction
 
@@ -502,7 +502,7 @@ $ gnome-tweaks
 
 
 
-### 2.5 Disable Touchpad When Mouse is Plugged
+### 2.5. Disable Touchpad When Mouse is Plugged
 
 When mouse is plugged, touchpad should be disable automatically, right? This guide is for `Gnome` users.
 
