@@ -6,19 +6,19 @@
       * [1. Performance Tweaks](#1-performance-tweaks)
          * [1.1. Change CPU Scaling Governor to Performance](#11-change-cpu-scaling-governor-to-performance)
          * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
-         * [1.3. Install Preload](#13-install-preload)
+         * [1.3. Preload](#13-preload)
          * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
          * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
          * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
          * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
-         * [1.8. Disable Default Swapfile in HDD](#18-disable-default-swapfile-in-hdd)
-         * [1.9. Delete Log Archives Regularly](#19-delete-log-archives-regularly)
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
          * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
          * [2.3. Hide User List in Ubuntu 18.04 Login Screen](#23-hide-user-list-in-ubuntu-1804-login-screen)
          * [2.4. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#24-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
          * [2.5. Disable Touchpad When Mouse is Plugged](#25-disable-touchpad-when-mouse-is-plugged)
+         * [2.6. Disable Default Swapfile on Disk](#26-disable-default-swapfile-on-disk)
+         * [2.7. Delete Log Archives Regularly](#27-delete-log-archives-regularly)
 
 ## Introduction
 
@@ -114,7 +114,7 @@ $ grep . /sys/devices/system/cpu/vulnerabilities/*
 
 
 
-### 1.3. Install Preload
+### 1.3. Preload
 
 Preload, monitors user activity and caches programs into RAM. Prefer this if you are using apps and programs in HDD. No need for SSD users.
 
@@ -333,44 +333,6 @@ $ sudo systemctl status rc-local
 
 
 
-### 1.8. Disable Default Swapfile in HDD
-
-Ubuntu 18.04 comes with default swapfile. In out-of-memory situations this swapfile doesn't provide a solution rather than system freeze. If you are using Ubuntu with SSD, you should disable swap in that device.
-
-- Modify `fstab`:
-
-```bash
-$ sudo nano /etc/fstab
-```
-
-- Comment out the line which starts with `/swapfile`. The full line should look like this after editing:
-
-```
-#/swapfile none swap sw 0 0
-```
-
-- Reboot the PC.
-
-
-
-### 1.9. Delete Log Archives Regularly
-
-Old logs sometimes hold a lot of space on disk. 
-
-- Edit cron (you can select `nano` as editor):
-
-```bash
-$ sudo crontab -e
-```
-
-- Add the following line (press `ctrl+x` then answer with `y` to save the file):
-
-```
-@reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
-```
-
-
-
 ## 2. Utility/Fix Tweaks
 
 ### 2.1. PulseAudio Mic Echo Cancellation Feature
@@ -531,4 +493,42 @@ $ sudo apt install touchpad-indicator
 - **(2) Start the program on boot**
   - `General Options` -> `Autostart` -> `ON`
   - `General Options` -> `Start hidden` -> `Checked`
+
+
+
+### 2.6. Disable Default Swapfile on Disk
+
+Ubuntu 18.04 comes with a swapfile enabled. In out-of-memory situations this swapfile may only cause system freeze. If you are using Ubuntu with SSD, you should disable swap in that device to slow down disk aging.
+
+- Modify `fstab`:
+
+```bash
+$ sudo nano /etc/fstab
+```
+
+- Comment out the line which starts with `/swapfile`. The full line should look like this after editing:
+
+```
+#/swapfile none swap sw 0 0
+```
+
+- Reboot the PC.
+
+
+
+### 2.7. Delete Log Archives Regularly
+
+Old logs sometimes hold a lot of space on disk. 
+
+- Edit cron (you can select `nano` as editor):
+
+```bash
+$ sudo crontab -e
+```
+
+- Add the following line (press `ctrl+x` then answer with `y` to save the file):
+
+```
+@reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
+```
 
