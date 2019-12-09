@@ -1,6 +1,24 @@
 # Ubuntu Tweaks Guide
 
-[toc]
+   * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
+      * [Introduction](#introduction)
+      * [To-Do](#to-do)
+      * [1. Performance Tweaks](#1-performance-tweaks)
+         * [1.1. Change CPU Scaling Governor to Performance](#11-change-cpu-scaling-governor-to-performance)
+         * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
+         * [1.3. Install Preload](#13-install-preload)
+         * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
+         * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
+         * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
+         * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
+         * [1.8. Disable Default Swapfile in HDD](#18-disable-default-swapfile-in-hdd)
+         * [1.9. Delete Log Archives Regularly](#19-delete-log-archives-regularly)
+      * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
+         * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
+         * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
+         * [2.3. Hide User List in Ubuntu 18.04 Login Screen](#23-hide-user-list-in-ubuntu-1804-login-screen)
+         * [2.4. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#24-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
+         * [2.5 Disable Touchpad When Mouse is Plugged](#25-disable-touchpad-when-mouse-is-plugged)
 
 ## Introduction
 
@@ -20,6 +38,8 @@ Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up a
 ## 1. Performance Tweaks
 
 ### 1.1. Change CPU Scaling Governor to Performance
+
+Intel CPU's reported to be run faster when changed its scaling governor to performance mode.
 
 **Source:** https://askubuntu.com/questions/1021748/set-cpu-governor-to-performance-in-18-04#comment1820782_1049313
 
@@ -41,9 +61,7 @@ $ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
 Reclaim the CPU power while increasing the security risks. Double edge sword!
 
-**Source(s):** 
-
-https://make-linux-fast-again.com/
+**Source(s):** https://make-linux-fast-again.com/
 
 https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/SpectreAndMeltdown/MitigationControls
 
@@ -94,9 +112,9 @@ $ grep . /sys/devices/system/cpu/vulnerabilities/*
 
 ### 1.3. Install Preload
 
-**Source:** https://www.hecticgeek.com/2013/05/using-preload-ubuntu-13-04/
-
 Preload, monitors user activity and caches programs into RAM. Prefer this if you are using apps and programs in HDD. No need for SSD users.
+
+**Source:** https://www.hecticgeek.com/2013/05/using-preload-ubuntu-13-04/
 
 - Install the program with the following command. No further configurations are needed.
 
@@ -136,9 +154,9 @@ about:config
 
 ### 1.5. Move Browser Profile to RAM (profile-sync-daemon)
 
-**Source:** https://wiki.archlinux.org/index.php/Profile-sync-daemon
-
 Moving Firefox cache will reduce HDD access thus it will increase the performance. In order to achieve that we will use `profile-sync-daemon`.
+
+**Source:** https://wiki.archlinux.org/index.php/Profile-sync-daemon
 
 - Install the program:
 
@@ -355,7 +373,7 @@ $ sudo crontab -e
 
 Echo cancellation is a useful tool to have while talking Skype etc **without headphones.**
 
-`Source:` https://www.reddit.com/r/linux/comments/2yqfqp/just_found_that_pulseaudio_have_noise/
+**Source:** https://www.reddit.com/r/linux/comments/2yqfqp/just_found_that_pulseaudio_have_noise/
 
 - Run the following command:
 
@@ -383,7 +401,7 @@ $ pulseaudio -k
 
 The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. 
 
-`Source:` https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
+**Source:** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
 
 - To turn timer-based scheduling off add `tsched=0` in `/etc/pulse/default.pa`: 
 
@@ -414,9 +432,9 @@ $ pulseaudio --start
 
 ### 2.3. Hide User List in Ubuntu 18.04 Login Screen
 
-Source: http://ubuntuhandbook.org/index.php/2018/04/hide-user-list-ubuntu-18-04-login-screen/
-
 The Gnome login screen normally shows a list of available users to log in as. For those who want to disable showing the user list, and manually type a username to login with, below I will show you how.
+
+**Source:** http://ubuntuhandbook.org/index.php/2018/04/hide-user-list-ubuntu-18-04-login-screen/
 
 - Run command to get access to root:
 
@@ -481,4 +499,32 @@ $ gnome-tweaks
   - `Top Bar` -> `Battery Percentage` -> `ON`
 - **(6) Enable Date Showing Up on the Top Bar**
   - `Top Bar` -> `Date` -> `ON`
+
+
+
+### 2.5 Disable Touchpad When Mouse is Plugged
+
+When mouse is plugged, touchpad should be disable automatically, right? This guide is for `Gnome` users.
+
+**Source:** http://ubuntuhandbook.org/index.php/2018/04/install-touchpad-indicator-ubuntu-18-04-lts/
+
+- Add PPA:
+
+```bash
+$ sudo add-apt-repository ppa:atareao/atareao
+```
+
+- Install `touchpad-indicator`:
+
+```bash
+$ sudo apt install touchpad-indicator
+```
+
+- Start the program. (Search with the touchpad keyword)
+- It should be shown on the top bar. Click on it and select `Preferences`, then follow the steps below:
+- **(1) Disable touchpad when mouse is plugged**
+  - `Actions` -> `Disable touchpad when mouse plugged` -> `OFF`
+- **(2) Start the program on boot**
+  - `General Options` -> `Autostart` -> `ON`
+  - `General Options` -> `Start hidden` -> `Checked`
 
