@@ -1,10 +1,37 @@
-# Guide: Ubuntu Tweaks
+# Ubuntu Tweaks Guide
 
-[toc]
 
-**Note(1): These tweaks are tested on `Ubuntu 18.04`.**
+   * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
+      * [Introduction](#introduction)
+      * [To-Do](#to-do)
+      * [1. Change CPU Scaling Governor to Performance](#1-change-cpu-scaling-governor-to-performance)
+      * [2. Disable Security Mitigations](#2-disable-security-mitigations)
+      * [3. Install Preload](#3-install-preload)
+      * [4. Move Firefox Cache to RAM](#4-move-firefox-cache-to-ram)
+      * [5. Move Browser Profile to RAM](#5-move-browser-profile-to-ram)
+      * [6. Turn Off Wifi Power Management](#6-turn-off-wifi-power-management)
+      * [7. PulseAudio Mic Echo Cancellation Feature](#7-pulseaudio-mic-echo-cancellation-feature)
+      * [8. PulseAudio Crackling Sound Solution](#8-pulseaudio-crackling-sound-solution)
+      * [9. Hide User List in Ubuntu 18.04 Login Screen](#9-hide-user-list-in-ubuntu-1804-login-screen)
+      * [10. Disable Automatic Suspend When Laptop Lid is Closed](#10-disable-automatic-suspend-when-laptop-lid-is-closed)
+      * [11. ZRAM as a Compressed RAM Block](#11-zram-as-a-compressed-ram-block)
+      * [12. Disable Swapfile in HDD](#12-disable-swapfile-in-hdd)
+      * [13. Delete Log Archives Regularly](#13-delete-log-archives-regularly)
 
-**Note(2): Configurations listed in this file are not recommended in server environment.**
+
+
+## Introduction
+
+Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up and fix my computer. Because these tweaks are optimized for my system, to note that my computer features are; `Intel i7 CPU`, `16GB memory`, `HDD`, `Wifi` and `a dead battery`.
+
+**Note: Configurations listed in this guide are not recommended for server environments.**
+
+
+
+## To-Do
+
+- [ ] CPU Scaling Governor -> Make it Permanent
+- [ ] Decrease log amount with filtering
 
 
 
@@ -32,7 +59,7 @@ $ echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_gover
 
 ## 2. Disable Security Mitigations
 
-Reclaim the CPU power!
+Reclaim the CPU power while increasing the security risks. Double edge sword!
 
 **Source(s):** 
 
