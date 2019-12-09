@@ -1,28 +1,10 @@
 # Ubuntu Tweaks Guide
 
-
-   * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
-      * [Introduction](#introduction)
-      * [To-Do](#to-do)
-      * [1. Change CPU Scaling Governor to Performance](#1-change-cpu-scaling-governor-to-performance)
-      * [2. Disable Security Mitigations](#2-disable-security-mitigations)
-      * [3. Install Preload](#3-install-preload)
-      * [4. Move Firefox Cache to RAM](#4-move-firefox-cache-to-ram)
-      * [5. Move Browser Profile to RAM](#5-move-browser-profile-to-ram)
-      * [6. Turn Off Wifi Power Management](#6-turn-off-wifi-power-management)
-      * [7. PulseAudio Mic Echo Cancellation Feature](#7-pulseaudio-mic-echo-cancellation-feature)
-      * [8. PulseAudio Crackling Sound Solution](#8-pulseaudio-crackling-sound-solution)
-      * [9. Hide User List in Ubuntu 18.04 Login Screen](#9-hide-user-list-in-ubuntu-1804-login-screen)
-      * [10. Disable Automatic Suspend When Laptop Lid is Closed](#10-disable-automatic-suspend-when-laptop-lid-is-closed)
-      * [11. ZRAM as a Compressed RAM Block](#11-zram-as-a-compressed-ram-block)
-      * [12. Disable Swapfile in HDD](#12-disable-swapfile-in-hdd)
-      * [13. Delete Log Archives Regularly](#13-delete-log-archives-regularly)
-
-
+[toc]
 
 ## Introduction
 
-Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up and fix my computer. Because these tweaks are optimized for my system, to note that my computer features are; `Intel i7 CPU`, `16GB memory`, `HDD`, `Wifi` and `a dead battery`.
+Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up and fix my computer. Because these tweaks are optimized for my system, I have to mention that my computer configuration: `Gnome`, `Intel i7 CPU`, `16GB memory`, `HDD`, `Wifi` and `a dead battery`.
 
 **Note: Configurations listed in this guide are not recommended for server environments.**
 
@@ -35,7 +17,9 @@ Here are some tweaks for **`Ubuntu 18.04`** which I use personally to speed up a
 
 
 
-## 1. Change CPU Scaling Governor to Performance
+## 1. Performance Tweaks
+
+### 1.1. Change CPU Scaling Governor to Performance
 
 **Source:** https://askubuntu.com/questions/1021748/set-cpu-governor-to-performance-in-18-04#comment1820782_1049313
 
@@ -53,7 +37,7 @@ $ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
 
 
-## 2. Disable Security Mitigations
+### 1.2. Disable Security Mitigations
 
 Reclaim the CPU power while increasing the security risks. Double edge sword!
 
@@ -108,7 +92,7 @@ $ grep . /sys/devices/system/cpu/vulnerabilities/*
 
 
 
-## 3. Install Preload
+### 1.3. Install Preload
 
 **Source:** https://www.hecticgeek.com/2013/05/using-preload-ubuntu-13-04/
 
@@ -122,11 +106,11 @@ $ sudo apt install preload
 
 
 
-## 4. Move Firefox Cache to RAM
+### 1.4. Mount /tmp as tmpfs (and Move Browser Cache)
 
-Moving Firefox cache will reduce HDD access thus it will increase the performance. Internet usage maybe increase, so if you are using metered connection **don't** set this up.
+Mounting `/tmp` folder into RAM, will reduce disk access while increasing lifespan of the device.
 
-- To mount `/tmp` folder to RAM run the followin command:
+- Modify the file which includes 
 
 ```bash
 $ sudo nano /etc/fstab
@@ -138,18 +122,19 @@ $ sudo nano /etc/fstab
 tmpfs /tmp tmpfs rw,nosuid,nodev
 ```
 
-- Open Firefox and enter this address to URL bar:
+- Reboot the PC. Now it is done. If you want to move browser cache into this folder apply the operations below. 
+- Moving Firefox cache will reduce HDD access thus it will increase the performance. Internet usage maybe increase, so if you are using metered connection **don't** set this up. The similar configuration can be applied to Chromium, Opera etc. Open Firefox and enter this address to the URL bar:
 
 ```
 about:config
 ```
 
-- Find key **`browser.cache.disk.parent_directory`** and change its value to **`/tmp`**
+- Find the key **`browser.cache.disk.parent_directory`** and change its value to **`/tmp`**
 - Reboot the system.
 
 
 
-## 5. Move Browser Profile to RAM
+### 1.5. Move Browser Profile to RAM (profile-sync-daemon)
 
 **Source:** https://wiki.archlinux.org/index.php/Profile-sync-daemon
 
@@ -241,7 +226,7 @@ Psd will manage the following per /home/salih/.config/psd/.psd.conf:
 
 
 
-## 6. Turn Off Wifi Power Management
+### 1.6. Turn Off Wifi Power Management
 
 Speed up wifi performance.
 
@@ -268,130 +253,7 @@ $ iwconfig | grep Management
 
 
 
-## 7. PulseAudio Mic Echo Cancellation Feature
-
-Echo cancellation is a useful tool to have while talking Skype etc **without headphones.**
-
-`Source:` https://www.reddit.com/r/linux/comments/2yqfqp/just_found_that_pulseaudio_have_noise/
-
-- Run the following command:
-
-```bash
-$ sudo nano /etc/pulse/default.pa
-```
-
-- Add the following line:
-
-```
-load-module module-echo-cancel
-```
-
-- Reload pulseaudio:
-
-```bash
-$ pulseaudio -k
-```
-
-- Select echo canceled sources in sound settings.
-
-
-
-## 8. PulseAudio Crackling Sound Solution
-
-The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. 
-
-`Source:` https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
-
-- To turn timer-based scheduling off add `tsched=0` in `/etc/pulse/default.pa`: 
-
-```bash
-$ sudo nano /etc/pulse/default.pa
-```
-
-- Modify file as explained below:
-
-```bash
-# Change this line:
-load-module module-udev-detect
-
-# To this line:
-load-module module-udev-detect tsched=0
-```
-
-- Then restart the PulseAudio server: 
-
-```bash
-$ pulseaudio -k
-$ pulseaudio --start
-```
-
-(RESTORE): Do the reverse to enable timer-based scheduling, if not already enabled by default. 
-
-
-
-## 9. Hide User List in Ubuntu 18.04 Login Screen
-
-Source: http://ubuntuhandbook.org/index.php/2018/04/hide-user-list-ubuntu-18-04-login-screen/
-
-The Gnome login screen normally shows a list of available users to log in as. For those who want to disable showing the user list, and manually type a username to login with, below I will show you how.
-
-- Run command to get access to root:
-
-```bash
-$ sudo -i
-```
-
-*Type in your password (no visual feedback while typing) when it prompts and hit Enter.*
-
-- In the terminal, run command to allow gdm to make connections to the X server:
-
-```
-# xhost +SI:localuser:gdm
-```
-
-- Then switch to user `gdm`, which is required to run gsettings to configure gdm settings.
-
-```
-# su gdm -l -s /bin/bash
-```
-
-- Finally hide user list from login screen using Gsettings:
-
-```bash
-$ gsettings set org.gnome.login-screen disable-user-list true
-```
-
-(RESTORE): To restore the change, open terminal and **re-do** previous steps, except running the last command with:
-
-```bash
-$ gsettings set org.gnome.login-screen disable-user-list false
-```
-
-
-
-## 10. Disable Automatic Suspend When Laptop Lid is Closed
-
-I can sometimes unwanted going into suspend state when lid is closed.
-
-**Note:** Tested on Ubuntu 18.04. May not work older versions.
-
-- Install gnome tweaks:
-
-```bash
-$ sudo apt install gnome-tweaks
-```
-
-- Run the program:
-
-```
-$ gnome-tweaks
-```
-
-- In `Power` section switch off the item named `"Suspend when laptop lid is closed"`
-
-
-
-## 11. ZRAM as a Compressed RAM Block
+### 1.7. ZRAM as a Compressed RAM Block
 
 If your PC is out of memory or has no extra space for caching, give it a shot!
 
@@ -449,9 +311,9 @@ $ sudo systemctl status rc-local
 
 
 
-## 12. Disable Swapfile in HDD
+### 1.8. Disable Default Swapfile in HDD
 
-Ubuntu 18.04 comes with default swapfile. In out-of-memory situations this swapfile doesn't provide a solution rather than system freeze.
+Ubuntu 18.04 comes with default swapfile. In out-of-memory situations this swapfile doesn't provide a solution rather than system freeze. If you are using Ubuntu with SSD, you should disable swap in that device.
 
 - Modify `fstab`:
 
@@ -469,19 +331,154 @@ $ sudo nano /etc/fstab
 
 
 
-## 13. Delete Log Archives Regularly
+### 1.9. Delete Log Archives Regularly
 
-Logs sometimes hold a lot of space on disk. 
+Old logs sometimes hold a lot of space on disk. 
 
-- Edit cron:
+- Edit cron (you can select `nano` as editor):
 
 ```bash
 $ sudo crontab -e
 ```
 
-- Add the following line:
+- Add the following line (press `ctrl+x` then answer with `y` to save the file):
 
 ```
 @reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
 ```
+
+
+
+## 2. Utility/Fix Tweaks
+
+### 2.1. PulseAudio Mic Echo Cancellation Feature
+
+Echo cancellation is a useful tool to have while talking Skype etc **without headphones.**
+
+`Source:` https://www.reddit.com/r/linux/comments/2yqfqp/just_found_that_pulseaudio_have_noise/
+
+- Run the following command:
+
+```bash
+$ sudo nano /etc/pulse/default.pa
+```
+
+- Add the following line:
+
+```
+load-module module-echo-cancel
+```
+
+- Reload pulseaudio:
+
+```bash
+$ pulseaudio -k
+```
+
+- Select echo canceled sources in sound settings.
+
+
+
+### 2.2. PulseAudio Crackling Sound Solution
+
+The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. 
+
+`Source:` https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
+
+- To turn timer-based scheduling off add `tsched=0` in `/etc/pulse/default.pa`: 
+
+```bash
+$ sudo nano /etc/pulse/default.pa
+```
+
+- Modify file as explained below:
+
+```bash
+# Change this line:
+load-module module-udev-detect
+
+# To this line:
+load-module module-udev-detect tsched=0
+```
+
+- Then restart the PulseAudio server: 
+
+```bash
+$ pulseaudio -k
+$ pulseaudio --start
+```
+
+(RESTORE): Do the reverse to enable timer-based scheduling, if not already enabled by default. 
+
+
+
+### 2.3. Hide User List in Ubuntu 18.04 Login Screen
+
+Source: http://ubuntuhandbook.org/index.php/2018/04/hide-user-list-ubuntu-18-04-login-screen/
+
+The Gnome login screen normally shows a list of available users to log in as. For those who want to disable showing the user list, and manually type a username to login with, below I will show you how.
+
+- Run command to get access to root:
+
+```bash
+$ sudo -i
+```
+
+*Type in your password (no visual feedback while typing) when it prompts and hit Enter.*
+
+- In the terminal, run command to allow gdm to make connections to the X server:
+
+```
+# xhost +SI:localuser:gdm
+```
+
+- Then switch to user `gdm`, which is required to run gsettings to configure gdm settings.
+
+```
+# su gdm -l -s /bin/bash
+```
+
+- Finally hide user list from login screen using Gsettings:
+
+```bash
+$ gsettings set org.gnome.login-screen disable-user-list true
+```
+
+(RESTORE): To restore the change, open terminal and **re-do** previous steps, except running the last command with:
+
+```bash
+$ gsettings set org.gnome.login-screen disable-user-list false
+```
+
+
+
+### 2.4. GnomeTweaks (laptop lid suspend, desktop icons etc.)
+
+There are some tweaks which can increase utility of Gnome. These are tested on Ubuntu 18.04 and may not work on its older versions.
+
+- Install gnome tweaks:
+
+```bash
+$ sudo apt install gnome-tweaks
+```
+
+- Run the program:
+
+```
+$ gnome-tweaks
+```
+
+- Here are some configurations which I found them useful:
+- **(1) Disable Animations on Very Slow Computers**
+  - `Appearance` -> `Animations` -> `OFF`
+- **(2) Disable Mounted Volumes Showing on Desktop**
+  - `Desktop` -> `Mounted Volumes` -> `OFF`
+- **(3) Enable Mouse Pointer Highlight when Ctrl is Pressed** (Useful while screen sharing)
+  - `Keyboard & Mouse` -> `Pointer Location` -> `ON`
+- **(4) Disable Suspend When Laptop Lid is Closed**
+  - `Power` -> `Suspend when laptop lid is closed` -> `OFF`
+- **(5) Enable Battery Percentage Showing Up on the Top Bar**
+  - `Top Bar` -> `Battery Percentage` -> `ON`
+- **(6) Enable Date Showing Up on the Top Bar**
+  - `Top Bar` -> `Date` -> `ON`
 
