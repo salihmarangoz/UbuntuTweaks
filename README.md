@@ -14,11 +14,12 @@
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
          * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
-         * [2.3. Hide User List in Ubuntu 18.04 Login Screen](#23-hide-user-list-in-ubuntu-1804-login-screen)
-         * [2.4. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#24-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
-         * [2.5. Disable Touchpad When Mouse is Plugged](#25-disable-touchpad-when-mouse-is-plugged)
-         * [2.6. Disable Default Swapfile on Disk](#26-disable-default-swapfile-on-disk)
-         * [2.7. Delete Log Archives Regularly](#27-delete-log-archives-regularly)
+         * [2.3. PulseAudio Better Sound Quality](#23-pulseaudio-better-sound-quality)
+         * [2.4. Hide User List in Ubuntu 18.04 Login Screen](#24-hide-user-list-in-ubuntu-1804-login-screen)
+         * [2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#25-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
+         * [2.6. Disable Touchpad When Mouse is Plugged](#26-disable-touchpad-when-mouse-is-plugged)
+         * [2.7. Disable Default Swapfile on Disk](#27-disable-default-swapfile-on-disk)
+         * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
 
 ## Introduction
 
@@ -396,7 +397,37 @@ $ pulseaudio --start
 
 
 
-### 2.3. Hide User List in Ubuntu 18.04 Login Screen
+### 2.3. PulseAudio Better Sound Quality
+
+Tweak for audiophiles. Increasing sample rate in exchange of CPU time.
+
+**Source:** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Auto-Mute_Mode
+
+- Modify pulseaudio config file:
+
+```bash
+$ sudo nano /etc/pulse/daemon.conf
+```
+
+- Add the following lines to the end of the file:
+
+```
+default-sample-format = float32le
+default-sample-rate = 48000
+alternate-sample-rate = 96000
+resample-method = speex-float-10
+```
+
+- Restart pulseaudio server:
+
+```bash
+$ pulseaudio -k
+$ pulseaudio --start
+```
+
+
+
+### 2.4. Hide User List in Ubuntu 18.04 Login Screen
 
 The Gnome login screen normally shows a list of available users to log in as. For those who want to disable showing the user list, and manually type a username to login with, below I will show you how.
 
@@ -436,7 +467,7 @@ $ gsettings set org.gnome.login-screen disable-user-list false
 
 
 
-### 2.4. GnomeTweaks (laptop lid suspend, desktop icons etc.)
+### 2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)
 
 There are some tweaks which can increase utility of Gnome. These are tested on Ubuntu 18.04 and may not work on its older versions.
 
@@ -468,7 +499,7 @@ $ gnome-tweaks
 
 
 
-### 2.5. Disable Touchpad When Mouse is Plugged
+### 2.6. Disable Touchpad When Mouse is Plugged
 
 When mouse is plugged, touchpad should be disable automatically, right? This guide is for `Gnome` users.
 
@@ -496,7 +527,7 @@ $ sudo apt install touchpad-indicator
 
 
 
-### 2.6. Disable Default Swapfile on Disk
+### 2.7. Disable Default Swapfile on Disk
 
 Ubuntu 18.04 comes with a swapfile enabled. In out-of-memory situations this swapfile may only cause system freeze. If you are using Ubuntu with SSD, you should disable swap in that device to slow down disk aging.
 
@@ -516,7 +547,7 @@ $ sudo nano /etc/fstab
 
 
 
-### 2.7. Delete Log Archives Regularly
+### 2.8. Delete Log Archives Regularly
 
 Old logs sometimes hold a lot of space on disk. 
 
