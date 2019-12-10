@@ -492,7 +492,7 @@ $ sudo apt install touchpad-indicator
   - `Actions` -> `Disable touchpad when mouse plugged` -> `OFF`
 - **(2) Start the program on boot**
   - `General Options` -> `Autostart` -> `ON`
-  - `General Options` -> `Start hidden` -> `Checked`
+  - `General Options` -> `Start hidden` -> `Unchecked!` (Note: If you check this option top bar icon will be invisible. Not recommended)
 
 
 
