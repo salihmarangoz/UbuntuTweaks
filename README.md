@@ -425,6 +425,8 @@ $ pulseaudio -k
 $ pulseaudio --start
 ```
 
+**NOTE:** This configuration may conflict with "Echo Cancelation Feature". In sound settings choose high quality sound or low quality sound with echo cancelation.
+
 
 
 ### 2.4. Hide User List in Ubuntu 18.04 Login Screen
