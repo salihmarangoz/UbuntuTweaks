@@ -541,7 +541,7 @@ $ gnome-tweaks
   - `Appearance` -> `Animations` -> `OFF`
 - **(2) Disable Mounted Volumes Showing on Desktop**
   - `Desktop` -> `Mounted Volumes` -> `OFF`
-- **(3) Enable Mouse Pointer Highlight when Ctrl is Pressed** (Useful while screen sharing)
+- **(3) Enable Mouse Pointer Highlight when Ctrl is Pressed** (Problematic while gaming!!!)
   - `Keyboard & Mouse` -> `Pointer Location` -> `ON`
 - **(4) Disable Suspend When Laptop Lid is Closed**
   - `Power` -> `Suspend when laptop lid is closed` -> `OFF`
