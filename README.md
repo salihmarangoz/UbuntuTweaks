@@ -402,7 +402,7 @@ $ sudo nano /etc/pulse/default.pa
 - Add the following line:
 
 ```
-load-module module-echo-cancel
+load-module module-echo-cancel use_master_format=yes
 ```
 
 - Reload pulseaudio:
@@ -452,7 +452,7 @@ $ pulseaudio --start
 
 Tweak for audiophiles. Increasing sample rate in exchange of CPU time.
 
-**Source:** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Auto-Mute_Mode
+**Source:** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting
 
 - Modify pulseaudio config file:
 
@@ -464,7 +464,7 @@ $ sudo nano /etc/pulse/daemon.conf
 
 ```
 default-sample-format = float32le
-default-sample-rate = 48000
+default-sample-rate = 96000
 alternate-sample-rate = 96000
 resample-method = speex-float-10
 ```
@@ -476,9 +476,13 @@ $ pulseaudio -k
 $ pulseaudio --start
 ```
 
-**NOTE:** This configuration may conflict with "Echo Cancelation Feature". In sound settings choose high quality sound or low quality sound with echo cancelation.
+- Check PulseAudio values:
 
+```bash
+$ pactl list sinks
+```
 
+**NOTE:** If you want to get high quality sound with using echo cancellation feature at the same time, just make sure that echo cancellation module enabled with `load-module module-echo-cancel use_master_format=yes`. For more information see `PulseAudio Mic Echo Cancellation Feature` section.
 
 ### 2.4. Hide User List in Ubuntu 18.04 Login Screen
 
