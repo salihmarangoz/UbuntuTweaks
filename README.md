@@ -11,6 +11,7 @@
          * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
          * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
          * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
+         * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
          * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
@@ -23,11 +24,15 @@
 
 ## Introduction
 
-Here are some tweaks for **Ubuntu 18.04** to speed up and fix problems. Because some of these tweaks are optimized for my system, I have to mention that my computer configuration: 
+Here are some tweaks for **Ubuntu 18.04** to speed up and fix problems. Because some of these tweaks are optimized for my system, I have to mention that my **laptop PC** configuration: 
 
-- `Ubuntu 18.04` with `Gnome`
-
-- `Laptop` with `Intel i7 CPU`, `16GB RAM`, `HDD`, `Wifi (intel chipset)` and `a dead battery`.
+- `Ubuntu 18.04` with `Gnome Desktop`
+- `Intel® Core™ i7-4710MQ CPU @ 2.50GHz × 8`
+- `Intel® HD Graphics 4600`
+- `16GB DDR3 RAM`
+- `7200 rpm HDD`
+- `Wifi` (Intel® Chipset)
+- `Dead battery` (Using only AC)
 
 **Note: Configurations listed in this guide are not recommended for server environments.**
 
@@ -37,6 +42,7 @@ Here are some tweaks for **Ubuntu 18.04** to speed up and fix problems. Because 
 
 - [ ] Decrease log amount with filtering
 - [ ] Add sources where they are missing
+- [ ] https://rudd-o.com/linux-and-free-software/tales-from-responsivenessland-why-linux-feels-slow-and-how-to-fix-that
 
 
 
@@ -331,6 +337,51 @@ If there is a problem check rc.local service with:
 ```bash
 $ sudo systemctl status rc-local
 ```
+
+
+
+### 1.8. Faster TCP (BBR, Fast TCP Open)
+
+It is reported that using this algorithm (BBR) developed by Google and Fast TCP Open increases network speed and reduces delay.
+
+**Source(s):** https://gist.github.com/Jamesits/3d6da2d711bd95c53ccd953f99aee748
+
+https://wiki.archlinux.org/index.php/Sysctl#Enable_TCP_Fast_Open
+
+- Modify loaded modules on boot:
+
+```bash
+$ sudo nano /etc/modules-load.d/modules.conf
+```
+
+- Add the following line:
+
+```
+tcp_bbr
+```
+
+- Modify system variable configuration file:
+
+```bash
+$ sudo nano /etc/sysctl.conf
+```
+
+- Add the following lines:
+
+```
+net.ipv4.tcp_fastopen = 3
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+```
+
+- Reboot the PC.
+- Test if it is running. This command should output `bbr` as printed.
+
+```bash
+$ sysctl net.ipv4.tcp_congestion_control
+```
+
+
 
 
 
