@@ -463,9 +463,9 @@ $ sudo nano /etc/pulse/daemon.conf
 - Add the following lines to the end of the file:
 
 ```
-default-sample-format = float32le
-default-sample-rate = 96000
-alternate-sample-rate = 96000
+default-sample-format = float32ne
+default-sample-rate = 88200
+alternate-sample-rate = 88200
 resample-method = speex-float-10
 ```
 
@@ -482,7 +482,7 @@ $ pulseaudio --start
 $ pactl list sinks
 ```
 
-**NOTE:** If you want to get high quality sound with using echo cancellation feature at the same time, just make sure that echo cancellation module enabled with `load-module module-echo-cancel use_master_format=yes`. For more information see `PulseAudio Mic Echo Cancellation Feature` section.
+**NOTE(1):** If you want to get high quality sound with using echo cancellation feature at the same time, just make sure that echo cancellation module enabled with `load-module module-echo-cancel use_master_format=yes`. For more information see `PulseAudio Mic Echo Cancellation Feature` section.
 
 ### 2.4. Hide User List in Ubuntu 18.04 Login Screen
 
