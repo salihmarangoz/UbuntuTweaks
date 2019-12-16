@@ -463,10 +463,10 @@ $ sudo nano /etc/pulse/daemon.conf
 - Add the following lines to the end of the file:
 
 ```
-default-sample-format = float32ne
-default-sample-rate = 88200
-alternate-sample-rate = 88200
-resample-method = speex-float-10
+default-sample-format = s24ne
+default-sample-rate = 44100
+alternate-sample-rate = 48000
+resample-method = speex-float-5
 ```
 
 - Restart pulseaudio server:
@@ -479,10 +479,16 @@ $ pulseaudio --start
 - Check PulseAudio values:
 
 ```bash
-$ pactl list sinks
+$ watch -n 1 pactl list sinks short
 ```
 
-**NOTE(1):** If you want to get high quality sound with using echo cancellation feature at the same time, just make sure that echo cancellation module enabled with `load-module module-echo-cancel use_master_format=yes`. For more information see `PulseAudio Mic Echo Cancellation Feature` section.
+**NOTE(1):** If you want to get high quality sound with using echo cancellation feature at the same time, just make sure that echo cancellation module enabled with `load-module module-echo-cancel use_master_format=yes`. For more information see `PulseAudio Mic Echo Cancellation Feature` section and `NOTE(3)` in this section.
+
+**NOTE(2):** I have tried this with 96KHz and speex-float-10 but it end up only with high CPU usage. If you are only a listener, leave it as like in this guide, because pulseaudio will switch between 44.1kHz and 48kHz.
+
+**NOTE(3):** There won't be sample rate switch while using `module-echo-cancel`. Maybe related to a bug in pulseaudio or in the module but I was unable to find anything about it.
+
+
 
 ### 2.4. Hide User List in Ubuntu 18.04 Login Screen
 
