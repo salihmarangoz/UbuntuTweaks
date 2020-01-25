@@ -419,7 +419,9 @@ $ pulseaudio -k
 
 The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. 
 
-**Source:** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
+**Source(s):** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
+
+https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Laggy_sound
 
 - To turn timer-based scheduling off add `tsched=0` in `/etc/pulse/default.pa`: 
 
@@ -432,9 +434,12 @@ $ sudo nano /etc/pulse/default.pa
 ```bash
 # Change this line:
 load-module module-udev-detect
-
 # To this line:
 load-module module-udev-detect tsched=0
+
+# And add these lines to prevent popping sounds in some applications
+default-fragments = 5
+default-fragment-size-msec = 2
 ```
 
 - Then restart the PulseAudio server: 
