@@ -1,5 +1,8 @@
 # Ubuntu Tweaks Guide
 
+Table of Contents
+=================
+
    * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
       * [Introduction](#introduction)
       * [To-Do](#to-do)
@@ -12,6 +15,8 @@
          * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
          * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
          * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
+         * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
+         * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
          * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
@@ -21,6 +26,7 @@
          * [2.6. Disable Touchpad When Mouse is Plugged](#26-disable-touchpad-when-mouse-is-plugged)
          * [2.7. Disable Default Swapfile on Disk](#27-disable-default-swapfile-on-disk)
          * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
+         * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
 
 ## Introduction
 
@@ -383,6 +389,53 @@ $ sysctl net.ipv4.tcp_congestion_control
 
 
 
+### 1.9. Disable Unnecessary Services
+
+Reduce memory usage on weak systems about ~300Mb
+
+**Source:** https://prahladyeri.com/blog/2017/09/how-to-trim-your-new-ubuntu-installation-of-extra-fat-and-make-it-faster.html
+
+```bash
+$ sudo apt remove unattended-upgrades # Automatic upgrades
+$ sudo apt remove deja-dup # Automatic backup tool
+$ sudo apt remove gnome-online-accounts # Gnome online accounts plugins
+$ sudo apt remove whoopsie # Error Repoting, emove it on weak systems
+$ sudo apt remove snapd # Remove if you don't use it
+$ sudo apt remove gnome-software # Remove if you don't use it
+
+$ sudo mv /etc/xdg/autostart/update-notifier.desktop /etc/xdg/autostart/update-notifier.desktop.old # Disable update notifer
+$ sudo mv /etc/xdg/autostart/gnome-software-service.desktop /etc/xdg/autostart/gnome-software-service.desktop.old # Disable gnome software updater
+
+# Disable if you dont use printers
+sudo systemctl disable cups 
+sudo systemctl disable cups-browsed
+
+sudo systemctl mask packagekit.service # Disable if you don't use gnome-software
+
+sudo systemctl mask geoclue.service # CAUTION: Disable if you don't use Night Light
+
+# Disable evolution if you don't use it (uses a lot of memory)
+sudo chmod -x /usr/lib/evolution/evolution-calendar-factory
+sudo chmod -x /usr/lib/evolution/evolution-addressbook-factory
+sudo chmod -x /usr/lib/evolution/evolution-source-registry
+```
+
+
+
+### 1.10. Ext4 Mount with noatime Option
+
+Reduces disk access
+
+```bash
+$ sudo nano /etc/fstab
+```
+
+- Add `noatime` and like below:
+
+`UUID=12242bc2-d367-468e-af75-c6a35bd610ca / ext4 errors=remount-ro,noatime 0 1`
+
+- Reboot
+
 
 
 ## 2. Utility/Fix Tweaks
@@ -556,13 +609,11 @@ $ gnome-tweaks
   - `Appearance` -> `Animations` -> `OFF`
 - **(2) Disable Mounted Volumes Showing on Desktop**
   - `Desktop` -> `Mounted Volumes` -> `OFF`
-- **(3) Enable Mouse Pointer Highlight when Ctrl is Pressed** (Problematic while gaming!!!)
-  - `Keyboard & Mouse` -> `Pointer Location` -> `ON`
-- **(4) Disable Suspend When Laptop Lid is Closed**
+- **(3) Disable Suspend When Laptop Lid is Closed**
   - `Power` -> `Suspend when laptop lid is closed` -> `OFF`
-- **(5) Enable Battery Percentage Showing Up on the Top Bar**
+- **(4) Enable Battery Percentage Showing Up on the Top Bar**
   - `Top Bar` -> `Battery Percentage` -> `ON`
-- **(6) Enable Date Showing Up on the Top Bar**
+- **(5) Enable Date Showing Up on the Top Bar**
   - `Top Bar` -> `Date` -> `ON`
 
 
@@ -629,5 +680,23 @@ $ sudo crontab -e
 
 ```
 @reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
+```
+
+
+
+### 2.9. Enable S.M.A.R.T.
+
+Enable S.M.A.R.T. for health checks for disks.
+
+```bash
+$ sudo apt install smartmontools
+$ smartctl --scan
+```
+
+- Select `local` for postfix configuration if you don't know what to do.
+- This will print available disks. Run a command for disks like below:
+
+```bash
+$ sudo smartctl --smart=on /dev/sda
 ```
 
