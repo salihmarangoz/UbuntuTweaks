@@ -449,6 +449,16 @@ Echo cancellation is a useful tool to have while talking Skype etc **without hea
 
 https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Enable_Echo/Noise-Cancellation
 
+https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-echo-cancel
+
+
+
+**`!!! CHOOSE A GUIDE DEPENDING ON HOW MANY SOUND CARDS YOU ARE USING !!!`**
+
+
+
+**[! 1 !] IF YOU ARE USING ONE SOUND CARD**
+
 - Run the following command:
 
 ```bash
@@ -468,54 +478,42 @@ $ pulseaudio -k
 ```
 
 - Select echo canceled sources in sound settings.
+- Now everything is set up.
 
-Now everything is set up. If you are using more than one sound card (for example I am using usb sound card as an extra) you should use this script for reloading settings:
 
-- Create an script:
 
-```bash
-sudo nano /bin/fix-echo
-```
+**[! 2 !] IF YOU ARE USING MULTIPLE SOUND CARDS** 
 
-- Paste the following then save the file:
+For example I am using usb sound card for output and built-in mic as input.
 
-```bash
-#!/bin/bash
-aecArgs="$*"
-# If no "aec_args" are passed on to the script, use this "aec_args" as default:
-[ -z "$aecArgs" ] && aecArgs="analog_gain_control=0 digital_gain_control=1"
-newSourceName="echoCancelSource"
-newSinkName="echoCancelSink"
-
-# "module-switch-on-connect" with "ignore_virtual=no" (needs PulseAudio 12 or higher) is needed to automatically move existing streams to a new (virtual) default source and sink.
-if ! pactl list modules short | grep "module-switch-on-connect.*ignore_virtual=no" >/dev/null 2>&1; then
-	echo Load module \"module-switch-on-connect\" with \"ignore_virtual=no\"
-	pactl unload-module module-switch-on-connect 2>/dev/null
-	pactl load-module module-switch-on-connect ignore_virtual=no
-fi
-
-# Reload "module-echo-cancel"
-echo Reload \"module-echo-cancel\" with \"aec_args=$aecArgs\"
-pactl unload-module module-echo-cancel 2>/dev/null
-if pactl load-module module-echo-cancel use_master_format=1 aec_method=webrtc aec_args=\"$aecArgs\" source_name=$newSourceName sink_name=$newSinkName; then
-	# Set a new default source and sink, if module-echo-cancel has loaded successfully.
-	pacmd set-default-source $newSourceName
-	pacmd set-default-sink $newSinkName
-fi
-```
-
-- Make the script executable and read-only:
+- Before starting we need `YOUR_SINK_MASTER` and `YOUR_SOURCE_MASTER` values. For getting these values select output and input devices which you are going to use in the sound settings of Ubuntu Settings. These values are `alsa_output.usb-C-Media_Electronics_Inc._USB_Advanced_Audio_Device-00.analog-stereo` and `alsa_input.pci-0000_00_1b.0.analog-stereo` respectively, for my situation.
+- For getting the value `YOUR_SINK_MASTER` run the following command:
 
 ```bash
-$ sudo chown root:root /bin/fix-echo
-$ sudo chmod 755 /bin/fix-echo
+$ pactl list short sinks | grep RUNNING
 ```
 
-- After that, whenever you have a problem with echo cancellation you can run:
+- For getting the value `YOUR_SOURCE_MASTER` run the following command:
 
 ```bash
-$ fix-echo
+$ pactl list short sources | grep RUNNING
 ```
+
+- Run the following command:
+
+```bash
+$ sudo nano /etc/pulse/default.pa
+```
+
+- Add the following lines: (Replace `YOUR_SINK_MASTER` and `YOUR_SOURCE_MASTER`)
+
+```
+load-module module-echo-cancel use_master_format=yes sink_name=sink_ec source_name=source_ec sink_master=YOUR_SINK_MASTER source_master=YOUR_SOURCE_MASTER
+set-default-sink sink_ec
+set-default-source source_ec
+```
+
+- Restart the PC.
 
 
 
