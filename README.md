@@ -49,6 +49,7 @@ Here are some tweaks for **Ubuntu 18.04** to speed up and fix problems. Because 
 - [ ] Decrease log amount with filtering
 - [ ] Add sources where they are missing
 - [ ] https://rudd-o.com/linux-and-free-software/tales-from-responsivenessland-why-linux-feels-slow-and-how-to-fix-that
+- [ ] Sound quality decreases while using echo-cancelation
 
 
 
@@ -444,7 +445,9 @@ $ sudo nano /etc/fstab
 
 Echo cancellation is a useful tool to have while talking Skype etc **without headphones.**
 
-**Source:** https://www.reddit.com/r/linux/comments/2yqfqp/just_found_that_pulseaudio_have_noise/
+**Source(s):** https://www.reddit.com/r/linux/comments/2yqfqp/just_found_that_pulseaudio_have_noise/
+
+https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Enable_Echo/Noise-Cancellation
 
 - Run the following command:
 
@@ -465,6 +468,54 @@ $ pulseaudio -k
 ```
 
 - Select echo canceled sources in sound settings.
+
+Now everything is set up. If you are using more than one sound card (for example I am using usb sound card as an extra) you should use this script for reloading settings:
+
+- Create an script:
+
+```bash
+sudo nano /bin/fix-echo
+```
+
+- Paste the following then save the file:
+
+```bash
+#!/bin/bash
+aecArgs="$*"
+# If no "aec_args" are passed on to the script, use this "aec_args" as default:
+[ -z "$aecArgs" ] && aecArgs="analog_gain_control=0 digital_gain_control=1"
+newSourceName="echoCancelSource"
+newSinkName="echoCancelSink"
+
+# "module-switch-on-connect" with "ignore_virtual=no" (needs PulseAudio 12 or higher) is needed to automatically move existing streams to a new (virtual) default source and sink.
+if ! pactl list modules short | grep "module-switch-on-connect.*ignore_virtual=no" >/dev/null 2>&1; then
+	echo Load module \"module-switch-on-connect\" with \"ignore_virtual=no\"
+	pactl unload-module module-switch-on-connect 2>/dev/null
+	pactl load-module module-switch-on-connect ignore_virtual=no
+fi
+
+# Reload "module-echo-cancel"
+echo Reload \"module-echo-cancel\" with \"aec_args=$aecArgs\"
+pactl unload-module module-echo-cancel 2>/dev/null
+if pactl load-module module-echo-cancel use_master_format=1 aec_method=webrtc aec_args=\"$aecArgs\" source_name=$newSourceName sink_name=$newSinkName; then
+	# Set a new default source and sink, if module-echo-cancel has loaded successfully.
+	pacmd set-default-source $newSourceName
+	pacmd set-default-sink $newSinkName
+fi
+```
+
+- Make the script executable and read-only:
+
+```bash
+$ sudo chown root:root /bin/fix-echo
+$ sudo chmod 755 /bin/fix-echo
+```
+
+- After that, whenever you have a problem with echo cancellation you can run:
+
+```bash
+$ fix-echo
+```
 
 
 
