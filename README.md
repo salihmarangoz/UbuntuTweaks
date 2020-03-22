@@ -172,7 +172,7 @@ about:config
 
 ### 1.5. Move Browser Profile to RAM (profile-sync-daemon)
 
-Moving Firefox cache will reduce HDD access thus it will increase the performance. In order to achieve that we will use `profile-sync-daemon`.
+Moving Firefox cache will reduce disk access thus increasing the performance in HDD's and improving longevity in SSD's. In order to achieve that we will use `profile-sync-daemon`.
 
 **Source:** https://wiki.archlinux.org/index.php/Profile-sync-daemon
 
