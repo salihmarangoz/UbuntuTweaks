@@ -30,15 +30,7 @@ Table of Contents
 
 ## Introduction
 
-Here are some tweaks for **Ubuntu 18.04** to speed up and fix problems. Because some of these tweaks are optimized for my system, I have to mention that my **laptop PC** configuration: 
-
-- `Ubuntu 18.04` with `Gnome Desktop`
-- `Intel® Core™ i7-4710MQ CPU @ 2.50GHz × 8`
-- `Intel® HD Graphics 4600`
-- `16GB DDR3 RAM`
-- `7200 rpm HDD`
-- `Wifi` (Intel® Chipset)
-- `Dead battery` (Using only AC)
+Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Backup your computer in case of any data loss before starting to apply this guide. I don't recommend applying any fix tweaks if you don't have any related problems. And lastly, read the instructions carefully. Good luck!
 
 **Note: Configurations listed in this guide are not recommended for server environments.**
 
@@ -57,7 +49,7 @@ Here are some tweaks for **Ubuntu 18.04** to speed up and fix problems. Because 
 
 ### 1.1. Change CPU Scaling Governor to Performance
 
-Intel CPU's reported to be run faster when changed its scaling governor to performance mode.
+Intel CPU's reported to be run faster when changed its scaling governor to performance mode. For laptops this may decrease battery life.
 
 **Source:** https://askubuntu.com/questions/1021748/set-cpu-governor-to-performance-in-18-04#comment1820782_1049313
 
@@ -76,8 +68,7 @@ $ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
 
 ### 1.2. Disable Security Mitigations
-
-Reclaim the CPU power while increasing the security risks. Double edge sword!
+Reclaim the CPU power back taken from security patches. It's been years and there are no viruses using these exploits.
 
 **Source(s):** https://make-linux-fast-again.com/
 
@@ -130,7 +121,7 @@ $ grep . /sys/devices/system/cpu/vulnerabilities/*
 
 ### 1.3. Preload
 
-Preload, monitors user activity and caches programs into RAM. Prefer this if you are using apps and programs in HDD. No need for SSD users.
+Preload, monitors user activity and caches programs into RAM. Prefer this if you are using HDD. No need for SSD users.
 
 **Source:** https://www.hecticgeek.com/2013/05/using-preload-ubuntu-13-04/
 
@@ -144,7 +135,7 @@ $ sudo apt install preload
 
 ### 1.4. Mount /tmp as tmpfs (and Move Browser Cache)
 
-Mounting `/tmp` folder into RAM, will reduce disk access while increasing lifespan of the device.
+Mounting `/tmp` folder into RAM, will reduce disk access while increasing lifespan of the device. Use this if you have extra ~1GB in your RAM.
 
 - Modify the file which includes 
 
@@ -264,7 +255,7 @@ Psd will manage the following per /home/salih/.config/psd/.psd.conf:
 
 ### 1.6. Turn Off Wifi Power Management
 
-Speed up wifi performance.
+Speed up wifi performance. Not recommended for laptops in battery mode.
 
 **Source:** https://easylinuxtipsproject.blogspot.com/p/speed-mint.html
 
@@ -301,7 +292,7 @@ $ sudo chmod 555 /usr/bin/zram.sh
 ```
 
 - Paste the following lines: 
-  - Note(1): Modify `ZRAM_MEMORY` below if needed
+  - Note(1): Modify `ZRAM_MEMORY` according to your PC configuration.
   - Note(2): Change `lz4` to `zstd` to increase compress ratio, but will cost CPU time. Source: https://github.com/facebook/zstd
   - Note(3): Some other scripts on the Internet create zram devices depending on CPU cores, but it is not needed since multiple streams can be set for one single device.
 
@@ -392,7 +383,7 @@ $ sysctl net.ipv4.tcp_congestion_control
 
 ### 1.9. Disable Unnecessary Services
 
-Reduce memory usage on weak systems about ~300Mb
+Reduce memory usage on weak systems about ~300Mb. Be careful and do your search before removing any packages.
 
 **Source:** https://prahladyeri.com/blog/2017/09/how-to-trim-your-new-ubuntu-installation-of-extra-fat-and-make-it-faster.html
 
@@ -425,7 +416,7 @@ sudo chmod -x /usr/lib/evolution/evolution-source-registry
 
 ### 1.10. Ext4 Mount with noatime Option
 
-Reduces disk access
+Reduces disk access.
 
 ```bash
 $ sudo nano /etc/fstab
@@ -519,7 +510,7 @@ set-default-source source_ec
 
 ### 2.2. PulseAudio Crackling Sound Solution
 
-The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. 
+The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. Apply this tweak if you are having cracking sound issue.
 
 **Source(s):** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
 
