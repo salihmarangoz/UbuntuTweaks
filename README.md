@@ -135,7 +135,11 @@ $ sudo apt install preload
 
 ### 1.4. Mount /tmp as tmpfs (and Move Browser Cache)
 
-Mounting `/tmp` folder into RAM, will reduce disk access while increasing lifespan of the device. Use this if you have extra ~1GB in your RAM.
+**Source(s):** https://wiki.archlinux.org/index.php/Chromium/Tips_and_tricks#Tmpfs
+
+https://www.linuxliteos.com/forums/other/how-to-limit-chromium-browser's-cache-size/
+
+Mounting `/tmp` folder into RAM, will reduce disk access and increase lifespan of the device. Use this if you have extra ~500MB in your RAM. Internet usage maybe increase, so if you are using metered connection this tweak is not recommended.
 
 - Modify the file which includes 
 
@@ -149,15 +153,50 @@ $ sudo nano /etc/fstab
 tmpfs /tmp tmpfs rw,nosuid,nodev
 ```
 
-- Reboot the PC. Now it is done. If you want to move browser cache into this folder apply the operations below. 
-- Moving Firefox cache will reduce HDD access thus it will increase the performance. Internet usage maybe increase, so if you are using metered connection **don't** set this up. The similar configuration can be applied to Chromium, Opera etc. Open Firefox and enter this address to the URL bar:
+- Apply changes with the command below. This command should output nothing.
+
+```bash
+$ sudo mount -a
+```
+
+
+
+**[! Firefox !]**
+
+- Enter this URL into Firefox browser:
 
 ```
 about:config
 ```
 
-- Find the key **`browser.cache.disk.parent_directory`** and change its value to **`/tmp`**
-- Reboot the system.
+- Find the key **`browser.cache.disk.parent_directory`** and change its value to **`/tmp/firefox-cache`**
+- Restart Firefox and check if new cache folder is being used:
+
+```bash
+$ ls /tmp/firefox-cache
+```
+
+
+
+**[! Chromium !]**
+
+- Modify chromium settings file:
+
+```bash
+$ sudo nano /etc/chromium-browser/default
+```
+
+- Replace the line contains **`CHROMIUM_FLAGS=""`** with this:
+
+```
+CHROMIUM_FLAGS="--disk-cache-size=52428800 --disk-cache-dir=/tmp/chromium-cache"
+```
+
+- Restart Chromium and check if new cache folder is being used:
+
+```bash
+$ ls /tmp/chromium-cache
+```
 
 
 
