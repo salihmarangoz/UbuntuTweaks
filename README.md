@@ -806,17 +806,14 @@ $ gnome-shell-extension-prefs
 
 - Here is a list of extensions which I combined for myself:
 
-(Currently Using)
-
-https://extensions.gnome.org/extension/750/openweather/
-https://extensions.gnome.org/extension/779/clipboard-indicator/
-https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
-https://extensions.gnome.org/extension/1236/noannoyance/
-
-(Will Try in the Future)
-
-https://extensions.gnome.org/extension/1000/random-walls/
-https://extensions.gnome.org/extension/948/rss-feed/
-https://extensions.gnome.org/extension/992/onboard-integration/
-https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+  - (Currently Using)
+    - https://extensions.gnome.org/extension/750/openweather/
+    - https://extensions.gnome.org/extension/779/clipboard-indicator/
+    - https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
+    - https://extensions.gnome.org/extension/1236/noannoyance/
+  - (Didn't Try Yet)
+    - https://extensions.gnome.org/extension/1000/random-walls/
+    - https://extensions.gnome.org/extension/948/rss-feed/
+    - https://extensions.gnome.org/extension/992/onboard-integration/
+    - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
 
