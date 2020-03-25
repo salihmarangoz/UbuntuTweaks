@@ -55,6 +55,8 @@ Intel CPU's reported to be run faster when changed its scaling governor to perfo
 
 **Source:** https://askubuntu.com/questions/1021748/set-cpu-governor-to-performance-in-18-04#comment1820782_1049313
 
+**NOTE:** If you are using a laptop with battery try installing https://extensions.gnome.org/extension/945/cpu-power-manager/ For more information see section [2.10. Gnome Extensions](#210-gnome-extensions)
+
 - Running the following command is enough:
 
 ```bash
@@ -811,9 +813,14 @@ $ gnome-shell-extension-prefs
     - https://extensions.gnome.org/extension/779/clipboard-indicator/
     - https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
     - https://extensions.gnome.org/extension/1236/noannoyance/
+    - https://extensions.gnome.org/extension/442/drop-down-terminal/
+    - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
+    - https://extensions.gnome.org/extension/708/panel-osd/
   - (Didn't Try Yet)
     - https://extensions.gnome.org/extension/1000/random-walls/
     - https://extensions.gnome.org/extension/948/rss-feed/
     - https://extensions.gnome.org/extension/992/onboard-integration/
     - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+    - https://extensions.gnome.org/extension/570/todotxt/
+    - https://extensions.gnome.org/extension/690/easyscreencast/
 
