@@ -3,30 +3,32 @@
 Table of Contents
 =================
 
-   * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
-      * [Introduction](#introduction)
-      * [To-Do](#to-do)
-      * [1. Performance Tweaks](#1-performance-tweaks)
-         * [1.1. Change CPU Scaling Governor to Performance](#11-change-cpu-scaling-governor-to-performance)
-         * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
-         * [1.3. Preload](#13-preload)
-         * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
-         * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
-         * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
-         * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
-         * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
-         * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
-         * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
-      * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
-         * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
-         * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
-         * [2.3. PulseAudio Better Sound Quality](#23-pulseaudio-better-sound-quality)
-         * [2.4. Hide User List in Ubuntu 18.04 Login Screen](#24-hide-user-list-in-ubuntu-1804-login-screen)
-         * [2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#25-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
-         * [2.6. Disable Touchpad When Mouse is Plugged](#26-disable-touchpad-when-mouse-is-plugged)
-         * [2.7. Disable Default Swapfile on Disk](#27-disable-default-swapfile-on-disk)
-         * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
-         * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
+* [Introduction](#introduction)
+* [To-Do](#to-do)
+* [1. Performance Tweaks](#1-performance-tweaks)
+   * [1.1. Change CPU Scaling Governor to Performance](#11-change-cpu-scaling-governor-to-performance)
+   * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
+   * [1.3. Preload](#13-preload)
+   * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
+   * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
+   * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
+   * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
+   * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
+   * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
+   * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
+* [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
+   * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
+   * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
+   * [2.3. PulseAudio Better Sound Quality](#23-pulseaudio-better-sound-quality)
+   * [2.4. Hide User List in Ubuntu 18.04 Login Screen](#24-hide-user-list-in-ubuntu-1804-login-screen)
+   * [2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#25-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
+   * [2.6. Disable Touchpad When Mouse is Plugged](#26-disable-touchpad-when-mouse-is-plugged)
+   * [2.7. Disable Default Swapfile on Disk](#27-disable-default-swapfile-on-disk)
+   * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
+   * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
+   * [2.10. Gnome Extensions](#210-gnome-extensions)
+
+
 
 ## Introduction
 
@@ -778,4 +780,43 @@ $ smartctl --scan
 ```bash
 $ sudo smartctl --smart=on /dev/sda
 ```
+
+
+
+### 2.10. Gnome Extensions
+
+Increase your productivity and customize your desktop.
+
+- Install ubuntu package:
+
+```bash
+$ sudo apt install gnome-shell-extension
+```
+
+- Install Chromium plugin:
+
+https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep
+
+- Now you can browse and add some extensions from here: https://extensions.gnome.org/
+- If you want to enable/disable extensions natively run this command:
+
+```bash
+$ gnome-shell-extension-prefs
+```
+
+- Here is a list of extensions which I combined for myself:
+
+(Currently Using)
+
+https://extensions.gnome.org/extension/750/openweather/
+https://extensions.gnome.org/extension/779/clipboard-indicator/
+https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
+https://extensions.gnome.org/extension/1236/noannoyance/
+
+(Will Try in the Future)
+
+https://extensions.gnome.org/extension/1000/random-walls/
+https://extensions.gnome.org/extension/948/rss-feed/
+https://extensions.gnome.org/extension/992/onboard-integration/
+https://extensions.gnome.org/extension/906/sound-output-device-chooser/
 
