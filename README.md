@@ -3,32 +3,35 @@
 Table of Contents
 =================
 
-* [Introduction](#introduction)
-* [To-Do](#to-do)
-* [1. Performance Tweaks](#1-performance-tweaks)
-   * [1.1. Change CPU Scaling Governor to Performance](#11-change-cpu-scaling-governor-to-performance)
-   * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
-   * [1.3. Preload](#13-preload)
-   * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
-   * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
-   * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
-   * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
-   * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
-   * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
-   * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
-* [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
-   * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
-   * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
-   * [2.3. PulseAudio Better Sound Quality](#23-pulseaudio-better-sound-quality)
-   * [2.4. Hide User List in Ubuntu 18.04 Login Screen](#24-hide-user-list-in-ubuntu-1804-login-screen)
-   * [2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#25-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
-   * [2.6. Disable Touchpad When Mouse is Plugged](#26-disable-touchpad-when-mouse-is-plugged)
-   * [2.7. Disable Default Swapfile on Disk](#27-disable-default-swapfile-on-disk)
-   * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
-   * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
-   * [2.10. Gnome Extensions](#210-gnome-extensions)
+   * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
+   * [Table of Contents](#table-of-contents)
+      * [Introduction](#introduction)
+      * [To-Do](#to-do)
+      * [1. Performance Tweaks](#1-performance-tweaks)
+         * [1.1. Change CPU Scaling Governor to Performance](#11-change-cpu-scaling-governor-to-performance)
+         * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
+         * [1.3. Preload](#13-preload)
+         * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
+         * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
+         * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
+         * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
+         * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
+         * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
+         * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
+      * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
+         * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
+         * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
+         * [2.3. PulseAudio Better Sound Quality](#23-pulseaudio-better-sound-quality)
+         * [2.4. Hide User List in Ubuntu 18.04 Login Screen](#24-hide-user-list-in-ubuntu-1804-login-screen)
+         * [2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#25-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
+         * [2.6. Disable Touchpad When Mouse is Plugged](#26-disable-touchpad-when-mouse-is-plugged)
+         * [2.7. Disable Default Swapfile on Disk](#27-disable-default-swapfile-on-disk)
+         * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
+         * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
+         * [2.10. Gnome Extensions](#210-gnome-extensions)
+         * [2.11. Limit Network Bandwidth](#211-limit-network-bandwidth)
 
-
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 ## Introduction
 
@@ -823,4 +826,36 @@ $ gnome-shell-extension-prefs
     - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
     - https://extensions.gnome.org/extension/570/todotxt/
     - https://extensions.gnome.org/extension/690/easyscreencast/
+
+
+
+### 2.11. Limit Network Bandwidth
+
+If there are multiple computers connected to a router you can limit your network bandwidth and give a room to breath for other devices.
+
+**Source:** https://askubuntu.com/questions/20872/how-do-i-limit-internet-bandwidth
+
+- Install wondershaper package:
+
+```bash
+$ sudo apt install wondershaper
+```
+
+- Find your network interface: (For this example my network interface is enp4s0f1)
+
+```bash
+$ ifconfig
+```
+
+- Limit your bandwidth: (For this example: Download 1024 Kbits / Upload 256 Kbits)
+
+```bash
+$ sudo wondershaper enp4s0f1 1024 256
+```
+
+(RECOVER) Remove limitations for the adapter:
+
+```bash
+$ sudo wondershaper clear enp4s0f1
+```
 
