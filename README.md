@@ -193,10 +193,10 @@ $ ls /tmp/firefox-cache
 $ sudo nano /etc/chromium-browser/default
 ```
 
-- Replace the line contains **`CHROMIUM_FLAGS=""`** with this:
+- Replace the line contains **`CHROMIUM_FLAGS=""`** with this: (262144000 byte = 250 MB)
 
 ```
-CHROMIUM_FLAGS="--disk-cache-size=52428800 --disk-cache-dir=/tmp/chromium-cache"
+CHROMIUM_FLAGS="--disk-cache-size=262144000 --disk-cache-dir=/tmp/chromium-cache"
 ```
 
 - Restart Chromium and check if new cache folder is being used:
