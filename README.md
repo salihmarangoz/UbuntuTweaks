@@ -209,7 +209,7 @@ $ ls /tmp/chromium-cache
 
 ### 1.5. Move Browser Profile to RAM (profile-sync-daemon)
 
-**!!! ON MAY 5 2020 THIS PACKAGE STOPPED WORKING SO I DON'T RECOMMEND INSTALLING IT !!!**
+**!!! AFTER SOME UPDATES THIS MODULE MAY PREVENT BROWSERS FROM STARTING. TRY WITH DISABLING IT SO YOU CAN ENABLE IT AGAIN !!!**
 
 Moving Firefox cache will reduce disk access thus increasing the performance in HDD's and improving longevity in SSD's. In order to achieve that we will use `profile-sync-daemon`.
 
