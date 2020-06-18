@@ -18,6 +18,7 @@ Table of Contents
          * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
          * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
          * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
+         * [1.11. Update On-Board GPU Drivers](#111-update-on-board-gpu-drivers)
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
          * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
@@ -475,6 +476,25 @@ $ sudo nano /etc/fstab
 `UUID=12242bc2-d367-468e-af75-c6a35bd610ca / ext4 errors=remount-ro,noatime 0 1`
 
 - Reboot
+
+
+
+### 1.11. Update On-Board GPU Drivers
+
+Get latest Intel/AMD on-board graphics drivers to support latest features like OpenGL 4.5.
+
+**Source:** https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers?field.series_filter=bionic
+
+```bash
+# For Ubuntu 18
+$ sudo add-apt-repository ppa:oibaf/graphics-drivers
+$ sudo apt update
+$ sudo apt install --install-recommends linux-generic-hwe-18.04
+$ sudo apt upgrade
+$ sudo apt install -f # if it crashes while upgrading
+```
+
+
 
 
 
