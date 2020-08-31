@@ -518,7 +518,41 @@ $ sudo apt install gnome-calculator gnome-characters gnome-logs gnome-system-mon
 
 ### 1.13. Change Disk Scheduler (For HDD's)
 
-TODO
+**Source(s):** https://www.phoronix.com/scan.php?page=article&item=linux-50hdd-io
+
+https://community.chakralinux.org/t/how-to-enable-the-bfq-i-o-scheduler-on-kernel-4-12/6418
+
+- Create a new udev rule:
+
+```bash
+$ sudo nano /etc/udev/rules.d/60-scheduler.rules
+```
+
+- Add the lines below:
+
+```
+# set cfq scheduler for rotating disks
+ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+```
+
+- Update grub file:
+
+```bash
+$ sudo udevadm control --reload
+$ sudo udevadm trigger
+```
+
+- After reboot, test with this command:
+
+```bash
+$ cat /sys/block/sda/queue/scheduler
+```
+
+- The output must be like this:
+
+```
+mq-deadline [bfq] none
+```
 
 
 
