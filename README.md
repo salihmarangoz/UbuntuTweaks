@@ -4,7 +4,6 @@ Table of Contents
 =================
 
    * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
-   * [Table of Contents](#table-of-contents)
       * [Introduction](#introduction)
       * [To-Do](#to-do)
       * [1. Performance Tweaks](#1-performance-tweaks)
@@ -12,6 +11,8 @@ Table of Contents
          * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
          * [1.3. Preload](#13-preload)
          * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
+            * [1.4.1. Configuration for Firefox](#141-configuration-for-firefox)
+            * [1.4.2. Configuration for Chromium](#142-configuration-for-chromium)
          * [1.5. Move Browser Profile to RAM (profile-sync-daemon)](#15-move-browser-profile-to-ram-profile-sync-daemon)
          * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
          * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
@@ -19,8 +20,12 @@ Table of Contents
          * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
          * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
          * [1.11. Update On-Board GPU Drivers](#111-update-on-board-gpu-drivers)
+         * [1.12. Remove Snap Apps (and replace with native apps)](#112-remove-snap-apps-and-replace-with-native-apps)
+         * [1.13. Change Disk Scheduler (For HDD's)](#113-change-disk-scheduler-for-hdds)
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
+            * [2.1.1. Configuration For One Sound Card](#211-configuration-for-one-sound-card)
+            * [2.1.2. Configuration For Multiple Sound Cards](#212-configuration-for-multiple-sound-cards)
          * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
          * [2.3. PulseAudio Better Sound Quality](#23-pulseaudio-better-sound-quality)
          * [2.4. Hide User List in Ubuntu 18.04 Login Screen](#24-hide-user-list-in-ubuntu-1804-login-screen)
@@ -167,9 +172,9 @@ tmpfs /tmp tmpfs rw,nosuid,nodev
 $ sudo mount -a
 ```
 
+- Continue with `1.4.1. Configuration for Firefox` and/or `1.4.2. Configuration for Chromium`
 
-
-**[! Firefox !]**
+#### 1.4.1. Configuration for Firefox
 
 - Enter this URL into Firefox browser:
 
@@ -184,9 +189,7 @@ about:config
 $ ls /tmp/firefox-cache
 ```
 
-
-
-**[! Chromium !]**
+#### 1.4.2. Configuration for Chromium
 
 - Modify chromium settings file:
 
@@ -194,7 +197,7 @@ $ ls /tmp/firefox-cache
 $ sudo nano /etc/chromium-browser/default
 ```
 
-- Replace the line contains **`CHROMIUM_FLAGS=""`** with this: (262144000 byte = 250 MB)
+- Replace the line contains **`CHROMIUM_FLAGS=""`** with this: (262144000 byte = 250 MB. I personally go for 1GB cache)
 
 ```
 CHROMIUM_FLAGS="--disk-cache-size=262144000 --disk-cache-dir=/tmp/chromium-cache"
@@ -247,10 +250,10 @@ BACKUP_LIMIT=1
 sudo nano /etc/sudoers
 ```
 
-- Add the following line and save:
+- Add the following line and save: (Replace YOURUSERNAMEHERE with your username)
 
 ```
-user ALL=(ALL) NOPASSWD: /usr/bin/psd-overlay-helper
+YOURUSERNAMEHERE ALL=(ALL) NOPASSWD: /usr/bin/psd-overlay-helper
 ```
 
 - Run psd again:
@@ -336,8 +339,9 @@ If your PC is out of memory or has no extra space for caching, give it a shot!
 - Create ZRAM script:
 
 ```bash
-$ sudo nano /usr/bin/zram.sh
+$ sudo touch /usr/bin/zram.sh
 $ sudo chmod 555 /usr/bin/zram.sh
+$ sudo nano /usr/bin/zram.sh
 ```
 
 - Paste the following lines: 
@@ -437,28 +441,27 @@ Reduce memory usage on weak systems about ~300Mb. Be careful and do your search 
 **Source:** https://prahladyeri.com/blog/2017/09/how-to-trim-your-new-ubuntu-installation-of-extra-fat-and-make-it-faster.html
 
 ```bash
+# DISABLE UPDATE/UPGRADE SERVICES (If you do it manually and hate upgrade notifications)
 $ sudo apt remove unattended-upgrades # Automatic upgrades
-$ sudo apt remove deja-dup # Automatic backup tool
-$ sudo apt remove gnome-online-accounts # Gnome online accounts plugins
-$ sudo apt remove whoopsie # Error Repoting, emove it on weak systems
-$ sudo apt remove snapd # Remove if you don't use it
-$ sudo apt remove gnome-software # Remove if you don't use it
-
 $ sudo mv /etc/xdg/autostart/update-notifier.desktop /etc/xdg/autostart/update-notifier.desktop.old # Disable update notifer
 $ sudo mv /etc/xdg/autostart/gnome-software-service.desktop /etc/xdg/autostart/gnome-software-service.desktop.old # Disable gnome software updater
 
-# Disable if you dont use printers
+# DISABLE PRINTER SERVICES (If you don't use a printer)
 sudo systemctl disable cups 
 sudo systemctl disable cups-browsed
 
-sudo systemctl mask packagekit.service # Disable if you don't use gnome-software
+# DISABLE THESE SERVICES ON OLD/WEAK SYSTEMS
+$ sudo apt remove whoopsie # Error Repoting, remove it on weak systems
+$ sudo systemctl mask packagekit.service # Disable if you don't use gnome-software
+$ sudo systemctl mask geoclue.service # CAUTION: Disable if you don't use Night Light or location services
+$ sudo apt remove gnome-software # Software Store. Remove if you don't use it
+$ sudo apt remove deja-dup # Automatic backup tool
 
-sudo systemctl mask geoclue.service # CAUTION: Disable if you don't use Night Light
-
-# Disable evolution if you don't use it (uses a lot of memory)
-sudo chmod -x /usr/lib/evolution/evolution-calendar-factory
-sudo chmod -x /usr/lib/evolution/evolution-addressbook-factory
-sudo chmod -x /usr/lib/evolution/evolution-source-registry
+# DISABLE EVOLUTION/GNOME-ONLINE-ACCOUNTS (Email, calender, contact sync app. Disable it if you don't use it. It uses a lot of memory)
+$ sudo apt remove gnome-online-accounts # Gnome online accounts plugins
+$ sudo chmod -x /usr/lib/evolution/evolution-calendar-factory
+$ sudo chmod -x /usr/lib/evolution/evolution-addressbook-factory
+$ sudo chmod -x /usr/lib/evolution/evolution-source-registry
 ```
 
 
@@ -471,11 +474,11 @@ Reduces disk access.
 $ sudo nano /etc/fstab
 ```
 
-- Add `noatime` and like below:
+- Add `noatime` word like shown below:
 
 `UUID=12242bc2-d367-468e-af75-c6a35bd610ca / ext4 errors=remount-ro,noatime 0 1`
 
-- Reboot
+- Reboot the PC
 
 
 
@@ -496,6 +499,27 @@ $ sudo apt install -f # if it crashes while upgrading
 
 
 
+### 1.12. Remove Snap Apps (and replace with native apps)
+
+Snap is a software packaging and deployment system developed by Canonical for the Linux operating system. With snap we can install programs like in our smart phones. But in my perspective it doesn't work well and background services use memory a lot. So I can recommend removing snap.
+
+```bash
+# Remove Snap and its packages:
+$ snap remove gnome-3-34-1804 gnome-calculator gnome-characters gnome-logs gnome-system-monitor gtk-common-themes
+$ snap remove core18
+$ snap remove snapd
+$ sudo apt remove snapd
+
+# Install native version of uninstalled packages:
+$ sudo apt install gnome-calculator gnome-characters gnome-logs gnome-system-monitor
+```
+
+
+
+### 1.13. Change Disk Scheduler (For HDD's)
+
+TODO
+
 
 
 ## 2. Utility/Fix Tweaks
@@ -510,13 +534,9 @@ https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Enable_Echo/Nois
 
 https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-echo-cancel
 
+- `CHOOSE A GUIDE BELOW DEPENDING ON HOW MANY SOUND CARDS YOU ARE USING !!!`
 
-
-**`!!! CHOOSE A GUIDE DEPENDING ON HOW MANY SOUND CARDS YOU ARE USING !!!`**
-
-
-
-**[! 1 !] IF YOU ARE USING ONE SOUND CARD**
+#### 2.1.1. Configuration For One Sound Card
 
 - Run the following command:
 
@@ -541,9 +561,9 @@ $ pulseaudio -k
 
 
 
-**[! 2 !] IF YOU ARE USING MULTIPLE SOUND CARDS** 
+#### 2.1.2. Configuration For Multiple Sound Cards
 
-For example I am using usb sound card for output and built-in mic as input.
+For example you are using usb sound card for output and built-in mic as input.
 
 - Before starting we need `YOUR_SINK_MASTER` and `YOUR_SOURCE_MASTER` values. For getting these values select output and input devices which you are going to use in the sound settings of Ubuntu Settings. These values are `alsa_output.usb-C-Media_Electronics_Inc._USB_Advanced_Audio_Device-00.analog-stereo` and `alsa_input.pci-0000_00_1b.0.analog-stereo` respectively, for my situation.
 - For getting the value `YOUR_SINK_MASTER` run the following command:
@@ -578,7 +598,7 @@ set-default-source source_ec
 
 ### 2.2. PulseAudio Crackling Sound Solution
 
-The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. Apply this tweak if you are having cracking sound issue.
+The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. **Apply this tweak if you are having cracking sound issue.**
 
 **Source(s):** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
 
@@ -747,7 +767,7 @@ $ sudo apt install touchpad-indicator
 - Start the program. (Search with the touchpad keyword)
 - It should be shown on the top bar. Click on it and select `Preferences`, then follow the steps below:
 - **(1) Disable touchpad when mouse is plugged**
-  - `Actions` -> `Disable touchpad when mouse plugged` -> `OFF`
+  - `Actions` -> `Disable touchpad when mouse plugged` -> `ON`
 - **(2) Start the program on boot**
   - `General Options` -> `Autostart` -> `ON`
   - `General Options` -> `Start hidden` -> `Unchecked!` (Note: If you check this option top bar icon will be invisible. Not recommended)
@@ -796,16 +816,17 @@ $ sudo crontab -e
 
 Enable S.M.A.R.T. for health checks for disks.
 
+- Install smartmontools:
+
 ```bash
-$ sudo apt install smartmontools
-$ smartctl --scan
+$ sudo apt install smartmontools # Select `local` for postfix conf if you are not sure
 ```
 
-- Select `local` for postfix configuration if you don't know what to do.
-- This will print available disks. Run a command for disks like below:
+- Enable health check for disks (Example is given for /dev/sda below):
 
 ```bash
-$ sudo smartctl --smart=on /dev/sda
+$ smartctl --scan # Print S.M.A.R.T. available disks.
+$ sudo smartctl --smart=on /dev/sda # Enable health check for /dev/sda
 ```
 
 
@@ -814,13 +835,13 @@ $ sudo smartctl --smart=on /dev/sda
 
 Increase your productivity and customize your desktop.
 
-- Install ubuntu package:
+- Install required packages:
 
 ```bash
-$ sudo apt install gnome-shell-extension
+$ sudo apt install gnome-shell-extension chromium-browser chrome-gnome-shell
 ```
 
-- Install Chromium plugin:
+- Install Chromium-Gnome Shell plugin:
 
 https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep
 
@@ -833,21 +854,17 @@ $ gnome-shell-extension-prefs
 
 - Here is a list of extensions which I combined for myself:
 
-  - (Currently Using)
-    - https://extensions.gnome.org/extension/750/openweather/
-    - https://extensions.gnome.org/extension/779/clipboard-indicator/
+  - (I am currently using these)
     - https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
     - https://extensions.gnome.org/extension/1236/noannoyance/
-    - https://extensions.gnome.org/extension/442/drop-down-terminal/
-    - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
+    - https://extensions.gnome.org/extension/750/openweather/
     - https://extensions.gnome.org/extension/708/panel-osd/
-  - (Didn't Try Yet)
-    - https://extensions.gnome.org/extension/1000/random-walls/
+    - https://extensions.gnome.org/extension/779/clipboard-indicator/
+    - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
     - https://extensions.gnome.org/extension/948/rss-feed/
+  - (Didn't try them yet)
     - https://extensions.gnome.org/extension/992/onboard-integration/
     - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
-    - https://extensions.gnome.org/extension/570/todotxt/
-    - https://extensions.gnome.org/extension/690/easyscreencast/
 
 
 
