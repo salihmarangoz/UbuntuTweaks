@@ -3,7 +3,11 @@
 Table of Contents
 =================
 
+Table of Contents
+=================
+
    * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
+   * [Table of Contents](#table-of-contents)
       * [Introduction](#introduction)
       * [To-Do](#to-do)
       * [1. Performance Tweaks](#1-performance-tweaks)
@@ -13,7 +17,7 @@ Table of Contents
          * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
             * [1.4.1. Configuration for Firefox](#141-configuration-for-firefox)
             * [1.4.2. Configuration for Chromium](#142-configuration-for-chromium)
-         * [1.5. Change Disk Scheduler (For HDD's)](#15-change-disk-scheduler-for-hdds)
+         * [1.5. Manually Cache Folders with Vmtouch (browsers, apps, etc.)](#15-manually-cache-folders-with-vmtouch-browsers-apps-etc)
          * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
          * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
          * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
@@ -21,6 +25,7 @@ Table of Contents
          * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
          * [1.11. Update On-Board GPU Drivers](#111-update-on-board-gpu-drivers)
          * [1.12. Remove Snap Apps (and replace with native apps)](#112-remove-snap-apps-and-replace-with-native-apps)
+         * [1.13. Change Disk Scheduler (For HDD's)](#113-change-disk-scheduler-for-hdds)
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
             * [2.1.1. Configuration For One Sound Card](#211-configuration-for-one-sound-card)
@@ -210,43 +215,43 @@ $ ls /tmp/chromium-cache
 
 
 
-### 1.5. Change Disk Scheduler (For HDD's)
+### 1.5. Manually Cache Folders with Vmtouch (browsers, apps, etc.)
 
-**Source(s):** https://www.phoronix.com/scan.php?page=article&item=linux-50hdd-io
+Select folders/files to cache into virtual memory to improve user experience when cold boot.
 
-https://community.chakralinux.org/t/how-to-enable-the-bfq-i-o-scheduler-on-kernel-4-12/6418
+**Source:** https://hoytech.com/vmtouch/
 
-- Create a new udev rule:
-
-```bash
-$ sudo nano /etc/udev/rules.d/60-scheduler.rules
-```
-
-- Add the lines below:
-
-```
-# set cfq scheduler for rotating disks
-ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-```
-
-- Update grub file:
+- Install vmtouch and configure files/folders list:
 
 ```bash
-$ sudo udevadm control --reload
-$ sudo udevadm trigger
+$ sudo apt install vmtouch
+$ sudo touch /etc/vmtouch_list
+$ sudo chmod 555 /etc/vmtouch_list
+$ sudo nano /etc/vmtouch_list
 ```
 
-- After reboot, test with this command:
+- Make your list like located below: (You need to modify this file according to you needs. These folders will be cached into RAM when PC boot up)
+
+```
+/usr/lib/chromium-browser/
+/home/salih/.config/chromium/
+/usr/share/typora/
+/usr/share/discord/
+```
+
+- Set to run on boot:
 
 ```bash
-$ cat /sys/block/sda/queue/scheduler
+$ sudo crontab -e
 ```
 
-- The output must be like this:
+- Paste the following line:
 
 ```
-mq-deadline [bfq] none
+@reboot /usr/bin/vmtouch -f -t -b /etc/vmtouch_list > /etc/vmtouch_log 2>&1
 ```
+
+- You can check log file `/etc/vmtouch_log` if there are errors or not.
 
 
 
@@ -457,6 +462,46 @@ $ sudo apt remove snapd
 
 # Install native version of uninstalled packages:
 $ sudo apt install gnome-calculator gnome-characters gnome-logs gnome-system-monitor
+```
+
+
+
+### 1.13. Change Disk Scheduler (For HDD's)
+
+**Source(s):** https://www.phoronix.com/scan.php?page=article&item=linux-50hdd-io
+
+https://community.chakralinux.org/t/how-to-enable-the-bfq-i-o-scheduler-on-kernel-4-12/6418
+
+- Create a new udev rule:
+
+```bash
+$ sudo nano /etc/udev/rules.d/60-scheduler.rules
+```
+
+- Add the lines below:
+
+```
+# set cfq scheduler for rotating disks
+ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+```
+
+- Update grub file:
+
+```bash
+$ sudo udevadm control --reload
+$ sudo udevadm trigger
+```
+
+- After reboot, test with this command:
+
+```bash
+$ cat /sys/block/sda/queue/scheduler
+```
+
+- The output must be like this:
+
+```
+mq-deadline [bfq] none
 ```
 
 
