@@ -3,9 +3,6 @@
 Table of Contents
 =================
 
-Table of Contents
-=================
-
    * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
    * [Table of Contents](#table-of-contents)
       * [Introduction](#introduction)
