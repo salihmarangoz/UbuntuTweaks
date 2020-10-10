@@ -14,6 +14,7 @@ Table of Contents
          * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
             * [1.4.1. Configuration for Firefox](#141-configuration-for-firefox)
             * [1.4.2. Configuration for Chromium](#142-configuration-for-chromium)
+            * [1.4.2. Configuration for Google Chrome](#142-configuration-for-google-chrome)
          * [1.5. Manually Cache Folders with Vmtouch (browsers, apps, etc.)](#15-manually-cache-folders-with-vmtouch-browsers-apps-etc)
          * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
          * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
@@ -36,6 +37,7 @@ Table of Contents
          * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
          * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
          * [2.10. Gnome Extensions](#210-gnome-extensions)
+         * [2.10.1. GSConnect](#2101-gsconnect)
          * [2.11. Limit Network Bandwidth](#211-limit-network-bandwidth)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
@@ -54,6 +56,7 @@ Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Bac
 - [ ] Add sources where they are missing
 - [ ] https://rudd-o.com/linux-and-free-software/tales-from-responsivenessland-why-linux-feels-slow-and-how-to-fix-that
 - [ ] Sound quality decreases while using echo-cancelation
+- [ ] S.M.A.R.T. e-mail setup https://help.ubuntu.com/community/EmailAlerts
 
 
 
@@ -208,6 +211,20 @@ CHROMIUM_FLAGS="--disk-cache-size=262144000 --disk-cache-dir=/tmp/chromium-cache
 
 ```bash
 $ ls /tmp/chromium-cache
+```
+
+#### 1.4.2. Configuration for Google Chrome
+
+- Modify Google Chrome executable:
+
+```bash
+sudo nano /opt/google/chrome/google-chrome
+```
+
+- Modify the last line and make it look like this: (Added --disk-cache parameter. You can add --disk-cache-size parameter like shown in the 1.4.2)
+
+```
+exec -a "$0" "$HERE/chrome" "$@" --disk-cache-dir=/tmp
 ```
 
 
@@ -415,7 +432,7 @@ $ sudo chmod -x /usr/lib/evolution/evolution-source-registry
 
 ### 1.10. Ext4 Mount with noatime Option
 
-Reduces disk access.
+Prevent saving file last access times on the hard drive. Reduces disk access thus improving performance.
 
 ```bash
 $ sudo nano /etc/fstab
@@ -835,17 +852,27 @@ $ gnome-shell-extension-prefs
 
 - Here is a list of extensions which I combined for myself:
 
-  - (I am currently using these)
-    - https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
-    - https://extensions.gnome.org/extension/1236/noannoyance/
-    - https://extensions.gnome.org/extension/750/openweather/
-    - https://extensions.gnome.org/extension/708/panel-osd/
-    - https://extensions.gnome.org/extension/779/clipboard-indicator/
-    - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
-    - https://extensions.gnome.org/extension/948/rss-feed/
-  - (Didn't try them yet)
-    - https://extensions.gnome.org/extension/992/onboard-integration/
-    - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+  - https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
+  - https://extensions.gnome.org/extension/1236/noannoyance/
+  - https://extensions.gnome.org/extension/750/openweather/
+  - https://extensions.gnome.org/extension/708/panel-osd/
+  - https://extensions.gnome.org/extension/779/clipboard-indicator/
+  - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
+  - https://extensions.gnome.org/extension/948/rss-feed/
+  - https://extensions.gnome.org/extension/1276/night-light-slider/
+  - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+
+
+
+### 2.10.1. GSConnect
+
+Connect your smartphone to the PC. File sharing, taking photo, sending SMS, media controls, etc.
+
+Note: If you just want the "Send this page to the mobile phone" feature on your browser, just switch from Chromium to Google Chrome. 
+
+- https://extensions.gnome.org/extension/1319/gsconnect/ (gnome extension)
+- https://chrome.google.com/webstore/detail/gsconnect/jfnifeihccihocjbfcfhicmmgpjicaec/related?hl=en (chrome extension)
+- https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp&hl=en_US&gl=US (to smartphone)
 
 
 
