@@ -14,7 +14,7 @@ Table of Contents
          * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
             * [1.4.1. Configuration for Firefox](#141-configuration-for-firefox)
             * [1.4.2. Configuration for Chromium](#142-configuration-for-chromium)
-            * [1.4.2. Configuration for Google Chrome](#142-configuration-for-google-chrome)
+            * [1.4.3. Configuration for Google Chrome](#143-configuration-for-google-chrome)
          * [1.5. Manually Cache Folders with Vmtouch (browsers, apps, etc.)](#15-manually-cache-folders-with-vmtouch-browsers-apps-etc)
          * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
          * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
@@ -213,7 +213,7 @@ CHROMIUM_FLAGS="--disk-cache-size=262144000 --disk-cache-dir=/tmp/chromium-cache
 $ ls /tmp/chromium-cache
 ```
 
-#### 1.4.2. Configuration for Google Chrome
+#### 1.4.3. Configuration for Google Chrome
 
 - Modify Google Chrome executable:
 
