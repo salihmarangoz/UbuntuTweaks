@@ -37,7 +37,7 @@ Table of Contents
          * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
          * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
          * [2.10. Gnome Extensions](#210-gnome-extensions)
-         * [2.10.1. GSConnect](#2101-gsconnect)
+            * [2.10.1. GSConnect](#2101-gsconnect)
          * [2.11. Limit Network Bandwidth](#211-limit-network-bandwidth)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
@@ -864,7 +864,7 @@ $ gnome-shell-extension-prefs
 
 
 
-### 2.10.1. GSConnect
+#### 2.10.1. GSConnect
 
 Connect your smartphone to the PC. File sharing, taking photo, sending SMS, media controls, etc.
 
