@@ -41,6 +41,7 @@ Table of Contents
          * [2.10. Gnome Extensions](#210-gnome-extensions)
             * [2.10.1. GSConnect](#2101-gsconnect)
          * [2.11. Limit Network Bandwidth](#211-limit-network-bandwidth)
+         * [2.12. Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)](#212-remap-default-home-folders-desktop-pictures-downloads-etc)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -935,4 +936,20 @@ $ sudo wondershaper enp4s0f1 1024 256
 ```bash
 $ sudo wondershaper clear enp4s0f1
 ```
+
+
+
+### 2.12. Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)
+
+I maintain a single folder for all my files to make it easier for backup. This is useful for especially for it, and also helps cleaning the home folder.
+
+```bash
+$ xdg-user-dirs-update --set DOWNLOAD /path/to/new/downloads_folder
+$ xdg-user-dirs-update --set DESKTOP /path/to/new/desktop_folder
+$ xdg-user-dirs-update --set DOCUMENTS /path/to/new/documents_folder
+$ xdg-user-dirs-update --set PICTURES /path/to/new/pictures_folder
+$ xdg-user-dirs-update --set TEMPLATES /path/to/new/templates_folder
+```
+
+
 
