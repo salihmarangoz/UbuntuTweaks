@@ -24,6 +24,8 @@ Table of Contents
          * [1.11. Update On-Board GPU Drivers](#111-update-on-board-gpu-drivers)
          * [1.12. Remove Snap Apps (and replace with native apps)](#112-remove-snap-apps-and-replace-with-native-apps)
          * [1.13. Change Disk Scheduler (For HDD's)](#113-change-disk-scheduler-for-hdds)
+         * [1.14. Improve Browser Performance](#114-improve-browser-performance)
+            * [1.14.1 Chromium](#1141-chromium)
       * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
          * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
             * [2.1.1. Configuration For One Sound Card](#211-configuration-for-one-sound-card)
@@ -517,6 +519,34 @@ $ cat /sys/block/sda/queue/scheduler
 ```
 mq-deadline [bfq] none
 ```
+
+
+
+### 1.14. Improve Browser Performance
+
+**Source:**  https://gist.github.com/ibLeDy/1495735312943b9dd646fd9ddf618513
+
+#### 1.14.1 Chromium
+
+I have choosen some flags to set. See the `source` for all usable flags. Type `about:flags` to address bar and do the following modifications:
+
+**Note:** If everything goes wrong start Chromium with `--no-experiments` command line option.
+
+- Experimental QUIC protocol (Enabled)
+- Experimental WebAssembly (Enabled)
+- WebAssembly baseline compiler (Enabled)
+- WebAssembly lazy compilation (Enabled)
+- WebAssembly SIMD support. (Enabled)
+- WebAssembly threads support (Enabled)
+- WebAssembly tiering (Enabled)
+- Zero-copy rasterizer (Enabled)
+- Tab Groups (Enabled)
+- Tab Groups Collapse (Enabled)
+- Parallel downloading (Enabled)
+- Enable lazy image loading (Enabled - Automati...)
+- Enable lazy frame loading  (Enabled - Automati...)
+- Parallelize layers (Enabled)
+- Heavy Ad Intervention (Enabled)
 
 
 
