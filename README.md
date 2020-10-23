@@ -598,13 +598,13 @@ For example you are using usb sound card for output and built-in mic as input.
 - For getting the value `YOUR_SINK_MASTER` run the following command:
 
 ```bash
-$ pactl list short sinks | grep RUNNING
+$ pactl list short sinks
 ```
 
 - For getting the value `YOUR_SOURCE_MASTER` run the following command:
 
 ```bash
-$ pactl list short sources | grep RUNNING
+$ pactl list short sources
 ```
 
 - Run the following command:
