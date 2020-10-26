@@ -1,47 +1,47 @@
-# Ubuntu Tweaks Guide
+# Ubuntu Tweaks Guide (Ubuntu 18.04)
 
 Table of Contents
 =================
 
-   * [Ubuntu Tweaks Guide](#ubuntu-tweaks-guide)
+   * [Ubuntu Tweaks Guide (Ubuntu 18.04)](#ubuntu-tweaks-guide-ubuntu-1804)
    * [Table of Contents](#table-of-contents)
       * [Introduction](#introduction)
       * [To-Do](#to-do)
-      * [1. Performance Tweaks](#1-performance-tweaks)
-         * [1.1. Change CPU Scaling Governor to Performance](#11-change-cpu-scaling-governor-to-performance)
-         * [1.2. Disable Security Mitigations](#12-disable-security-mitigations)
-         * [1.3. Preload](#13-preload)
-         * [1.4. Mount /tmp as tmpfs (and Move Browser Cache)](#14-mount-tmp-as-tmpfs-and-move-browser-cache)
-            * [1.4.1. Configuration for Firefox](#141-configuration-for-firefox)
-            * [1.4.2. Configuration for Chromium](#142-configuration-for-chromium)
-            * [1.4.3. Configuration for Google Chrome](#143-configuration-for-google-chrome)
-         * [1.5. Manually Cache Folders with Vmtouch (browsers, apps, etc.)](#15-manually-cache-folders-with-vmtouch-browsers-apps-etc)
-         * [1.6. Turn Off Wifi Power Management](#16-turn-off-wifi-power-management)
-         * [1.7. ZRAM as a Compressed RAM Block](#17-zram-as-a-compressed-ram-block)
-         * [1.8. Faster TCP (BBR, Fast TCP Open)](#18-faster-tcp-bbr-fast-tcp-open)
-         * [1.9. Disable Unnecessary Services](#19-disable-unnecessary-services)
-         * [1.10. Ext4 Mount with noatime Option](#110-ext4-mount-with-noatime-option)
-         * [1.11. Update On-Board GPU Drivers](#111-update-on-board-gpu-drivers)
-         * [1.12. Remove Snap Apps (and replace with native apps)](#112-remove-snap-apps-and-replace-with-native-apps)
-         * [1.13. Change Disk Scheduler (For HDD's)](#113-change-disk-scheduler-for-hdds)
-         * [1.14. Improve Browser Performance](#114-improve-browser-performance)
+      * [Performance Tweaks](#performance-tweaks)
+         * [[CPU] Performance Processor Scaling Governor](#cpu-performance-processor-scaling-governor)
+         * [[CPU] Disable Security Mitigations](#cpu-disable-security-mitigations)
+         * [[RAM] Compressed Memory](#ram-compressed-memory)
+         * [[GPU] Update On-Board GPU Drivers](#gpu-update-on-board-gpu-drivers)
+         * [[HDD] Ext4 Mount with noatime Option](#hdd-ext4-mount-with-noatime-option)
+         * [[HDD] Preload](#hdd-preload)
+         * [[HDD] Mount /tmp as tmpfs (and Move Browser Cache)](#hdd-mount-tmp-as-tmpfs-and-move-browser-cache)
+            * [1. Configuration for Firefox](#1-configuration-for-firefox)
+            * [2. Configuration for Chromium](#2-configuration-for-chromium)
+            * [3. Configuration for Google Chrome](#3-configuration-for-google-chrome)
+         * [[HDD] Manually Cache Folders (browsers, apps, etc.)](#hdd-manually-cache-folders-browsers-apps-etc)
+         * [[HDD] BFQ Disk Scheduler](#hdd-bfq-disk-scheduler)
+         * [[HDD] Disable Default Swapfile on Disk](#hdd-disable-default-swapfile-on-disk)
+         * [[NET] Turn Off Wifi Power Save Feature](#net-turn-off-wifi-power-save-feature)
+         * [[NET] Faster TCP (BBR, Fast TCP Open)](#net-faster-tcp-bbr-fast-tcp-open)
+         * [[etc] Disable Unnecessary Services](#etc-disable-unnecessary-services)
+         * [[etc] Remove Snap Apps (and replace with native apps)](#etc-remove-snap-apps-and-replace-with-native-apps)
+         * [[etc] Improve Browser Performance](#etc-improve-browser-performance)
             * [1.14.1 Chromium](#1141-chromium)
-      * [2. Utility/Fix Tweaks](#2-utilityfix-tweaks)
-         * [2.1. PulseAudio Mic Echo Cancellation Feature](#21-pulseaudio-mic-echo-cancellation-feature)
-            * [2.1.1. Configuration For One Sound Card](#211-configuration-for-one-sound-card)
-            * [2.1.2. Configuration For Multiple Sound Cards](#212-configuration-for-multiple-sound-cards)
-         * [2.2. PulseAudio Crackling Sound Solution](#22-pulseaudio-crackling-sound-solution)
-         * [2.3. PulseAudio Better Sound Quality](#23-pulseaudio-better-sound-quality)
-         * [2.4. Hide User List in Ubuntu 18.04 Login Screen](#24-hide-user-list-in-ubuntu-1804-login-screen)
-         * [2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)](#25-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
-         * [2.6. Disable Touchpad When Mouse is Plugged](#26-disable-touchpad-when-mouse-is-plugged)
-         * [2.7. Disable Default Swapfile on Disk](#27-disable-default-swapfile-on-disk)
-         * [2.8. Delete Log Archives Regularly](#28-delete-log-archives-regularly)
-         * [2.9. Enable S.M.A.R.T.](#29-enable-smart)
-         * [2.10. Gnome Extensions](#210-gnome-extensions)
-            * [2.10.1. GSConnect](#2101-gsconnect)
-         * [2.11. Limit Network Bandwidth](#211-limit-network-bandwidth)
-         * [2.12. Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)](#212-remap-default-home-folders-desktop-pictures-downloads-etc)
+      * [Utility/Fix Tweaks](#utilityfix-tweaks)
+         * [[AUDIO] PulseAudio Mic Echo Cancellation Feature](#audio-pulseaudio-mic-echo-cancellation-feature)
+            * [1. Configuration For One Sound Card](#1-configuration-for-one-sound-card)
+            * [2. Configuration For Multiple Sound Cards](#2-configuration-for-multiple-sound-cards)
+         * [[AUDIO] PulseAudio Crackling Sound Solution](#audio-pulseaudio-crackling-sound-solution)
+         * [[AUDIO] PulseAudio Better Sound Quality](#audio-pulseaudio-better-sound-quality)
+         * [[GNOME] Hide User List in Ubuntu 18.04 Login Screen](#gnome-hide-user-list-in-ubuntu-1804-login-screen)
+         * [[GNOME] GnomeTweaks (laptop lid suspend, desktop icons etc.)](#gnome-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
+         * [[GNOME] Gnome Extensions](#gnome-gnome-extensions)
+            * [1. GSConnect](#1-gsconnect)
+         * [[GNOME] Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)](#gnome-remap-default-home-folders-desktop-pictures-downloads-etc)
+         * [[etc] Limit Network Bandwidth](#etc-limit-network-bandwidth)
+         * [[etc] Enable S.M.A.R.T.](#etc-enable-smart)
+         * [[etc] Delete Log Archives Regularly](#etc-delete-log-archives-regularly)
+         * [[etc] Disable Touchpad When Mouse is Plugged](#etc-disable-touchpad-when-mouse-is-plugged)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -63,9 +63,9 @@ Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Bac
 
 
 
-## 1. Performance Tweaks
+## Performance Tweaks
 
-### 1.1. Change CPU Scaling Governor to Performance
+### [CPU] Performance Processor Scaling Governor
 
 Intel CPU's reported to be run faster when changed its scaling governor to performance mode. For laptops this may decrease battery life.
 
@@ -87,7 +87,7 @@ $ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
 
 
-### 1.2. Disable Security Mitigations
+### [CPU] Disable Security Mitigations
 Reclaim the CPU power back taken from security patches. It's been years and there are no viruses using these exploits.
 
 **Source(s):** https://make-linux-fast-again.com/
@@ -138,168 +138,7 @@ $ grep . /sys/devices/system/cpu/vulnerabilities/*
 ```
 
 
-
-### 1.3. Preload
-
-Preload, monitors user activity and caches programs into RAM. Prefer this if you are using HDD. No need for SSD users.
-
-**Source:** https://www.hecticgeek.com/2013/05/using-preload-ubuntu-13-04/
-
-- Install the program with the following command. No further configurations are needed.
-
-```bash
-$ sudo apt install preload
-```
-
-
-
-### 1.4. Mount /tmp as tmpfs (and Move Browser Cache)
-
-**Source(s):** https://wiki.archlinux.org/index.php/Chromium/Tips_and_tricks#Tmpfs
-
-https://www.linuxliteos.com/forums/other/how-to-limit-chromium-browser's-cache-size/
-
-Mounting `/tmp` folder into RAM, will reduce disk access and increase lifespan of the device. Use this if you have extra ~500MB in your RAM. Internet usage maybe increase, so if you are using metered connection this tweak is not recommended.
-
-- Modify the file which includes 
-
-```bash
-$ sudo nano /etc/fstab
-```
-
-- Then add the following line:
-
-```
-tmpfs /tmp tmpfs rw,nosuid,nodev
-```
-
-- Apply changes with the command below. This command should output nothing.
-
-```bash
-$ sudo mount -a
-```
-
-- Continue with `1.4.1. Configuration for Firefox` and/or `1.4.2. Configuration for Chromium`
-
-#### 1.4.1. Configuration for Firefox
-
-- Enter this URL into Firefox browser:
-
-```
-about:config
-```
-
-- Find the key **`browser.cache.disk.parent_directory`** and change its value to **`/tmp/firefox-cache`**
-- Restart Firefox and check if new cache folder is being used:
-
-```bash
-$ ls /tmp/firefox-cache
-```
-
-#### 1.4.2. Configuration for Chromium
-
-- Modify chromium settings file:
-
-```bash
-$ sudo nano /etc/chromium-browser/default
-```
-
-- Replace the line contains **`CHROMIUM_FLAGS=""`** with this: (262144000 byte = 250 MB. I personally go for 1GB cache)
-
-```
-CHROMIUM_FLAGS="--disk-cache-size=262144000 --disk-cache-dir=/tmp/chromium-cache"
-```
-
-- Restart Chromium and check if new cache folder is being used:
-
-```bash
-$ ls /tmp/chromium-cache
-```
-
-#### 1.4.3. Configuration for Google Chrome
-
-- Modify Google Chrome executable:
-
-```bash
-sudo nano /opt/google/chrome/google-chrome
-```
-
-- Modify the last line and make it look like this: (Added --disk-cache parameter. You can add --disk-cache-size parameter like shown in the 1.4.2)
-
-```
-exec -a "$0" "$HERE/chrome" "$@" --disk-cache-dir=/tmp
-```
-
-
-
-### 1.5. Manually Cache Folders with Vmtouch (browsers, apps, etc.)
-
-Select folders/files to cache into virtual memory to improve user experience when cold boot.
-
-**Source:** https://hoytech.com/vmtouch/
-
-- Install vmtouch and configure files/folders list:
-
-```bash
-$ sudo apt install vmtouch
-$ sudo touch /etc/vmtouch_list
-$ sudo chmod 555 /etc/vmtouch_list
-$ sudo nano /etc/vmtouch_list
-```
-
-- Make your list like located below: (You need to modify this file according to you needs. These folders will be cached into RAM when PC boot up)
-
-```
-/usr/lib/chromium-browser/
-/home/salih/.config/chromium/
-/usr/share/typora/
-/usr/share/discord/
-```
-
-- Set to run on boot:
-
-```bash
-$ sudo crontab -e
-```
-
-- Paste the following line:
-
-```
-@reboot /usr/bin/vmtouch -f -t -b /etc/vmtouch_list > /etc/vmtouch_log 2>&1
-```
-
-- You can check log file `/etc/vmtouch_log` if there are errors or not.
-
-
-
-### 1.6. Turn Off Wifi Power Management
-
-Speed up wifi performance. Not recommended for laptops in battery mode.
-
-**Source:** https://easylinuxtipsproject.blogspot.com/p/speed-mint.html
-
-- Run following command:
-
-```bash
-$ sudo nano /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-```
-
-- Change the value to 2. File should be look like this:
-
-```
-[connection]
-wifi.powersave = 2
-```
-
-- Restart computer, then check it with this command. (It must be off)
-
-```bash
-$ iwconfig | grep Management
-```
-
-
-
-### 1.7. ZRAM as a Compressed RAM Block
+### [RAM] Compressed Memory
 
 If your PC is out of memory or has no extra space for caching, give it a shot!
 
@@ -357,8 +196,256 @@ $ sudo systemctl status rc-local
 ```
 
 
+### [GPU] Update On-Board GPU Drivers
 
-### 1.8. Faster TCP (BBR, Fast TCP Open)
+Get latest Intel/AMD on-board graphics drivers to support latest features like OpenGL 4.5.
+
+**Source:** https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers?field.series_filter=bionic
+
+```bash
+# For Ubuntu 18
+$ sudo add-apt-repository ppa:oibaf/graphics-drivers
+$ sudo apt update
+$ sudo apt install --install-recommends linux-generic-hwe-18.04
+$ sudo apt upgrade
+$ sudo apt install -f # if it crashes while upgrading
+```
+
+
+### [HDD] Ext4 Mount with noatime Option
+
+Prevent saving file last access times on the hard drive. Reduces disk access thus improving performance.
+
+```bash
+$ sudo nano /etc/fstab
+```
+
+- Add `noatime` word like shown below:
+
+`UUID=12242bc2-d367-468e-af75-c6a35bd610ca / ext4 errors=remount-ro,noatime 0 1`
+
+- Reboot the PC
+
+
+
+
+### [HDD] Preload
+
+Preload, monitors user activity and caches programs into RAM. Prefer this if you are using HDD. No need for SSD users.
+
+**Source:** https://www.hecticgeek.com/2013/05/using-preload-ubuntu-13-04/
+
+- Install the program with the following command. No further configurations are needed.
+
+```bash
+$ sudo apt install preload
+```
+
+
+
+### [HDD] Mount /tmp as tmpfs (and Move Browser Cache)
+
+**Source(s):** https://wiki.archlinux.org/index.php/Chromium/Tips_and_tricks#Tmpfs
+
+https://www.linuxliteos.com/forums/other/how-to-limit-chromium-browser's-cache-size/
+
+Mounting `/tmp` folder into RAM, will reduce disk access and increase lifespan of the device. Use this if you have extra ~500MB in your RAM. Internet usage maybe increase, so if you are using metered connection this tweak is not recommended.
+
+- Modify the file which includes 
+
+```bash
+$ sudo nano /etc/fstab
+```
+
+- Then add the following line:
+
+```
+tmpfs /tmp tmpfs rw,nosuid,nodev
+```
+
+- Apply changes with the command below. This command should output nothing.
+
+```bash
+$ sudo mount -a
+```
+
+- Continue with `1.4.1. Configuration for Firefox` and/or `1.4.2. Configuration for Chromium`
+
+#### 1. Configuration for Firefox
+
+- Enter this URL into Firefox browser:
+
+```
+about:config
+```
+
+- Find the key **`browser.cache.disk.parent_directory`** and change its value to **`/tmp/firefox-cache`**
+- Restart Firefox and check if new cache folder is being used:
+
+```bash
+$ ls /tmp/firefox-cache
+```
+
+#### 2. Configuration for Chromium
+
+- Modify chromium settings file:
+
+```bash
+$ sudo nano /etc/chromium-browser/default
+```
+
+- Replace the line contains **`CHROMIUM_FLAGS=""`** with this: (262144000 byte = 250 MB. I personally go for 1GB cache)
+
+```
+CHROMIUM_FLAGS="--disk-cache-size=262144000 --disk-cache-dir=/tmp/chromium-cache"
+```
+
+- Restart Chromium and check if new cache folder is being used:
+
+```bash
+$ ls /tmp/chromium-cache
+```
+
+#### 3. Configuration for Google Chrome
+
+- Modify Google Chrome executable:
+
+```bash
+sudo nano /opt/google/chrome/google-chrome
+```
+
+- Modify the last line and make it look like this: (Added --disk-cache parameter. You can add --disk-cache-size parameter like shown in the 1.4.2)
+
+```
+exec -a "$0" "$HERE/chrome" "$@" --disk-cache-dir=/tmp
+```
+
+
+
+### [HDD] Manually Cache Folders (browsers, apps, etc.)
+
+Select folders/files to cache into virtual memory to improve user experience when cold boot.
+
+**Source:** https://hoytech.com/vmtouch/
+
+- Install vmtouch and configure files/folders list:
+
+```bash
+$ sudo apt install vmtouch
+$ sudo touch /etc/vmtouch_list
+$ sudo chmod 555 /etc/vmtouch_list
+$ sudo nano /etc/vmtouch_list
+```
+
+- Make your list like located below: (You need to modify this file according to you needs. These folders will be cached into RAM when PC boot up)
+
+```
+/usr/lib/chromium-browser/
+/home/salih/.config/chromium/
+/usr/share/typora/
+/usr/share/discord/
+```
+
+- Set to run on boot:
+
+```bash
+$ sudo crontab -e
+```
+
+- Paste the following line:
+
+```
+@reboot /usr/bin/vmtouch -f -t -b /etc/vmtouch_list > /etc/vmtouch_log 2>&1
+```
+
+- You can check log file `/etc/vmtouch_log` if there are errors or not.
+
+
+### [HDD] BFQ Disk Scheduler
+
+**Source(s):** https://www.phoronix.com/scan.php?page=article&item=linux-50hdd-io
+
+https://community.chakralinux.org/t/how-to-enable-the-bfq-i-o-scheduler-on-kernel-4-12/6418
+
+- Create a new udev rule:
+
+```bash
+$ sudo nano /etc/udev/rules.d/60-scheduler.rules
+```
+
+- Add the lines below:
+
+```
+# set cfq scheduler for rotating disks
+ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+```
+
+- Update grub file:
+
+```bash
+$ sudo udevadm control --reload
+$ sudo udevadm trigger
+```
+
+- After reboot, test with this command:
+
+```bash
+$ cat /sys/block/sda/queue/scheduler
+```
+
+- The output must be like this:
+
+```
+mq-deadline [bfq] none
+```
+
+### [HDD] Disable Default Swapfile on Disk
+
+Ubuntu 18.04 comes with a swapfile enabled. In out-of-memory situations this swapfile may only cause system freeze. If you are using Ubuntu with SSD, you should disable swap in that device to slow down disk aging.
+
+- Modify `fstab`:
+
+```bash
+$ sudo nano /etc/fstab
+```
+
+- Comment out the line which starts with `/swapfile`. The full line should look like this after editing:
+
+```
+#/swapfile none swap sw 0 0
+```
+
+- Reboot the PC.
+
+
+### [NET] Turn Off Wifi Power Save Feature
+
+Speed up wifi performance. Not recommended for laptops in battery mode.
+
+**Source:** https://easylinuxtipsproject.blogspot.com/p/speed-mint.html
+
+- Run following command:
+
+```bash
+$ sudo nano /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+```
+
+- Change the value to 2. File should be look like this:
+
+```
+[connection]
+wifi.powersave = 2
+```
+
+- Restart computer, then check it with this command. (It must be off)
+
+```bash
+$ iwconfig | grep Management
+```
+
+
+
+### [NET] Faster TCP (BBR, Fast TCP Open)
 
 It is reported that using this algorithm (BBR) developed by Google and Fast TCP Open increases network speed and reduces delay.
 
@@ -401,7 +488,7 @@ $ sysctl net.ipv4.tcp_congestion_control
 
 
 
-### 1.9. Disable Unnecessary Services
+### [etc] Disable Unnecessary Services
 
 Reduce memory usage on weak systems about ~300Mb. Be careful and do your search before removing any packages.
 
@@ -432,41 +519,7 @@ $ sudo chmod -x /usr/lib/evolution/evolution-source-registry
 ```
 
 
-
-### 1.10. Ext4 Mount with noatime Option
-
-Prevent saving file last access times on the hard drive. Reduces disk access thus improving performance.
-
-```bash
-$ sudo nano /etc/fstab
-```
-
-- Add `noatime` word like shown below:
-
-`UUID=12242bc2-d367-468e-af75-c6a35bd610ca / ext4 errors=remount-ro,noatime 0 1`
-
-- Reboot the PC
-
-
-
-### 1.11. Update On-Board GPU Drivers
-
-Get latest Intel/AMD on-board graphics drivers to support latest features like OpenGL 4.5.
-
-**Source:** https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers?field.series_filter=bionic
-
-```bash
-# For Ubuntu 18
-$ sudo add-apt-repository ppa:oibaf/graphics-drivers
-$ sudo apt update
-$ sudo apt install --install-recommends linux-generic-hwe-18.04
-$ sudo apt upgrade
-$ sudo apt install -f # if it crashes while upgrading
-```
-
-
-
-### 1.12. Remove Snap Apps (and replace with native apps)
+### [etc] Remove Snap Apps (and replace with native apps)
 
 Snap is a software packaging and deployment system developed by Canonical for the Linux operating system. With snap we can install programs like in our smart phones. But in my perspective it doesn't work well and background services use memory a lot. So I can recommend removing snap.
 
@@ -483,47 +536,7 @@ $ sudo apt install gnome-calculator gnome-characters gnome-logs gnome-system-mon
 
 
 
-### 1.13. Change Disk Scheduler (For HDD's)
-
-**Source(s):** https://www.phoronix.com/scan.php?page=article&item=linux-50hdd-io
-
-https://community.chakralinux.org/t/how-to-enable-the-bfq-i-o-scheduler-on-kernel-4-12/6418
-
-- Create a new udev rule:
-
-```bash
-$ sudo nano /etc/udev/rules.d/60-scheduler.rules
-```
-
-- Add the lines below:
-
-```
-# set cfq scheduler for rotating disks
-ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-```
-
-- Update grub file:
-
-```bash
-$ sudo udevadm control --reload
-$ sudo udevadm trigger
-```
-
-- After reboot, test with this command:
-
-```bash
-$ cat /sys/block/sda/queue/scheduler
-```
-
-- The output must be like this:
-
-```
-mq-deadline [bfq] none
-```
-
-
-
-### 1.14. Improve Browser Performance
+### [etc] Improve Browser Performance
 
 **Source:**  https://gist.github.com/ibLeDy/1495735312943b9dd646fd9ddf618513
 
@@ -541,8 +554,6 @@ I have choosen some flags to set. See the `source` for all usable flags. Type `a
 - WebAssembly threads support (Enabled)
 - WebAssembly tiering (Enabled)
 - Zero-copy rasterizer (Enabled)
-- Tab Groups (Enabled)
-- Tab Groups Collapse (Enabled)
 - Parallel downloading (Enabled)
 - Enable lazy image loading (Enabled - Automati...)
 - Enable lazy frame loading  (Enabled - Automati...)
@@ -551,9 +562,9 @@ I have choosen some flags to set. See the `source` for all usable flags. Type `a
 
 
 
-## 2. Utility/Fix Tweaks
+## Utility/Fix Tweaks
 
-### 2.1. PulseAudio Mic Echo Cancellation Feature
+### [AUDIO] PulseAudio Mic Echo Cancellation Feature
 
 Echo cancellation is a useful tool to have while talking Skype etc **without headphones.**
 
@@ -563,9 +574,7 @@ https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Enable_Echo/Nois
 
 https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-echo-cancel
 
-- `CHOOSE A GUIDE BELOW DEPENDING ON HOW MANY SOUND CARDS YOU ARE USING !!!`
-
-#### 2.1.1. Configuration For One Sound Card
+#### 1. Configuration For One Sound Card
 
 - Run the following command:
 
@@ -590,7 +599,7 @@ $ pulseaudio -k
 
 
 
-#### 2.1.2. Configuration For Multiple Sound Cards
+#### 2. Configuration For Multiple Sound Cards
 
 For example you are using usb sound card for output and built-in mic as input.
 
@@ -625,7 +634,7 @@ set-default-source source_ec
 
 
 
-### 2.2. PulseAudio Crackling Sound Solution
+### [AUDIO] PulseAudio Crackling Sound Solution
 
 The newer implementation of the PulseAudio sound server uses  timer-based audio scheduling instead of the traditional,  interrupt-driven approach. Timer-based scheduling may expose issues in some ALSA drivers. On the other hand, other drivers might be glitchy without it on, so check  to see what works on your system. **Apply this tweak if you are having cracking sound issue.**
 
@@ -663,7 +672,7 @@ $ pulseaudio --start
 
 
 
-### 2.3. PulseAudio Better Sound Quality
+### [AUDIO] PulseAudio Better Sound Quality
 
 Tweak for audiophiles. Increasing sample rate in exchange of CPU time.
 
@@ -705,7 +714,7 @@ $ watch -n 1 pactl list sinks short
 
 
 
-### 2.4. Hide User List in Ubuntu 18.04 Login Screen
+### [GNOME] Hide User List in Ubuntu 18.04 Login Screen
 
 The Gnome login screen normally shows a list of available users to log in as. For those who want to disable showing the user list, and manually type a username to login with, below I will show you how.
 
@@ -745,7 +754,7 @@ $ gsettings set org.gnome.login-screen disable-user-list false
 
 
 
-### 2.5. GnomeTweaks (laptop lid suspend, desktop icons etc.)
+### [GNOME] GnomeTweaks (laptop lid suspend, desktop icons etc.)
 
 There are some tweaks which can increase utility of Gnome. These are tested on Ubuntu 18.04 and may not work on its older versions.
 
@@ -774,93 +783,7 @@ $ gnome-tweaks
   - `Top Bar` -> `Date` -> `ON`
 
 
-
-### 2.6. Disable Touchpad When Mouse is Plugged
-
-When mouse is plugged, touchpad should be disable automatically, right? This guide is for `Gnome` users.
-
-**Source:** http://ubuntuhandbook.org/index.php/2018/04/install-touchpad-indicator-ubuntu-18-04-lts/
-
-- Add PPA:
-
-```bash
-$ sudo add-apt-repository ppa:atareao/atareao
-```
-
-- Install `touchpad-indicator`:
-
-```bash
-$ sudo apt install touchpad-indicator
-```
-
-- Start the program. (Search with the touchpad keyword)
-- It should be shown on the top bar. Click on it and select `Preferences`, then follow the steps below:
-- **(1) Disable touchpad when mouse is plugged**
-  - `Actions` -> `Disable touchpad when mouse plugged` -> `ON`
-- **(2) Start the program on boot**
-  - `General Options` -> `Autostart` -> `ON`
-  - `General Options` -> `Start hidden` -> `Unchecked!` (Note: If you check this option top bar icon will be invisible. Not recommended)
-
-
-
-### 2.7. Disable Default Swapfile on Disk
-
-Ubuntu 18.04 comes with a swapfile enabled. In out-of-memory situations this swapfile may only cause system freeze. If you are using Ubuntu with SSD, you should disable swap in that device to slow down disk aging.
-
-- Modify `fstab`:
-
-```bash
-$ sudo nano /etc/fstab
-```
-
-- Comment out the line which starts with `/swapfile`. The full line should look like this after editing:
-
-```
-#/swapfile none swap sw 0 0
-```
-
-- Reboot the PC.
-
-
-
-### 2.8. Delete Log Archives Regularly
-
-Old logs sometimes hold a lot of space on disk. 
-
-- Edit cron (you can select `nano` as editor):
-
-```bash
-$ sudo crontab -e
-```
-
-- Add the following line (press `ctrl+x` then answer with `y` to save the file):
-
-```
-@reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
-```
-
-
-
-### 2.9. Enable S.M.A.R.T.
-
-Enable S.M.A.R.T. for health checks for disks.
-
-- Install smartmontools:
-
-```bash
-$ sudo apt install smartmontools # Select `local` for postfix conf if you are not sure
-```
-
-- Enable health check for disks (Example is given for /dev/sda below):
-
-```bash
-$ smartctl --scan # Print S.M.A.R.T. available disks.
-$ sudo smartctl --smart=on /dev/sda # Enable health check for /dev/sda
-```
-
-
-
-### 2.10. Gnome Extensions
+### [GNOME] Gnome Extensions
 
 Increase your productivity and customize your desktop.
 
@@ -892,10 +815,12 @@ $ gnome-shell-extension-prefs
   - https://extensions.gnome.org/extension/948/rss-feed/
   - https://extensions.gnome.org/extension/1276/night-light-slider/
   - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+  - https://extensions.gnome.org/extension/6/applications-menu/
+  - https://extensions.gnome.org/extension/2386/calendar-improved/
 
 
 
-#### 2.10.1. GSConnect
+#### 1. GSConnect
 
 Connect your smartphone to the PC. File sharing, taking photo, sending SMS, media controls, etc.
 
@@ -907,7 +832,20 @@ Note: If you just want the "Send this page to the mobile phone" feature on your 
 
 
 
-### 2.11. Limit Network Bandwidth
+### [GNOME] Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)
+
+I maintain a single folder for all my files to make it easier for backup. This is useful for especially for it, and also helps cleaning the home folder.
+
+```bash
+$ xdg-user-dirs-update --set DOWNLOAD /path/to/new/downloads_folder
+$ xdg-user-dirs-update --set DESKTOP /path/to/new/desktop_folder
+$ xdg-user-dirs-update --set DOCUMENTS /path/to/new/documents_folder
+$ xdg-user-dirs-update --set PICTURES /path/to/new/pictures_folder
+$ xdg-user-dirs-update --set TEMPLATES /path/to/new/templates_folder
+```
+
+
+### [etc] Limit Network Bandwidth
 
 If there are multiple computers connected to a router you can limit your network bandwidth and give a room to breath for other devices.
 
@@ -937,19 +875,61 @@ $ sudo wondershaper enp4s0f1 1024 256
 $ sudo wondershaper clear enp4s0f1
 ```
 
+### [etc] Enable S.M.A.R.T.
 
+Enable S.M.A.R.T. for health checks for disks.
 
-### 2.12. Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)
-
-I maintain a single folder for all my files to make it easier for backup. This is useful for especially for it, and also helps cleaning the home folder.
+- Install smartmontools:
 
 ```bash
-$ xdg-user-dirs-update --set DOWNLOAD /path/to/new/downloads_folder
-$ xdg-user-dirs-update --set DESKTOP /path/to/new/desktop_folder
-$ xdg-user-dirs-update --set DOCUMENTS /path/to/new/documents_folder
-$ xdg-user-dirs-update --set PICTURES /path/to/new/pictures_folder
-$ xdg-user-dirs-update --set TEMPLATES /path/to/new/templates_folder
+$ sudo apt install smartmontools # Select `local` for postfix conf if you are not sure
 ```
 
+- Enable health check for disks (Example is given for /dev/sda below):
 
+```bash
+$ smartctl --scan # Print S.M.A.R.T. available disks.
+$ sudo smartctl --smart=on /dev/sda # Enable health check for /dev/sda
+```
 
+### [etc] Delete Log Archives Regularly
+
+Old logs sometimes hold a lot of space on disk. 
+
+- Edit cron (you can select `nano` as editor):
+
+```bash
+$ sudo crontab -e
+```
+
+- Add the following line (press `ctrl+x` then answer with `y` to save the file):
+
+```
+@reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
+```
+
+### [etc] Disable Touchpad When Mouse is Plugged
+
+When mouse is plugged, touchpad should be disable automatically, right? This guide is for `Gnome` users.
+
+**Source:** http://ubuntuhandbook.org/index.php/2018/04/install-touchpad-indicator-ubuntu-18-04-lts/
+
+- Add PPA:
+
+```bash
+$ sudo add-apt-repository ppa:atareao/atareao
+```
+
+- Install `touchpad-indicator`:
+
+```bash
+$ sudo apt install touchpad-indicator
+```
+
+- Start the program. (Search with the touchpad keyword)
+- It should be shown on the top bar. Click on it and select `Preferences`, then follow the steps below:
+- **(1) Disable touchpad when mouse is plugged**
+  - `Actions` -> `Disable touchpad when mouse plugged` -> `ON`
+- **(2) Start the program on boot**
+  - `General Options` -> `Autostart` -> `ON`
+  - `General Options` -> `Start hidden` -> `Unchecked!` (Note: If you check this option top bar icon will be invisible. Not recommended)
