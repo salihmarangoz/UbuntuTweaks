@@ -23,9 +23,9 @@ Table of Contents
          * [[HDD] Disable Default Swapfile on Disk](#hdd-disable-default-swapfile-on-disk)
          * [[NET] Turn Off Wifi Power Save Feature](#net-turn-off-wifi-power-save-feature)
          * [[NET] Faster TCP (BBR, Fast TCP Open)](#net-faster-tcp-bbr-fast-tcp-open)
-         * [[etc] Disable Unnecessary Services](#etc-disable-unnecessary-services)
-         * [[etc] Remove Snap Apps (and replace with native apps)](#etc-remove-snap-apps-and-replace-with-native-apps)
-         * [[etc] Improve Browser Performance](#etc-improve-browser-performance)
+         * [[OS] Disable Unnecessary Services](#os-disable-unnecessary-services)
+         * [[OS] Remove Snap Apps (and replace with native apps)](#os-remove-snap-apps-and-replace-with-native-apps)
+         * [[EXE] Improve Browser Performance](#exe-improve-browser-performance)
             * [1.14.1 Chromium](#1141-chromium)
       * [Utility/Fix Tweaks](#utilityfix-tweaks)
          * [[AUDIO] PulseAudio Mic Echo Cancellation Feature](#audio-pulseaudio-mic-echo-cancellation-feature)
@@ -38,10 +38,10 @@ Table of Contents
          * [[GNOME] Gnome Extensions](#gnome-gnome-extensions)
             * [1. GSConnect](#1-gsconnect)
          * [[GNOME] Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)](#gnome-remap-default-home-folders-desktop-pictures-downloads-etc)
-         * [[etc] Limit Network Bandwidth](#etc-limit-network-bandwidth)
-         * [[etc] Enable S.M.A.R.T.](#etc-enable-smart)
-         * [[etc] Delete Log Archives Regularly](#etc-delete-log-archives-regularly)
-         * [[etc] Disable Touchpad When Mouse is Plugged](#etc-disable-touchpad-when-mouse-is-plugged)
+         * [[UTIL] Limit Network Bandwidth](#util-limit-network-bandwidth)
+         * [[UTIL] Disable Touchpad When Mouse is Plugged](#util-disable-touchpad-when-mouse-is-plugged)
+         * [[LOG] Enable S.M.A.R.T.](#log-enable-smart)
+         * [[LOG] Delete Log Archives Regularly](#log-delete-log-archives-regularly)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -488,7 +488,7 @@ $ sysctl net.ipv4.tcp_congestion_control
 
 
 
-### [etc] Disable Unnecessary Services
+### [OS] Disable Unnecessary Services
 
 Reduce memory usage on weak systems about ~300Mb. Be careful and do your search before removing any packages.
 
@@ -519,7 +519,7 @@ $ sudo chmod -x /usr/lib/evolution/evolution-source-registry
 ```
 
 
-### [etc] Remove Snap Apps (and replace with native apps)
+### [OS] Remove Snap Apps (and replace with native apps)
 
 Snap is a software packaging and deployment system developed by Canonical for the Linux operating system. With snap we can install programs like in our smart phones. But in my perspective it doesn't work well and background services use memory a lot. So I can recommend removing snap.
 
@@ -536,7 +536,7 @@ $ sudo apt install gnome-calculator gnome-characters gnome-logs gnome-system-mon
 
 
 
-### [etc] Improve Browser Performance
+### [EXE] Improve Browser Performance
 
 **Source:**  https://gist.github.com/ibLeDy/1495735312943b9dd646fd9ddf618513
 
@@ -845,7 +845,7 @@ $ xdg-user-dirs-update --set TEMPLATES /path/to/new/templates_folder
 ```
 
 
-### [etc] Limit Network Bandwidth
+### [UTIL] Limit Network Bandwidth
 
 If there are multiple computers connected to a router you can limit your network bandwidth and give a room to breath for other devices.
 
@@ -875,40 +875,7 @@ $ sudo wondershaper enp4s0f1 1024 256
 $ sudo wondershaper clear enp4s0f1
 ```
 
-### [etc] Enable S.M.A.R.T.
-
-Enable S.M.A.R.T. for health checks for disks.
-
-- Install smartmontools:
-
-```bash
-$ sudo apt install smartmontools # Select `local` for postfix conf if you are not sure
-```
-
-- Enable health check for disks (Example is given for /dev/sda below):
-
-```bash
-$ smartctl --scan # Print S.M.A.R.T. available disks.
-$ sudo smartctl --smart=on /dev/sda # Enable health check for /dev/sda
-```
-
-### [etc] Delete Log Archives Regularly
-
-Old logs sometimes hold a lot of space on disk. 
-
-- Edit cron (you can select `nano` as editor):
-
-```bash
-$ sudo crontab -e
-```
-
-- Add the following line (press `ctrl+x` then answer with `y` to save the file):
-
-```
-@reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
-```
-
-### [etc] Disable Touchpad When Mouse is Plugged
+### [UTIL] Disable Touchpad When Mouse is Plugged
 
 When mouse is plugged, touchpad should be disable automatically, right? This guide is for `Gnome` users.
 
@@ -933,3 +900,37 @@ $ sudo apt install touchpad-indicator
 - **(2) Start the program on boot**
   - `General Options` -> `Autostart` -> `ON`
   - `General Options` -> `Start hidden` -> `Unchecked!` (Note: If you check this option top bar icon will be invisible. Not recommended)
+
+
+### [LOG] Enable S.M.A.R.T.
+
+Enable S.M.A.R.T. for health checks for disks.
+
+- Install smartmontools:
+
+```bash
+$ sudo apt install smartmontools # Select `local` for postfix conf if you are not sure
+```
+
+- Enable health check for disks (Example is given for /dev/sda below):
+
+```bash
+$ smartctl --scan # Print S.M.A.R.T. available disks.
+$ sudo smartctl --smart=on /dev/sda # Enable health check for /dev/sda
+```
+
+### [LOG] Delete Log Archives Regularly
+
+Old logs sometimes hold a lot of space on disk. 
+
+- Edit cron (you can select `nano` as editor):
+
+```bash
+$ sudo crontab -e
+```
+
+- Add the following line (press `ctrl+x` then answer with `y` to save the file):
+
+```
+@reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
+```
