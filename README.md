@@ -806,19 +806,15 @@ $ gnome-shell-extension-prefs
 
 - Here is a list of extensions which I combined for myself:
 
+  - https://extensions.gnome.org/extension/6/applications-menu/
   - https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
+  - https://extensions.gnome.org/extension/2386/calendar-improved/
+  - https://extensions.gnome.org/extension/1276/night-light-slider/
   - https://extensions.gnome.org/extension/1236/noannoyance/
   - https://extensions.gnome.org/extension/750/openweather/
-  - https://extensions.gnome.org/extension/708/panel-osd/
-  - https://extensions.gnome.org/extension/779/clipboard-indicator/
+  - https://extensions.gnome.org/extension/1403/remove-alttab-delay/
   - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
-  - https://extensions.gnome.org/extension/948/rss-feed/
-  - https://extensions.gnome.org/extension/1276/night-light-slider/
   - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
-  - https://extensions.gnome.org/extension/6/applications-menu/
-  - https://extensions.gnome.org/extension/2386/calendar-improved/
-
-
 
 #### 1. GSConnect
 
