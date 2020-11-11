@@ -790,7 +790,7 @@ Increase your productivity and customize your desktop.
 - Install required packages:
 
 ```bash
-$ sudo apt install gnome-shell-extension chromium-browser chrome-gnome-shell
+$ sudo apt install gnome-shell-extensions chromium-browser chrome-gnome-shell
 ```
 
 - Install Chromium-Gnome Shell plugin:
