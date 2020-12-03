@@ -1,5 +1,7 @@
 # https://github.com/salihmarangoz/UbuntuTweaks
 
+# todo: add wondershaper
+
 #================================================= MAIN =====================================================
 
 if ! "install_bashrc_easy" -v $var &> /dev/null
@@ -85,7 +87,7 @@ function jekyll_docker(){
 }
 
 
-#EASYBASHRC:no_network:Start $@ with no internet connection (needs installation)
+#EASYBASHRC:no_network:Start $@ with no internet connection
 function no_network(){
     check_installation "firejail"
     if [ $? -ne "0" ]; then
@@ -147,7 +149,7 @@ function scan_text(){
 }
 
 
-#EASYBASHRC:scan_qrcode:Select an area on the screen to zbarimg and get text output
+#EASYBASHRC:scan_qrcode:Select an area on the screen to run zbarimg and get text output
 function scan_qr(){
     check_installation "maim" "zbarimg"
     if [ $? -ne "0" ]; then
