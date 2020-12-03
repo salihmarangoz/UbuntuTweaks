@@ -37,6 +37,8 @@ $ sudo apt install peek
 
 ### Typora
 
+Best for markdown files.
+
 ```bash
 $ wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
 $ sudo add-apt-repository 'deb https://typora.io/linux ./'
@@ -87,6 +89,8 @@ $ sudo apt install code
 
 ### OBS Studio
 
+Very good recording and streaming app.
+
 ```bash
 $ sudo apt install ffmpeg
 $ sudo add-apt-repository ppa:obsproject/obs-studio
@@ -99,6 +103,8 @@ $ sudo apt install obs-studio
 ## Closed Source
 
 ### GitKraken
+
+Visualized git operations.
 
 ```bash
 $ wget https://release.axocdn.com/linux/gitkraken-amd64.deb
@@ -117,6 +123,8 @@ $ rm skypeforlinux-64.deb
 ```
 
 ## Foxit Reader
+
+It is possible to highlight some texts and save them.
 
 https://www.foxitsoftware.com/downloads/
 
