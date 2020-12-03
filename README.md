@@ -1,10 +1,38 @@
-# Ubuntu Tweaks Guide (Ubuntu 18.04)
+# Ubuntu Tweaks Guide
 
-# Introduction
+Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Backup your computer in case of any data loss before starting to apply this guide. Configurations listed in this guide are not recommended for server environments Read the instructions carefully. Good luck!
 
-Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Backup your computer in case of any data loss before starting to apply this guide. I don't recommend applying any fix tweaks if you don't have any related problems. And lastly, read the instructions carefully. Good luck!
 
-**Note: Configurations listed in this guide are not recommended for server environments.**
+
+[Performance Tweaks](PerformanceTweaks.md)
+
+- CPU/GPU/RAM/IO related optimizations
+
+[Utility/Fix Tweaks](UtilityFixTweaks.md)
+
+- PulseAudio Configurations
+- Gnome Configurations
+- Some utilities
+- Logging Fİxes
+
+[Install Programs/Tools](InstallProgramsTools.md)
+
+- Document editors
+
+[Bashrc Easy](BashrcEasy.md)
+
+- Image to QR
+- Image to Text
+- Audio/Video Compression
+- Some utilities
+
+
+
+
+
+
+
+
 
 # To-Do
 

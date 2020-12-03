@@ -295,35 +295,6 @@ $ xdg-user-dirs-update --set TEMPLATES /path/to/new/templates_folder
 ```
 
 
-## [UTIL] Limit Network Bandwidth
-
-If there are multiple computers connected to a router you can limit your network bandwidth and give a room to breath for other devices.
-
-**Source:** https://askubuntu.com/questions/20872/how-do-i-limit-internet-bandwidth
-
-- Install wondershaper package:
-
-```bash
-$ sudo apt install wondershaper
-```
-
-- Find your network interface: (For this example my network interface is enp4s0f1)
-
-```bash
-$ ifconfig
-```
-
-- Limit your bandwidth: (For this example: Download 1024 Kbits / Upload 256 Kbits)
-
-```bash
-$ sudo wondershaper enp4s0f1 1024 256
-```
-
-(RECOVER) Remove limitations for the adapter:
-
-```bash
-$ sudo wondershaper clear enp4s0f1
-```
 
 ## [UTIL] Disable Touchpad When Mouse is Plugged
 
