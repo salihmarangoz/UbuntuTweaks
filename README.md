@@ -4,7 +4,7 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for **Ubuntu
 
 [Performance Tweaks](PerformanceTweaks.md)
 
-- CPU/GPU/RAM/IO related optimizations
+- CPU / GPU / RAM / IO related optimizations
 
 [Utility/Fix Tweaks](UtilityFixTweaks.md)
 
