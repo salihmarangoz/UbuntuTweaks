@@ -60,7 +60,9 @@ $ sudo apt install -f
 $ rm gitkraken-amd64.deb
 ```
 
-## Virtualbox
+## VirtualBox
+
+After installating VirtualBox, install extension pack: https://download.virtualbox.org/virtualbox/
 
 ```bash
 $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
