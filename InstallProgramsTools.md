@@ -1,6 +1,8 @@
 # Install Programs/Tools
 
- ## Basic Utilities
+## Open Source
+
+ ### Basic Utilities
 
 ```bash
 $ sudo apt update
@@ -15,7 +17,7 @@ $ sudo apt install \
 	pinta gnome-paint
 ```
 
-## PDF Arranger
+### PDF Arranger
 
 Better than `PDF Shuffler`
 
@@ -25,7 +27,7 @@ $ sudo apt update
 $ sudo apt install pdfarranger
 ```
 
-## Peek
+### Peek
 
 ```bash
 $ sudo add-apt-repository ppa:peek-developers/stable
@@ -33,7 +35,7 @@ $ sudo apt update
 $ sudo apt install peek
 ```
 
-## Typora
+### Typora
 
 ```bash
 $ wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
@@ -42,7 +44,7 @@ $ sudo apt update
 $ sudo apt install typora
 ```
 
-## Balena Etcher
+### Balena Etcher
 
 ```bash
 $ echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list
@@ -51,16 +53,7 @@ $ sudo apt update
 $ sudo apt install balena-etcher-electron
 ```
 
-## GitKraken
-
-```bash
-$ wget https://release.axocdn.com/linux/gitkraken-amd64.deb
-$ sudo dpkg -i gitkraken-amd64.deb
-$ sudo apt install -f
-$ rm gitkraken-amd64.deb
-```
-
-## VirtualBox
+### VirtualBox
 
 After installating VirtualBox, install extension pack: https://download.virtualbox.org/virtualbox/
 
@@ -72,16 +65,7 @@ $ sudo apt update
 $ sudo apt install virtualbox
 ```
 
-## Skype
-
-```bash
-$ wget -4 https://go.skype.com/skypeforlinux-64.deb
-$ sudo dpkg -i skypeforlinux-64.deb
-$ sudo apt install -f
-$ rm skypeforlinux-64.deb
-```
-
-## TOC
+### TOC
 
 Usage: `$ toc README.md`
 
@@ -91,7 +75,7 @@ $ sudo mv gh-md-toc /usr/bin/toc
 $ sudo chmod 555 /usr/bin/toc
 ```
 
-## Visual Studio Code
+### Visual Studio Code
 
 ```bash
 $ wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -101,3 +85,24 @@ $ sudo apt update
 $ sudo apt install code
 ```
 
+
+
+## Closed Source
+
+### GitKraken
+
+```bash
+$ wget https://release.axocdn.com/linux/gitkraken-amd64.deb
+$ sudo dpkg -i gitkraken-amd64.deb
+$ sudo apt install -f
+$ rm gitkraken-amd64.deb
+```
+
+## Skype
+
+```bash
+$ wget -4 https://go.skype.com/skypeforlinux-64.deb
+$ sudo dpkg -i skypeforlinux-64.deb
+$ sudo apt install -f
+$ rm skypeforlinux-64.deb
+```
