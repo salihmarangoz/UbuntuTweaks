@@ -28,16 +28,6 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for **Ubuntu
 
 # To-Do
 
-- [ ] Decrease log amount with filtering
-- [ ] Add sources where they are missing
 - [ ] https://rudd-o.com/linux-and-free-software/tales-from-responsivenessland-why-linux-feels-slow-and-how-to-fix-that
 - [ ] Sound quality decreases while using echo-cancelation
 - [ ] S.M.A.R.T. e-mail setup https://help.ubuntu.com/community/EmailAlerts
-- [ ] Docker install script (with user permissions etc)
-- [ ] Nvidia-docker
-- [ ] LXD install script
-- [ ] Apache Kafka install script
-- [ ] Give references/sources
-- [ ] sort WHIPTAIL_LIST
-- [ ] print available installers via arg
-- [ ] WARN_IF_UNKNOWN_COMPATIBILITY
