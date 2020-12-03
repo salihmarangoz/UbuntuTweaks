@@ -95,62 +95,6 @@ WHIPTAIL_LIST=() # Start an empty list
 
 #########################################################################################################
 
-WHIPTAIL_LIST+=("install_peek" "Simple animated GIF screen recorder with an easy to use interface")
-function install_peek(){
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    sudo add-apt-repository ppa:peek-developers/stable
-    sudo apt update
-    sudo apt install peek
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_vscode" "Visual Studio Code is a source-code editor with many available plugins")
-function install_vscode()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-    sudo rm -f /etc/apt/sources.list.d/vscode.list # somehow adds itself into two different locations. So removing one of them
-    sudo apt update
-    sudo apt install code
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_virtualbox" "Oracle VM VirtualBox is a free and open-source hosted hypervisor for x86 virtualization")
-function install_virtualbox()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-    wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-    sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian xenial contrib"
-    sudo apt update
-    sudo apt install virtualbox
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_typora" "A truly minimal markdown editor")
-function install_typora()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
-    sudo add-apt-repository 'deb https://typora.io/linux ./'
-    sudo apt-get update
-    sudo apt-get install typora
-}
-
-#########################################################################################################
-
 WHIPTAIL_LIST+=("install_tmux" "Tmux is a terminal multiplexer for Unix-like operating systems")
 function install_tmux()
 {
@@ -169,34 +113,6 @@ set -g default-terminal "screen-256color"
 set -g status off
 set -g mouse on
 EOF
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_skype" "Skype is a telecommunications application that specializes in providing video chat and voice calls")
-function install_skype()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    wget -4 https://go.skype.com/skypeforlinux-64.deb
-    sudo dpkg -i skypeforlinux-64.deb
-    sudo apt install -f
-    rm skypeforlinux-64.deb
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_balena_etcher" "Etcher is a powerful OS image flasher")
-function install_balena_etcher()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
-    sudo apt-get update
-    sudo apt-get install balena-etcher-electron
 }
 
 #########################################################################################################
@@ -316,40 +232,6 @@ function install_nvidia_drivers()
 
 #########################################################################################################
 
-WHIPTAIL_LIST+=("install_gitkraken" "GUI Git client that facilitates efficient and reliable usage of Git on a desktop and offer most of the command line operations")
-function install_gitkraken()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    wget https://release.axocdn.com/linux/gitkraken-amd64.deb
-    sudo dpkg -i gitkraken-amd64.deb
-    sudo apt install -f
-    rm gitkraken-amd64.deb
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_useful_utilities" "Install a bunch of useful packages")
-function install_useful_utilities()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    sudo apt update
-    sudo apt install \
-    apt-transport-https software-properties-common aptitude ubuntu-restricted-extras \
-    wget git rar unzip \
-    openssh-server screen net-tools network-manager-openvpn-gnome \
-    gparted htop iotop bmon \
-    thunderbird xul-ext-lightning \
-    recordmydesktop gtk-recordmydesktop gnome-sound-recorder vlc \
-    octave \
-    pinta gnome-paint
-}
-
-#########################################################################################################
-
 WHIPTAIL_LIST+=("install_sublimetext3" "Sublime Text is a proprietary cross-platform source code editor with a Python application programming interface")
 function install_sublimetext3()
 {
@@ -369,69 +251,6 @@ function install_sublimetext3()
     "translate_tabs_to_spaces": true
 }
 EOF
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_timeshift" "System restore tool for Linux that creates filesystem snapshots using rsync+hardlinks, or BTRFS snapshots")
-function install_timeshift()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    sudo apt-add-repository ppa:teejee2008/ppa
-    sudo apt update
-    sudo apt install timeshift
-    sudo timeshift-gtk
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_toc" "Easy TOC creation for GitHub README.md ")
-function install_toc()
-{
-    check_install_script "Ubuntu18.04 Ubuntu16.04" ""
-
-    # install
-    wget https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc
-    sudo mv gh-md-toc /usr/bin/toc
-    sudo chmod 555 /usr/bin/toc
-
-    whiptail --title "install_toc" \
-    --msgbox "Usage:\n$ toc README.md" \
-    $WHIPTAIL_ROWS $WHIPTAIL_COLS 3>&1 1>&2 2>&3
-}
-
-#########################################################################################################
-
-WHIPTAIL_LIST+=("install_redshift" "Redshift is a  tool inspired by f.lux used to adjust the color temperature of your screen according to your surroundings")
-function install_redshift()
-{
-    check_install_script "Ubuntu16.04" "Ubuntu18.04"
-
-    # install
-    sudo apt update
-    sudo apt install redshift redshift-gtk
-
-    # modify configuration
-    cat > ~/.config/redshift.conf <<EOL
-[redshift]
-temp-day=5500
-temp-night=4500
-fade=0
-location-provider=manual
-[manual]
-lat=38.96
-lon=35.24
-EOL
-
-    # start in background
-    nohup redshift-gtk &>/dev/null &
-
-    echo
-    echo "Redshift is using location TURKEY by default now"
-    echo "To change this modify lat/lon in $HOME/.config/redshift.conf"
-    echo
 }
 
 #########################################################################################################
