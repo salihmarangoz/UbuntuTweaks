@@ -1,8 +1,6 @@
-# Ubuntu Tweaks Guide
+# Ubuntu Tweaks
 
-Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Backup your computer in case of any data loss before starting to apply this guide. Configurations listed in this guide are not recommended for server environments Read the instructions carefully. Good luck!
-
-
+Here are some tweaks, utilities, fixes, programs, tools and scripts for **Ubuntu 18.04**. Backup your computer in case of any data loss before starting to apply this guide. Configurations listed in this guide are not recommended for server environments. Read the instructions carefully. Good luck!
 
 [Performance Tweaks](PerformanceTweaks.md)
 
@@ -28,12 +26,6 @@ Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Bac
 
 
 
-
-
-
-
-
-
 # To-Do
 
 - [ ] Decrease log amount with filtering
@@ -41,3 +33,11 @@ Here are some tweaks for **Ubuntu 18.04** to speed up and fix some problems. Bac
 - [ ] https://rudd-o.com/linux-and-free-software/tales-from-responsivenessland-why-linux-feels-slow-and-how-to-fix-that
 - [ ] Sound quality decreases while using echo-cancelation
 - [ ] S.M.A.R.T. e-mail setup https://help.ubuntu.com/community/EmailAlerts
+- [ ] Docker install script (with user permissions etc)
+- [ ] Nvidia-docker
+- [ ] LXD install script
+- [ ] Apache Kafka install script
+- [ ] Give references/sources
+- [ ] sort WHIPTAIL_LIST
+- [ ] print available installers via arg
+- [ ] WARN_IF_UNKNOWN_COMPATIBILITY
