@@ -1,0 +1,253 @@
+# https://github.com/salihmarangoz/UbuntuTweaks
+
+#================================================= MAIN =====================================================
+
+if ! "install_bashrc_easy" -v $var &> /dev/null
+then
+    IS_EASYBASHRC_INSTALLED=1
+fi
+function install_bashrc_easy(){
+    if [ $IS_EASYBASHRC_INSTALLED -ne "1" ]; then
+        echo "Added a line to .bashrc file!"
+        echo "" >> $HOME/.bashrc
+        echo 'source $HOME/.bashrc.easy' >> $HOME/.bashrc
+    fi
+    cp -f ".bashrc.easy" "$HOME/.bashrc.easy"
+    if [ $? -eq "0" ]; then
+        echo "Copied new .bashrc.easy to home folder!"
+    fi
+}
+
+
+function check_installation(){
+    local CHECK_INSTALLATION=0
+    for var in "$@"
+    do
+        if ! command -v $var &> /dev/null
+        then
+            echo "$var could not be found."
+            local CHECK_INSTALLATION=1
+        fi
+    done
+    return $CHECK_INSTALLATION
+}
+
+
+# EASYBASHRC:help_bashrc:Prints help message for easy bashrc
+function help_bashrc(){
+    local PARSEDBASHRC=$(cat ~/.bashrc* | grep "#EASY""BASHRC")
+    local HELPSTRING="Available commands:\n"
+    while IFS= read -r line; do
+        local COMMANDNAME=$(echo $line | cut -d':' -f2)
+        local COMMANDDESCRIPTION=$(echo $line | cut -d':' -f3)
+        local WHITESPACEFILLER="                                                   "
+        local NEWHELPSTRING=$(printf '%.25s --> %s' "$COMMANDNAME$WHITESPACEFILLER" "$COMMANDDESCRIPTION")
+        local HELPSTRING="$HELPSTRING$NEWHELPSTRING\n"
+    done <<< "$PARSEDBASHRC"
+    printf "$HELPSTRING"
+}
+
+
+#================================================= VARIOUS FIXES ============================================
+
+# unlimited bash history
+export HISTFILESIZE=-1
+export HISTSIZE=-1
+export HISTTIMEFORMAT="[%F %T] "
+export HISTCONTROL=ignoredups
+
+
+#EASYBASHRC:fix-skype:Kills Skype background processes without terminating the program
+alias fix-skype='kill -HUP `ps -eo "pid:1,args:1" | grep -E "\-\-type=renderer.*skypeforlinux" | cut -d" " -f1`'
+
+
+#================================================= EASY ALIASES =============================================
+
+#EASYBASHRC:shortcut:Opens a GUI for creating shortcut of an application or a location
+function shortcut(){
+    check_installation "gnome-desktop-item-edit"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt-get install --no-install-recommends gnome-panel"
+       return 1
+    fi
+    gnome-desktop-item-edit . --create-new
+}
+
+
+#EASYBASHRC:jekyll_docker:Starts jekyll docker used for rendering github.io webpages
+function jekyll_docker(){
+    check_installation "docker"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install docker.io; sudo groupadd docker; sudo usermod -aG docker ${USER}"
+       return 1
+    fi
+    docker run -p 8080:4000 -v $(pwd):/site bretfisher/jekyll-serve
+}
+
+
+#EASYBASHRC:no_network:Start $@ with no internet connection (needs installation)
+function no_network(){
+    check_installation "firejail"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install firejail"
+       return 1
+    fi
+    firejail --noprofile --net=none $@
+}
+
+
+#EASYBASHRC:py:Shorter version of python3
+alias py='python3' 
+
+
+#EASYBASHRC:gitaddcommitpush:Adds all files in the current location, commits @1 and pushes to the origin
+gitaddcommitpush(){ 
+    check_installation "git"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install git"
+       return 1
+    fi
+    git add . &&
+    git commit -m "$1" &&
+    git push origin
+}
+
+
+#================================================= DATA PROCESSING ==========================================
+
+#EASYBASHRC:dif:Colorful alternative to "diff", using git diff
+function dif(){
+    check_installation "git"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install git"
+       return 1
+    fi
+    alias dif="git diff --no-index -- $1 $2"
+}
+
+
+#EASYBASHRC:scan_text:Select an area on the screen to run OCR and get text output
+function scan_text(){
+    check_installation "maim" "mogrify" "tesseract"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo add-apt-repository ppa:alex-p/tesseract-ocr-devel; sudo apt update; sudo apt install tesseract-ocr imagemagick maim"
+       return 1
+    fi
+    #select tesseract_lang in eng rus equ ;do break;done # Quick language menu, add more if you need other languages.
+    SCR_IMG=$(mktemp --tmpdir scan_textXXXXXXXX.png)
+    OCR_TXT="${SCR_IMG%.*}"
+    trap "rm $SCR_IMG" EXIT
+    trap "rm $OCR_TXT.txt" EXIT
+    maim -s $SCR_IMG -m 1
+    mogrify -modulate 100,0 -resize 400% $SCR_IMG  #should increase detection rate
+    tesseract $SCR_IMG $OCR_TXT &> /dev/null
+    cat "$OCR_TXT.txt"
+    rm "$SCR_IMG"
+    rm "$OCR_TXT.txt"
+}
+
+
+#EASYBASHRC:scan_qrcode:Select an area on the screen to zbarimg and get text output
+function scan_qr(){
+    check_installation "maim" "zbarimg"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install zbar-tools maim"
+       return 1
+    fi
+    SCR_IMG=$(mktemp --tmpdir scan_qrXXXXXXXX.png)
+    OCR_TXT="${SCR_IMG%.*}"
+    trap "rm $SCR_IMG" EXIT
+    maim -s $SCR_IMG -m 1
+    zbarimg -q $SCR_IMG
+    rm "$SCR_IMG"
+}
+
+
+#EASYBASHRC:compress_video:Compress videos with Vary the Constant Rate Factor to MP4
+function compress_video(){
+    check_installation "ffmpeg"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install ffmpeg"
+       return 1
+    fi
+    for var in "$@"
+    do
+        INPUT_FILE="$var"
+        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
+        if [[ $INPUT_FILE == *".compressed."* ]]; then
+            echo "$INPUT_FILE is already compressed! (according to the filename)"
+            continue
+        fi
+        ffmpeg -i $INPUT_FILE -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
+    done
+    alert "Video compressing job finished"
+}
+
+
+#EASYBASHRC:compress_video_and_delete:Compress videos with Vary the Constant Rate Factor to MP4 AND DELETE
+function compress_video_and_delete(){
+    check_installation "ffmpeg"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install ffmpeg"
+       return 1
+    fi
+    for var in "$@"
+    do
+        INPUT_FILE="$var"
+        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
+        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
+            echo "$INPUT_FILE is already compressed! (according to the filename)"
+            continue
+        fi
+        ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
+        if [ $? -eq 0 ]; then
+            rm "$INPUT_FILE"
+        fi
+    done
+    alert "Video compressing job finished"
+}
+
+
+#EASYBASHRC:compress_audio:Compress audio with MP3
+function compress_audio(){
+    check_installation "ffmpeg"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install ffmpeg"
+       return 1
+    fi
+    for var in "$@"
+    do
+        INPUT_FILE="$var"
+        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp3"
+        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
+            echo "$INPUT_FILE is already compressed! (according to the filename)"
+            continue
+        fi
+        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame "$OUTPUT_FILE"
+    done
+    alert "Audio compressing job finished"
+}
+
+
+#EASYBASHRC:compress_audio_and_delete:Compress audio with MP3 AND DELETE
+function compress_audio_and_delete(){
+    check_installation "ffmpeg"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install ffmpeg"
+       return 1
+    fi
+    for var in "$@"
+    do
+        INPUT_FILE="$var"
+        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp3"
+        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
+            echo "$INPUT_FILE is already compressed! (according to the filename)"
+            continue
+        fi
+        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame "$OUTPUT_FILE"
+        if [ $? -eq 0 ]; then
+            rm "$INPUT_FILE"
+        fi
+    done
+    alert "Audio compressing job finished"
+}
