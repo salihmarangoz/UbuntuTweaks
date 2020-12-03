@@ -85,6 +85,15 @@ $ sudo apt update
 $ sudo apt install code
 ```
 
+### OBS Studio
+
+```bash
+$ sudo apt install ffmpeg
+$ sudo add-apt-repository ppa:obsproject/obs-studio
+$ sudo apt update
+$ sudo apt install obs-studio
+```
+
 
 
 ## Closed Source
@@ -106,3 +115,8 @@ $ sudo dpkg -i skypeforlinux-64.deb
 $ sudo apt install -f
 $ rm skypeforlinux-64.deb
 ```
+
+## Foxit Reader
+
+https://www.foxitsoftware.com/downloads/
+

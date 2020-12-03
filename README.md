@@ -11,11 +11,11 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for **Ubuntu
 - PulseAudio Configurations
 - Gnome Configurations
 - Some utilities
-- Logging Fİxes
+- Logging Fixes
 
 [Install Programs/Tools](InstallProgramsTools.md)
 
-- Document editors
+- Open/Closed Source Useful Programs
 
 [Bashrc Easy](BashrcEasy.md)
 
