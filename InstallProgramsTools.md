@@ -22,9 +22,11 @@ $ sudo apt install \
 Better than `PDF Shuffler`
 
 ```bash
-$ sudo add-apt-repository ppa:linuxuprising/apps
-$ sudo apt update
-$ sudo apt install pdfarranger
+$ sudo apt remove pdfarranger # edit: apt package has some problems
+$ python3 -m pip install --upgrade pip
+$ pip3 install --user pikepdf
+$ pip3 install --user --upgrade https://github.com/pdfarranger/pdfarranger/zipball/master
+$ pdfarranger
 ```
 
 ### Peek
