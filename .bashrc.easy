@@ -1,6 +1,12 @@
 # https://github.com/salihmarangoz/UbuntuTweaks
 
-# todo: add wondershaper
+#=============================================== TODO =======================================================
+#-> add wondershaper
+
+
+#=============================================== GLOBALS ====================================================
+BASHRC_CPU_THREADS="2" # cpu thread limiter for heavy tasks
+
 
 #================================================= MAIN =====================================================
 
@@ -225,7 +231,7 @@ function compress_audio(){
             echo "$INPUT_FILE is already compressed! (according to the filename)"
             continue
         fi
-        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame "$OUTPUT_FILE"
+        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
     done
     alert "Audio compressing job finished"
 }
@@ -246,7 +252,7 @@ function compress_audio_and_delete(){
             echo "$INPUT_FILE is already compressed! (according to the filename)"
             continue
         fi
-        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame "$OUTPUT_FILE"
+        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
         if [ $? -eq 0 ]; then
             rm "$INPUT_FILE"
         fi
