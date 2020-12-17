@@ -1,5 +1,23 @@
 # Install Programs/Tools
 
+   * [Install Programs/Tools](#install-programstools)
+      * [Open Source](#open-source)
+         * [Basic Utilities](#basic-utilities)
+         * [PDF Arranger](#pdf-arranger)
+         * [Peek](#peek)
+         * [Typora](#typora)
+         * [Balena Etcher](#balena-etcher)
+         * [VirtualBox](#virtualbox)
+         * [TOC](#toc)
+         * [Visual Studio Code](#visual-studio-code)
+         * [OBS Studio](#obs-studio)
+      * [Closed Source](#closed-source)
+         * [GitKraken](#gitkraken)
+         * [Skype](#skype)
+         * [Foxit Reader](#foxit-reader)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 ## Open Source
 
  ### Basic Utilities
@@ -114,7 +132,7 @@ $ sudo apt install -f
 $ rm gitkraken-amd64.deb
 ```
 
-## Skype
+### Skype
 
 ```bash
 $ wget -4 https://go.skype.com/skypeforlinux-64.deb
@@ -123,7 +141,7 @@ $ sudo apt install -f
 $ rm skypeforlinux-64.deb
 ```
 
-## Foxit Reader
+### Foxit Reader
 
 It is possible to highlight some texts and save them.
 
