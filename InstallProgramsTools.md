@@ -14,7 +14,7 @@ $ sudo apt install \
 	thunderbird xul-ext-lightning \
 	gnome-sound-recorder vlc \
 	octave \
-	pinta gnome-paint
+	pinta gnome-paint gimp
 ```
 
 ### PDF Arranger
@@ -26,7 +26,6 @@ $ sudo apt remove pdfarranger # edit: apt package has some problems
 $ python3 -m pip install --upgrade pip
 $ pip3 install --user pikepdf
 $ pip3 install --user --upgrade https://github.com/pdfarranger/pdfarranger/zipball/master
-$ pdfarranger
 ```
 
 ### Peek
