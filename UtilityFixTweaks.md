@@ -11,7 +11,7 @@
       * [[GNOME] Gnome Extensions](#gnome-gnome-extensions)
          * [1. GSConnect](#1-gsconnect)
       * [[GNOME] Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)](#gnome-remap-default-home-folders-desktop-pictures-downloads-etc)
-      * [[UTIL] Limit Network Bandwidth](#util-limit-network-bandwidth)
+      * [[GNOME] Nautilus Git Icons](#gnome-nautilus-git-icons)
       * [[UTIL] Disable Touchpad When Mouse is Plugged](#util-disable-touchpad-when-mouse-is-plugged)
       * [[LOG] Enable S.M.A.R.T.](#log-enable-smart)
       * [[LOG] Delete Log Archives Regularly](#log-delete-log-archives-regularly)
@@ -293,6 +293,14 @@ $ xdg-user-dirs-update --set DOCUMENTS /path/to/new/documents_folder
 $ xdg-user-dirs-update --set PICTURES /path/to/new/pictures_folder
 $ xdg-user-dirs-update --set TEMPLATES /path/to/new/templates_folder
 ```
+
+
+
+## [GNOME] Nautilus Git Icons
+
+![](https://github.com/chrisjbillington/git-nautilus-icons/raw/master/screenshot_caja.png)
+
+Image taken from the original project repository: https://github.com/chrisjbillington/git-nautilus-icons
 
 
 
