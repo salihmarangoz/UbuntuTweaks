@@ -2,6 +2,7 @@
 
 #=============================================== TODO =======================================================
 #-> add wondershaper
+#-> better checks on already summarized and compressed audio/video files
 
 
 #=============================================== GLOBALS ====================================================
@@ -192,30 +193,6 @@ function compress_video(){
 }
 
 
-#EASYBASHRC:compress_video_and_delete:Compress videos with Vary the Constant Rate Factor to MP4 AND DELETE
-function compress_video_and_delete(){
-    check_installation "ffmpeg"
-    if [ $? -ne "0" ]; then
-       echo "Please install it with: sudo apt install ffmpeg"
-       return 1
-    fi
-    for var in "$@"
-    do
-        INPUT_FILE="$var"
-        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
-        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
-            echo "$INPUT_FILE is already compressed! (according to the filename)"
-            continue
-        fi
-        ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
-        if [ $? -eq 0 ]; then
-            rm "$INPUT_FILE"
-        fi
-    done
-    alert "Video compressing job finished"
-}
-
-
 #EASYBASHRC:compress_audio:Compress audio with MP3
 function compress_audio(){
     check_installation "ffmpeg"
@@ -237,8 +214,8 @@ function compress_audio(){
 }
 
 
-#EASYBASHRC:compress_audio_and_delete:Compress audio with MP3 AND DELETE
-function compress_audio_and_delete(){
+#EASYBASHRC:summarize_video:Summarizes the video by deleting duplicate frames
+function summarize_video(){
     check_installation "ffmpeg"
     if [ $? -ne "0" ]; then
        echo "Please install it with: sudo apt install ffmpeg"
@@ -247,15 +224,16 @@ function compress_audio_and_delete(){
     for var in "$@"
     do
         INPUT_FILE="$var"
-        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp3"
-        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
-            echo "$INPUT_FILE is already compressed! (according to the filename)"
+        TMP_FILE=$(mktemp "XXXXXXXXXXXXXX$INPUT_FILE")
+        OUTPUT_FILE="${INPUT_FILE%.*}.summarized.mp4"
+        if [[ $INPUT_FILE == *".summarized."* ]]; then
+            echo "$INPUT_FILE is already summarized! (according to the filename)"
             continue
         fi
-        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
-        if [ $? -eq 0 ]; then
-            rm "$INPUT_FILE"
-        fi
+        ffmpeg -y -i "$INPUT_FILE" -vf mpdecimate,setpts=N/FRAME_RATE/TB "$TMP_FILE"
+        LAST_FRAME_POS=$(ffmpeg -i "$TMP_FILE" -map 0:v:0 -c copy -f null - 2>&1 | grep frame | cut -d' ' -f3)
+        ffmpeg -i "$TMP_FILE" -vf trim=start_frame=0:end_frame=$LAST_FRAME_POS -an "$OUTPUT_FILE"
+        rm "$TMP_FILE"
     done
-    alert "Audio compressing job finished"
+    alert "Video summarizing job finished"
 }
