@@ -183,11 +183,11 @@ function compress_video(){
     do
         INPUT_FILE="$var"
         OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
-        if [[ $INPUT_FILE == *".compressed."* ]]; then
+        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
             echo "$INPUT_FILE is already compressed! (according to the filename)"
             continue
         fi
-        ffmpeg -i $INPUT_FILE -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
+        ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
     done
     alert "Video compressing job finished"
 }
@@ -226,7 +226,7 @@ function summarize_video(){
         INPUT_FILE="$var"
         TMP_FILE=$(mktemp "XXXXXXXXXXXXXX$INPUT_FILE")
         OUTPUT_FILE="${INPUT_FILE%.*}.summarized.mp4"
-        if [[ $INPUT_FILE == *".summarized."* ]]; then
+        if [[ "$INPUT_FILE" == *".summarized."* ]]; then
             echo "$INPUT_FILE is already summarized! (according to the filename)"
             continue
         fi
