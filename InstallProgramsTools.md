@@ -11,12 +11,16 @@
          * [TOC](#toc)
          * [Visual Studio Code](#visual-studio-code)
          * [OBS Studio](#obs-studio)
+         * [Fritzing](#fritzing)
+         * [Youtube-dl](#youtube-dl)
       * [Closed Source](#closed-source)
          * [GitKraken](#gitkraken)
          * [Skype](#skype)
          * [Foxit Reader](#foxit-reader)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+Installation commands may be changed in the future, so it is recommended to check the source.
 
 ## Open Source
 
@@ -37,6 +41,8 @@ $ sudo apt install \
 
 ### PDF Arranger
 
+https://github.com/pdfarranger/pdfarranger
+
 Better than `PDF Shuffler`
 
 ```bash
@@ -56,6 +62,8 @@ $ sudo apt install peek
 
 ### Typora
 
+https://typora.io/
+
 Best for markdown files.
 
 ```bash
@@ -67,6 +75,8 @@ $ sudo apt install typora
 
 ### Balena Etcher
 
+https://www.balena.io/etcher/
+
 ```bash
 $ echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list
 $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
@@ -75,6 +85,8 @@ $ sudo apt install balena-etcher-electron
 ```
 
 ### VirtualBox
+
+https://www.virtualbox.org/
 
 After installating VirtualBox, install extension pack: https://download.virtualbox.org/virtualbox/
 
@@ -88,6 +100,8 @@ $ sudo apt install virtualbox
 
 ### TOC
 
+https://github.com/ekalinin/github-markdown-toc
+
 Usage: `$ toc README.md`
 
 ```bash
@@ -97,6 +111,8 @@ $ sudo chmod 555 /usr/bin/toc
 ```
 
 ### Visual Studio Code
+
+https://code.visualstudio.com/
 
 ```bash
 $ wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -108,6 +124,8 @@ $ sudo apt install code
 
 ### OBS Studio
 
+https://obsproject.com/
+
 Very good recording and streaming app.
 
 ```bash
@@ -117,11 +135,35 @@ $ sudo apt update
 $ sudo apt install obs-studio
 ```
 
+### Fritzing
+
+https://fritzing.org
+
+CAD software for designing electronics hardware. For more: https://en.wikipedia.org/wiki/Fritzing
+
+```bash
+$ sudo apt install libqt5printsupport5 libqt5xml5 libqt5sql5 libqt5serialport5 libqt5sql5-sqlite
+$ sudo apt install fritzing fritzing-data fritzing-parts
+```
+
+### Youtube-dl
+
+https://github.com/ytdl-org/youtube-dl
+
+Youtube video, subtitle, thumbnail, etc. downloader which supports batch downloadings (downloading a list).
+
+```bash
+$ sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+$ sudo chmod a+rx /usr/local/bin/youtube-dl
+```
+
 
 
 ## Closed Source
 
 ### GitKraken
+
+https://www.gitkraken.com/
 
 Visualized git operations.
 
@@ -134,6 +176,8 @@ $ rm gitkraken-amd64.deb
 
 ### Skype
 
+https://www.skype.com/en/
+
 ```bash
 $ wget -4 https://go.skype.com/skypeforlinux-64.deb
 $ sudo dpkg -i skypeforlinux-64.deb
@@ -143,7 +187,7 @@ $ rm skypeforlinux-64.deb
 
 ### Foxit Reader
 
-It is possible to highlight some texts and save them.
-
 https://www.foxitsoftware.com/downloads/
+
+It is possible to highlight some texts and save them.
 
