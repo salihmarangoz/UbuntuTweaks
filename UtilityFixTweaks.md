@@ -11,7 +11,8 @@
       * [[GNOME] Gnome Extensions](#gnome-gnome-extensions)
          * [1. GSConnect](#1-gsconnect)
       * [[GNOME] Remap Default Home Folders (Desktop, Pictures, Downloads, etc.)](#gnome-remap-default-home-folders-desktop-pictures-downloads-etc)
-      * [[GNOME] Nautilus Git Icons](#gnome-nautilus-git-icons)
+      * [[NAUTILUS] Nautilus Git Icons](#nautilus-nautilus-git-icons)
+      * [[NAUTILUS] Nautilus Media Properties](#nautilus-nautilus-media-properties)
       * [[UTIL] Disable Touchpad When Mouse is Plugged](#util-disable-touchpad-when-mouse-is-plugged)
       * [[LOG] Enable S.M.A.R.T.](#log-enable-smart)
       * [[LOG] Delete Log Archives Regularly](#log-delete-log-archives-regularly)
@@ -296,11 +297,27 @@ $ xdg-user-dirs-update --set TEMPLATES /path/to/new/templates_folder
 
 
 
-## [GNOME] Nautilus Git Icons
+## [NAUTILUS] Nautilus Git Icons
+
+See the source for the installation procedure. Image below taken from the original project repository. 
+
+**Source:** https://github.com/chrisjbillington/git-nautilus-icons
 
 ![](https://github.com/chrisjbillington/git-nautilus-icons/raw/master/screenshot_caja.png)
 
-Image taken from the original project repository: https://github.com/chrisjbillington/git-nautilus-icons
+
+
+## [NAUTILUS] Nautilus Media Properties
+
+Right-click a file and select properties. Now there is a new tab for media properties.
+
+**Source:** https://github.com/linux-man/nautilus-mediainfo
+
+```bash
+$ sudo add-apt-repository ppa:caldas-lopes/ppa
+$ sudo apt install nautilus-mediainfo
+$ nautilus -q # kill nautilus
+```
 
 
 
