@@ -17,6 +17,8 @@
          * [GitKraken](#gitkraken)
          * [Skype](#skype)
          * [Foxit Reader](#foxit-reader)
+         * [SpaceSniffer (with Wine)](#spacesniffer-with-wine)
+         * [Anti-Twin (with Wine)](#anti-twin-with-wine)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -191,3 +193,18 @@ https://www.foxitsoftware.com/downloads/
 
 It is possible to highlight some texts and save them.
 
+
+
+### SpaceSniffer (with Wine)
+
+http://www.uderzo.it/main_products/space_sniffer/index.html
+
+Beautiful alternative to native Disk Usage Analyzer (baobab).
+
+
+
+### Anti-Twin (with Wine)
+
+http://www.joerg-rosenthal.com/en/antitwin/
+
+Duplicate file finder with byte and image comparison features.
