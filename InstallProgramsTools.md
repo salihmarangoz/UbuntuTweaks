@@ -13,6 +13,7 @@
          * [OBS Studio](#obs-studio)
          * [Fritzing](#fritzing)
          * [Youtube-dl](#youtube-dl)
+         * [ShrinkPDF](#shrinkpdf)
       * [Closed Source](#closed-source)
          * [GitKraken](#gitkraken)
          * [Skype](#skype)
@@ -158,6 +159,12 @@ Youtube video, subtitle, thumbnail, etc. downloader which supports batch downloa
 $ sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 $ sudo chmod a+rx /usr/local/bin/youtube-dl
 ```
+
+### ShrinkPDF
+
+http://www.alfredklomp.com/programming/shrinkpdf/
+
+Reduces PDF filesize by lossy recompressing (reducing DPI). The script and its usage can be found in the link.
 
 
 
