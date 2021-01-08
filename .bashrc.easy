@@ -7,6 +7,7 @@
 
 #=============================================== GLOBALS ====================================================
 BASHRC_CPU_THREADS="2" # cpu thread limiter for heavy tasks
+BASHRC_EASY_FILES="$HOME/.bashrc.easy.files"
 
 
 #================================================= MAIN =====================================================
@@ -172,27 +173,6 @@ function scan_qr(){
 }
 
 
-#EASYBASHRC:compress_video:Compress videos with Vary the Constant Rate Factor to MP4
-function compress_video(){
-    check_installation "ffmpeg"
-    if [ $? -ne "0" ]; then
-       echo "Please install it with: sudo apt install ffmpeg"
-       return 1
-    fi
-    for var in "$@"
-    do
-        INPUT_FILE="$var"
-        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
-        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
-            echo "$INPUT_FILE is already compressed! (according to the filename)"
-            continue
-        fi
-        ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
-    done
-    alert "Video compressing job finished"
-}
-
-
 #EASYBASHRC:compress_audio:Compress audio with MP3
 function compress_audio(){
     check_installation "ffmpeg"
@@ -211,6 +191,27 @@ function compress_audio(){
         ffmpeg -i "$INPUT_FILE" -acodec libmp3lame -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
     done
     alert "Audio compressing job finished"
+}
+
+
+#EASYBASHRC:compress_video:Compress videos with Vary the Constant Rate Factor to MP4
+function compress_video(){
+    check_installation "ffmpeg"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install ffmpeg"
+       return 1
+    fi
+    for var in "$@"
+    do
+        INPUT_FILE="$var"
+        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
+        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
+            echo "$INPUT_FILE is already compressed! (according to the filename)"
+            continue
+        fi
+        ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
+    done
+    alert "Video compressing job finished"
 }
 
 
@@ -236,4 +237,34 @@ function summarize_video(){
         rm "$TMP_FILE"
     done
     alert "Video summarizing job finished"
+}
+
+
+#EASYBASHRC:stabilize_video:Stabilizes/deshakes video by using vid.stab ffmpeg plugin
+function stabilize_video(){
+    BASHRC_EASY_FILES_FFMPEG="$BASHRC_EASY_FILES/ffmpeg"
+    FFMPEG_EASY="$BASHRC_EASY_FILES_FFMPEG/ffmpeg"
+
+    check_installation "$FFMPEG_EASY"
+    if [ $? -ne "0" ]; then
+        mkdir -p "$BASHRC_EASY_FILES_FFMPEG"
+        wget "https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz" -O "$BASHRC_EASY_FILES/ffmpeg.tar.xz"
+        tar xf "$BASHRC_EASY_FILES/ffmpeg.tar.xz" -C  "$BASHRC_EASY_FILES_FFMPEG" --strip-components=1
+        rm "$BASHRC_EASY_FILES/ffmpeg.tar.xz"
+    fi
+
+    for var in "$@"
+    do
+        INPUT_FILE="$var"
+        OUTPUT_FILE="${INPUT_FILE%.*}.stabilized.mp4"
+        if [[ "$INPUT_FILE" == *".stabilized."* ]]; then
+            echo "$INPUT_FILE is already stabilized! (according to the filename)"
+            continue
+        fi
+        TRANSFORM_FILE=$(mktemp "XXXXXXXXXXXXXXtransform.trf")
+        $FFMPEG_EASY -i "$INPUT_FILE" -vf vidstabdetect="$TRANSFORM_FILE" -f null -
+        $FFMPEG_EASY -i "$INPUT_FILE" -vf vidstabtransform="$TRANSFORM_FILE",unsharp=5:5:0.8:3:3:0.4 "$OUTPUT_FILE"
+        rm "$TRANSFORM_FILE"
+    done
+    alert "Video stabilizing job finished"
 }
