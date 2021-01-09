@@ -1,9 +1,8 @@
 # Install Programs/Tools
 
    * [Install Programs/Tools](#install-programstools)
-      * [Open Source](#open-source)
+      * [Open Source Apps](#open-source-apps)
          * [Basic Utilities](#basic-utilities)
-         * [Chromium / Chrome Addons](#chromium--chrome-addons)
          * [PDF Arranger](#pdf-arranger)
          * [Peek](#peek)
          * [Typora](#typora)
@@ -15,18 +14,21 @@
          * [Fritzing](#fritzing)
          * [Youtube-dl](#youtube-dl)
          * [ShrinkPDF](#shrinkpdf)
-      * [Closed Source](#closed-source)
+      * [Closed Source Apps](#closed-source-apps)
          * [GitKraken](#gitkraken)
          * [Skype](#skype)
          * [Foxit Reader](#foxit-reader)
          * [SpaceSniffer (with Wine)](#spacesniffer-with-wine)
          * [Anti-Twin (with Wine)](#anti-twin-with-wine)
+      * [Other/Mixed Apps](#othermixed-apps)
+         * [Chromium / Chrome Addons](#chromium--chrome-addons)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
+
 Installation commands may be changed in the future, so it is recommended to check the source.
 
-## Open Source
+## Open Source Apps
 
  ### Basic Utilities
 
@@ -42,26 +44,6 @@ $ sudo apt install \
 	octave \
 	pinta gnome-paint gimp
 ```
-
-
-
-### Chromium / Chrome Addons
-
-- [**Find Code for Research Papers - CatalyzeX**](https://chrome.google.com/webstore/detail/find-code-for-research-pa/aikkeehnlfpamidigaffhfmgbkdeheil?hl=en)
-- [**uBlock Origin**](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en)
-
-- [**Grammarly for Chrome**](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen?hl=en)
-
-- [**Video DownloadHelper**](https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk) (The companion app can be installed to run better)
-- [**YouTube Dark Theme**](https://chrome.google.com/webstore/detail/youtube-dark-theme/icgoeaddhagkbjnnigiblfebijeinfme?hl=en)
-- [**YouTube NonStop**](https://chrome.google.com/webstore/detail/youtube-nonstop/nlkaejimjacpillmajjnopmpbkbnocid?hl=en)
-- [**Cookie Notice Blocker**](https://chrome.google.com/webstore/detail/cookie-notice-blocker/odhmfmnoejhihkmfebnolljiibpnednn?hl=en-GB)
-- [**Ad Blocker for Facebook**](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag?hl=en)
-
-- [**GNOME Shell integration**](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) (See **UtilityFixTweaks.md** before installing)
-- [**GSConnect**](https://chrome.google.com/webstore/detail/gsconnect/jfnifeihccihocjbfcfhicmmgpjicaec?hl=en) (See **UtilityFixTweaks.md** before installing)
-
-
 
 ### PDF Arranger
 
@@ -189,7 +171,7 @@ Reduces PDF filesize by lossy recompressing (reducing DPI). The script and its u
 
 
 
-## Closed Source
+## Closed Source Apps
 
 ### GitKraken
 
@@ -236,3 +218,24 @@ Beautiful alternative to native Disk Usage Analyzer (baobab).
 http://www.joerg-rosenthal.com/en/antitwin/
 
 Duplicate file finder with byte and image comparison features.
+
+
+
+## Other/Mixed Apps
+
+### Chromium / Chrome Addons
+
+- [**Find Code for Research Papers - CatalyzeX**](https://chrome.google.com/webstore/detail/find-code-for-research-pa/aikkeehnlfpamidigaffhfmgbkdeheil?hl=en)
+- [**uBlock Origin**](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en)
+
+- [**Grammarly for Chrome**](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen?hl=en)
+
+- [**Video DownloadHelper**](https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk) (The companion app can be installed to run better)
+- [**YouTube Dark Theme**](https://chrome.google.com/webstore/detail/youtube-dark-theme/icgoeaddhagkbjnnigiblfebijeinfme?hl=en)
+- [**YouTube NonStop**](https://chrome.google.com/webstore/detail/youtube-nonstop/nlkaejimjacpillmajjnopmpbkbnocid?hl=en)
+- [**Cookie Notice Blocker**](https://chrome.google.com/webstore/detail/cookie-notice-blocker/odhmfmnoejhihkmfebnolljiibpnednn?hl=en-GB)
+- [**Ad Blocker for Facebook**](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag?hl=en)
+
+- [**GNOME Shell integration**](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) (See **UtilityFixTweaks.md** before installing)
+- [**GSConnect**](https://chrome.google.com/webstore/detail/gsconnect/jfnifeihccihocjbfcfhicmmgpjicaec?hl=en) (See **UtilityFixTweaks.md** before installing)
+
