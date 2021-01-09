@@ -173,6 +173,10 @@ function scan_qr(){
 }
 
 
+#EASYBASHRC:enhance_image:Neural image enhancer with 2x resolution increase. See github.com/alexjc/neural-enhance
+alias enhance_image='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
+
+
 #EASYBASHRC:compress_audio:Compress audio with MP3
 function compress_audio(){
     check_installation "ffmpeg"
