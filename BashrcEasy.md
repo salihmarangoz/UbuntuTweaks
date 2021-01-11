@@ -18,18 +18,26 @@ $ help_bashrc
 Which outputs a text like this:
 
 ```
+[*] Parameters:
+BASHRC_EASY_FILES: /home/salih/.bashrc.easy.files
+BASHRC_CPU_THREADS: 2
+
+[*] Available commands:
 fix-skype                 --> Kills Skype background processes without terminating the program
 shortcut                  --> Opens a GUI for creating shortcut of an application or a location
-jekyll_docker             --> Starts jekyll docker used for rendering github.io webpages
+jekyll_server             --> Starts jekyll docker used for rendering github.io webpages
 no_network                --> Start $@ with no internet connection
 py                        --> Shorter version of python3
 gitaddcommitpush          --> Adds all files in the current location, commits @1 and pushes to the origin
+temp_chromium             --> Temporary chromium-browser. Can be reset with temp_chromium_reset
+temp_chromium_reset       --> Describes instructions for resetting temp_chromium profile
 dif                       --> Colorful alternative to "diff", using git diff
 scan_text                 --> Select an area on the screen to run OCR and get text output
-scan_qrcode               --> Select an area on the screen to zbarimg and get text output
-compress_video            --> Compress videos with Vary the Constant Rate Factor to MP4
-compress_video_and_delete --> Compress videos with Vary the Constant Rate Factor to MP4 AND DELETE
+scan_qrcode               --> Select an area on the screen to run zbarimg and get text output
+enhance_image             --> Neural image enhancer with 2x resolution increase. See github.com/alexjc/neural-enhance
 compress_audio            --> Compress audio with MP3
-compress_audio_and_delete --> Compress audio with MP3 AND DELETE
+compress_video            --> Compress videos with Vary the Constant Rate Factor to MP4
+summarize_video           --> Summarizes the video by deleting duplicate frames
+stabilize_video           --> Stabilizes/deshakes video by using vid.stab ffmpeg plugin
 ```
 

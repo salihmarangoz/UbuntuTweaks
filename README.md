@@ -16,12 +16,15 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for **Ubuntu
 [Install Programs/Tools](InstallProgramsTools.md)
 
 - Open/Closed Source Useful Programs
+- Web-Browser Extensions
 
 [Bashrc Easy](BashrcEasy.md)
 
 - Image to QR
 - Image to Text
 - Audio/Video Compression
+- Video stabilization/deshaking
+- Video summarization (dropping same frames)
 - Some utilities
 
 
