@@ -3,11 +3,12 @@
 #=============================================== TODO =======================================================
 #-> add wondershaper
 #-> better checks on already summarized and compressed audio/video files
+#-> better check of if its a file or a folder
 
 
 #=============================================== GLOBALS ====================================================
-BASHRC_CPU_THREADS="2" # cpu thread limiter for heavy tasks
 BASHRC_EASY_FILES="$HOME/.bashrc.easy.files"
+BASHRC_CPU_THREADS="2" # cpu thread limiter for heavy tasks
 
 
 #================================================= MAIN =====================================================
@@ -45,8 +46,13 @@ function check_installation(){
 
 # EASYBASHRC:help_bashrc:Prints help message for easy bashrc
 function help_bashrc(){
-    local PARSEDBASHRC=$(cat ~/.bashrc* | grep "#EASY""BASHRC")
-    local HELPSTRING="Available commands:\n"
+    echo ""
+    echo "[*] Parameters:"
+    echo "BASHRC_EASY_FILES: $BASHRC_EASY_FILES"
+    echo "BASHRC_CPU_THREADS: $BASHRC_CPU_THREADS"
+    echo ""
+    local PARSEDBASHRC=$(cat ~/.bashrc.easy | grep "#EASY""BASHRC")
+    local HELPSTRING="[*] Available commands:\n"
     while IFS= read -r line; do
         local COMMANDNAME=$(echo $line | cut -d':' -f2)
         local COMMANDDESCRIPTION=$(echo $line | cut -d':' -f3)
@@ -54,7 +60,7 @@ function help_bashrc(){
         local NEWHELPSTRING=$(printf '%.25s --> %s' "$COMMANDNAME$WHITESPACEFILLER" "$COMMANDDESCRIPTION")
         local HELPSTRING="$HELPSTRING$NEWHELPSTRING\n"
     done <<< "$PARSEDBASHRC"
-    printf "$HELPSTRING"
+    printf "$HELPSTRING\n"
 }
 
 
@@ -84,8 +90,8 @@ function shortcut(){
 }
 
 
-#EASYBASHRC:jekyll_docker:Starts jekyll docker used for rendering github.io webpages
-function jekyll_docker(){
+#EASYBASHRC:jekyll_server:Starts jekyll docker used for rendering github.io webpages
+function jekyll_server(){
     check_installation "docker"
     if [ $? -ne "0" ]; then
        echo "Please install it with: sudo apt install docker.io; sudo groupadd docker; sudo usermod -aG docker ${USER}"
@@ -120,6 +126,22 @@ gitaddcommitpush(){
     git add . &&
     git commit -m "$1" &&
     git push origin
+}
+
+
+#EASYBASHRC:temp_chromium:Temporary chromium-browser. Can be reset with temp_chromium_reset
+temp_chromium(){
+    EASY_CHROMIUM="$BASHRC_EASY_FILES/chromium"
+    EASY_CHROMIUM_USERDATA="$EASY_CHROMIUM/temp_userdata"
+    touch "$EASY_CHROMIUM/DELETE_tempuserdata_TO_RESET_CHROMIUM"
+    chromium-browser --user-data-dir="$EASY_CHROMIUM_USERDATA"
+}
+
+
+#EASYBASHRC:temp_chromium_reset:Describes instructions for resetting temp_chromium profile
+temp_chromium_reset(){
+    EASY_CHROMIUM="$BASHRC_EASY_FILES/chromium"
+    xdg-open "$EASY_CHROMIUM"
 }
 
 
@@ -192,7 +214,7 @@ function compress_audio(){
             echo "$INPUT_FILE is already compressed! (according to the filename)"
             continue
         fi
-        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
+        ffmpeg -i "$INPUT_FILE" -acodec libmp3lame -threads "$BASHRC_CPU_THREADS" "$OUTPUT_FILE"
     done
     alert "Audio compressing job finished"
 }
@@ -213,7 +235,7 @@ function compress_video(){
             echo "$INPUT_FILE is already compressed! (according to the filename)"
             continue
         fi
-        ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads $BASHRC_CPU_THREADS "$OUTPUT_FILE"
+        ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads "$BASHRC_CPU_THREADS" "$OUTPUT_FILE"
     done
     alert "Video compressing job finished"
 }
@@ -235,9 +257,9 @@ function summarize_video(){
             echo "$INPUT_FILE is already summarized! (according to the filename)"
             continue
         fi
-        ffmpeg -y -i "$INPUT_FILE" -vf mpdecimate,setpts=N/FRAME_RATE/TB "$TMP_FILE"
-        LAST_FRAME_POS=$(ffmpeg -i "$TMP_FILE" -map 0:v:0 -c copy -f null - 2>&1 | grep frame | cut -d' ' -f3)
-        ffmpeg -i "$TMP_FILE" -vf trim=start_frame=0:end_frame=$LAST_FRAME_POS -an "$OUTPUT_FILE"
+        ffmpeg -y -i "$INPUT_FILE" -threads "$BASHRC_CPU_THREADS" -vf mpdecimate,setpts=N/FRAME_RATE/TB "$TMP_FILE"
+        LAST_FRAME_POS=$(ffmpeg -i "$TMP_FILE" -threads "$BASHRC_CPU_THREADS" -map 0:v:0 -c copy -f null - 2>&1 | grep frame | cut -d' ' -f3)
+        ffmpeg -i "$TMP_FILE" -threads "$BASHRC_CPU_THREADS" -vf trim=start_frame=0:end_frame=$LAST_FRAME_POS -an "$OUTPUT_FILE"
         rm "$TMP_FILE"
     done
     alert "Video summarizing job finished"
@@ -266,8 +288,8 @@ function stabilize_video(){
             continue
         fi
         TRANSFORM_FILE=$(mktemp "XXXXXXXXXXXXXXtransform.trf")
-        $FFMPEG_EASY -i "$INPUT_FILE" -vf vidstabdetect="$TRANSFORM_FILE" -f null -
-        $FFMPEG_EASY -i "$INPUT_FILE" -vf vidstabtransform="$TRANSFORM_FILE",unsharp=5:5:0.8:3:3:0.4 "$OUTPUT_FILE"
+        $FFMPEG_EASY -i "$INPUT_FILE" -threads "$BASHRC_CPU_THREADS" -vf vidstabdetect="$TRANSFORM_FILE" -f null -
+        $FFMPEG_EASY -i "$INPUT_FILE" -threads "$BASHRC_CPU_THREADS" -vf vidstabtransform="$TRANSFORM_FILE",unsharp=5:5:0.8:3:3:0.4 "$OUTPUT_FILE"
         rm "$TRANSFORM_FILE"
     done
     alert "Video stabilizing job finished"
