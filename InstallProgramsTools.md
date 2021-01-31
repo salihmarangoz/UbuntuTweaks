@@ -1,5 +1,10 @@
 # Install Programs/Tools
 
+Installation commands may be changed in the future, so it is recommended to check the source.
+
+Table of Contents
+=================
+
    * [Install Programs/Tools](#install-programstools)
       * [Open Source Apps](#open-source-apps)
          * [Basic Utilities](#basic-utilities)
@@ -22,11 +27,9 @@
          * [Anti-Twin (with Wine)](#anti-twin-with-wine)
       * [Other/Mixed Apps](#othermixed-apps)
          * [Chromium / Chrome Addons](#chromium--chrome-addons)
+         * [LD_PRELOAD](#ld_preload)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
-
-Installation commands may be changed in the future, so it is recommended to check the source.
 
 ## Open Source Apps
 
@@ -239,3 +242,22 @@ Duplicate file finder with byte and image comparison features.
 - [**GNOME Shell integration**](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) (See **UtilityFixTweaks.md** before installing)
 - [**GSConnect**](https://chrome.google.com/webstore/detail/gsconnect/jfnifeihccihocjbfcfhicmmgpjicaec?hl=en) (See **UtilityFixTweaks.md** before installing)
 
+
+
+### LD_PRELOAD
+
+(not tested yet)
+
+- https://github.com/whitequark/unrandom
+- https://github.com/sickill/stderred
+- https://github.com/vi/timeskew
+- https://github.com/FiloSottile/otherport
+- https://github.com/libhugetlbfs/libhugetlbfs
+- https://github.com/jacereda/fsatrace
+- https://github.com/lilydjwg/stdoutisatty
+- https://github.com/jktr/arg-inject
+- https://github.com/taeguk/free_checker
+- https://github.com/msantos/libproxyproto
+- https://github.com/de-vri-es/inet-remap
+- https://github.com/msantos/libsockfilter
+- https://github.com/majek/fluxcapacitor
