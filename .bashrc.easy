@@ -79,17 +79,8 @@ alias fix-skype='kill -HUP `ps -eo "pid:1,args:1" | grep -E "\-\-type=renderer.*
 
 #================================================= EASY ALIASES =============================================
 
-#EASYBASHRC:shortcut:Opens a GUI for creating shortcut of an application or a location
-function shortcut(){
-    check_installation "gnome-desktop-item-edit"
-    if [ $? -ne "0" ]; then
-       echo "Please install it with: sudo apt-get install --no-install-recommends gnome-panel"
-       return 1
-    fi
-    gnome-desktop-item-edit . --create-new
-}
 
-
+#SOURCE: https://github.com/BretFisher/jekyll-serve
 #EASYBASHRC:jekyll_server:Starts jekyll docker used for rendering github.io webpages
 function jekyll_server(){
     check_installation "docker"
@@ -98,6 +89,21 @@ function jekyll_server(){
        return 1
     fi
     docker run -p 8080:4000 -v $(pwd):/site bretfisher/jekyll-serve
+}
+
+
+#SOURCE: https://github.com/Genymobile/scrcpy
+#EASYBASHRC:android_screenshare:Android screenshare to the PC. Enable USB debugging on android, then connect with a USB.
+function android_screenshare(){
+    SELECTED_GRAPHICS="intel"           # "intel", "amd", or "nvidia"
+    SCRCPY_PARAMS="--max-size 1800"
+    adb kill-server
+    xhost + local:docker
+    docker run --rm -i -t --privileged \
+        -v /dev/bus/usb:/dev/bus/usb \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=$DISPLAY \
+        pierlo1/scrcpy:$SELECTED_GRAPHICS /bin/sh -c "adb devices; read -p 'Allow USB debugging on the Android device then press any key to continue...'; scrcpy $SCRCPY_PARAMS"
 }
 
 
@@ -195,7 +201,8 @@ function scan_qr(){
 }
 
 
-#EASYBASHRC:enhance_image:Neural image enhancer with 2x resolution increase. See github.com/alexjc/neural-enhance
+#SOURCE: github.com/alexjc/neural-enhance
+#EASYBASHRC:enhance_image:Neural image enhancer with 2x resolution increase.
 alias enhance_image='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
 

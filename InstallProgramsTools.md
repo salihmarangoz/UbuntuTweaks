@@ -2,24 +2,25 @@
 
 Installation commands may be changed in the future, so it is recommended to check the source.
 
-Table of Contents
-=================
-
    * [Install Programs/Tools](#install-programstools)
+   * [Table of Contents](#table-of-contents)
       * [Open Source Apps](#open-source-apps)
          * [Basic Utilities](#basic-utilities)
+         * [Anaconda / Jupyter Notebook](#anaconda--jupyter-notebook)
          * [PDF Arranger](#pdf-arranger)
          * [Peek](#peek)
          * [Typora](#typora)
          * [Balena Etcher](#balena-etcher)
          * [VirtualBox](#virtualbox)
          * [TOC](#toc)
+         * [Tmux](#tmux)
          * [Visual Studio Code](#visual-studio-code)
          * [OBS Studio](#obs-studio)
          * [Fritzing](#fritzing)
          * [Youtube-dl](#youtube-dl)
          * [ShrinkPDF](#shrinkpdf)
       * [Closed Source Apps](#closed-source-apps)
+         * [Sublime Text](#sublime-text)
          * [GitKraken](#gitkraken)
          * [Skype](#skype)
          * [Foxit Reader](#foxit-reader)
@@ -38,7 +39,8 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 ```bash
 $ sudo apt update
 $ sudo apt install \
-	apt-transport-https software-properties-common aptitude ubuntu-restricted-extras \
+	apt-transport-https software-properties-common ubuntu-restricted-extras \
+	aptitude \
 	wget git rar unzip \
 	screen net-tools network-manager-openvpn-gnome \
 	gparted htop iotop bmon \
@@ -48,11 +50,76 @@ $ sudo apt install \
 	pinta gnome-paint gimp
 ```
 
+### Anaconda / Jupyter Notebook
+
+```bash
+# You can set the parameters according to your system
+ANACONDA_INSTALLER="Anaconda3-2020.11-Linux-x86_64.sh"  # Check latest version here: https://repo.anaconda.com/archive/
+INSTALL_TARGET="$HOME/anaconda3"
+BIND_TARGET="/anaconda3"
+VIRT_ENV_NAME="MyVirtEnv"
+
+# Create folders and make bindings where necessarry
+$ sudo mkdir -p "$INSTALL_TARGET"
+$ sudo chown "$USER":"$USER" "$INSTALL_TARGET"
+$ sudo mkdir -p "$BIND_TARGET"
+$ sudo mount --bind "$INSTALL_TARGET" "$BIND_TARGET"
+
+# From now on we will use BIND_TARGET instead of INSTALL_TARGET
+
+# Download and run Anaconda Installer
+$ wget "https://repo.anaconda.com/archive/$ANACONDA_INSTALLER"
+$ bash "$ANACONDA_INSTALLER" -b -u -p "$BIND_TARGET"
+
+# Activate Anaconda Path
+$ export PATH=${PATH}:$BIND_TARGET/bin
+
+# Update Anaconda
+$ conda update --prefix "$BIND_TARGET" anaconda
+
+##################################################
+
+# Create Virtual Env
+$ conda create -y --name "$VIRT_ENV_NAME"
+$ source activate "$VIRT_ENV_NAME"
+$ conda install -c  conda-forge \
+                    python \
+                    jupyter \
+                    jupyter_contrib_nbextensions \
+                    ipykernel
+# If previous command gives error run it again!
+$ python -m ipykernel install --user --name "$VIRT_ENV_NAME" --display-name "$VIRT_ENV_NAME"
+
+# Install Data/ML related libraries
+$ conda install -c  conda-forge \
+                    matplotlib \
+                    scipy \
+                    Pillow \
+                    pandas \
+                    scikit-image \
+                    scikit-learn \
+                    pydot \
+                    graphviz \
+                    opencv \
+                    sympy
+
+# TODO: solving conflict takes a lot of time
+# Install DL related libraries
+$ conda install -c  pytorch \
+                    pytorch \
+                    torchvision \
+                    torchaudio \
+                    cpuonly
+
+$ rm "$ANACONDA_INSTALLER"
+$ echo "alias ana=\"export PATH=\${PATH}:$BIND_TARGET/bin\"" >> ~/.bashrc
+```
+
 ### PDF Arranger
 
 https://github.com/pdfarranger/pdfarranger
 
-Better than `PDF Shuffler`
+Better than `PDF Shuffler` and other variations.
 
 ```bash
 $ sudo apt remove pdfarranger # edit: apt package has some problems
@@ -81,6 +148,8 @@ $ sudo add-apt-repository 'deb https://typora.io/linux ./'
 $ sudo apt update
 $ sudo apt install typora
 ```
+
+After installing it would be beneficial to enable `inline math` and `highlight` syntax support in the settings.
 
 ### Balena Etcher
 
@@ -119,14 +188,31 @@ $ sudo mv gh-md-toc /usr/bin/toc
 $ sudo chmod 555 /usr/bin/toc
 ```
 
+### Tmux
+
+```bash
+# Install
+$ sudo apt install tmux
+
+# Custom Configuration
+$ echo >$HOME/.tmux.conf
+$ cat >$HOME/.tmux.conf << EOF
+set-option -g default-command "exec /bin/bash"
+set-option -g allow-rename off
+set -g default-terminal "screen-256color"
+set -g status off
+set -g mouse on
+EOF
+```
+
 ### Visual Studio Code
 
 https://code.visualstudio.com/
 
 ```bash
 $ wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-4 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-4 sudo rm -f /etc/apt/sources.list.d/vscode.list # somehow adds itself into two different locations. So removing one of them
+$ sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+$ sudo rm -f /etc/apt/sources.list.d/vscode.list # somehow adds itself into two different locations. So removing one of them
 $ sudo apt update
 $ sudo apt install code
 ```
@@ -175,6 +261,25 @@ Reduces PDF filesize by lossy recompressing (reducing DPI). The script and its u
 
 
 ## Closed Source Apps
+
+### Sublime Text
+
+```bash
+# Install
+$ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+$ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+$ sudo apt update
+$ sudo apt install sublime-text
+
+# Custom Configuration
+$ mkdir -p $HOME/.config/sublime-text-3/Packages/User
+$ cat >$HOME/.config/sublime-text-3/Packages/User/Preferences.sublime-settings << EOF
+{
+    "draw_white_space": "all",
+    "translate_tabs_to_spaces": true
+}
+EOF
+```
 
 ### GitKraken
 
@@ -228,19 +333,18 @@ Duplicate file finder with byte and image comparison features.
 
 ### Chromium / Chrome Addons
 
-- [**Picture-in-Picture Extension**](https://chrome.google.com/webstore/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg/related?hl=en)
+- [**Markdown Viewer**](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk) (After installing remove automatically access to files for privacy)
+- [**Jupyter Notebook Viewer**](https://chrome.google.com/webstore/detail/jupyter-notebook-viewer/ocabfdicbcamoonfhalkdojedklfcjmf) (After installing remove automatically access to files for privacy)
 
+- [**Picture-in-Picture Extension**](https://chrome.google.com/webstore/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg/related?hl=en)
 - [**Find Code for Research Papers - CatalyzeX**](https://chrome.google.com/webstore/detail/find-code-for-research-pa/aikkeehnlfpamidigaffhfmgbkdeheil?hl=en)
 - [**uBlock Origin**](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en)
-
 - [**Grammarly for Chrome**](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen?hl=en)
-
-- [**Video DownloadHelper**](https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk) (The companion app can be installed to run better)
 - [**YouTube Dark Theme**](https://chrome.google.com/webstore/detail/youtube-dark-theme/icgoeaddhagkbjnnigiblfebijeinfme?hl=en)
 - [**YouTube NonStop**](https://chrome.google.com/webstore/detail/youtube-nonstop/nlkaejimjacpillmajjnopmpbkbnocid?hl=en)
 - [**Cookie Notice Blocker**](https://chrome.google.com/webstore/detail/cookie-notice-blocker/odhmfmnoejhihkmfebnolljiibpnednn?hl=en-GB)
 - [**Ad Blocker for Facebook**](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag?hl=en)
-
+- [**Video DownloadHelper**](https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk) (The companion app can be installed to run better)
 - [**GNOME Shell integration**](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) (See **UtilityFixTweaks.md** before installing)
 - [**GSConnect**](https://chrome.google.com/webstore/detail/gsconnect/jfnifeihccihocjbfcfhicmmgpjicaec?hl=en) (See **UtilityFixTweaks.md** before installing)
 
