@@ -15,7 +15,7 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for **Ubuntu
 
 [Install Programs/Tools](InstallProgramsTools.md)
 
-- Open/Closed Source Useful Programs
+- Open/Closed Source Useful Programs/Libraries
 - Web-Browser Extensions
 
 [Bashrc Easy](BashrcEasy.md)
@@ -25,6 +25,7 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for **Ubuntu
 - Audio/Video Compression
 - Video stabilization/deshaking
 - Video summarization (dropping same frames)
+- Android remote control from PC
 - Some utilities
 
 

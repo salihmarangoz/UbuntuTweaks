@@ -93,8 +93,8 @@ function jekyll_server(){
 
 
 #SOURCE: https://github.com/Genymobile/scrcpy
-#EASYBASHRC:android_screenshare:Android screenshare to the PC. Enable USB debugging on android, then connect with a USB.
-function android_screenshare(){
+#EASYBASHRC:android_remote_control:Android screenshare to the PC. Enable USB debugging on android, then connect with a USB.
+function android_remote_control(){
     SELECTED_GRAPHICS="intel"           # "intel", "amd", or "nvidia"
     SCRCPY_PARAMS="--max-size 1800"
     adb kill-server
