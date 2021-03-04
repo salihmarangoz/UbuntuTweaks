@@ -52,20 +52,37 @@ $ sudo apt install \
 
 ### Anaconda / Jupyter Notebook
 
+- Features:
+  - Uses binded folder for the installation so anaconda folder can be moved afterwards and being copied to other computers
+  - Python (ML/DL) Kernel
+  - Octave Kernel
+  - C++ Kernel
+- Available Terminal Commands:
+  - **`ana`**: Activates anaconda environment.
+  - **`jupyter_notebook`**: Starts jupyter notebook.
+  - **`jupyter_notebook_shared`**: Starts jupyter notebook with LAN access.
+
+- Delete some folder before starting:
+  - `~/.local/share/jupyter`
+  - `~/.conda`
+- TODO:
+  - Code prettify and autopep8 is not working!
+
 ```bash
 # You can set the parameters according to your system
 ANACONDA_INSTALLER="Anaconda3-2020.11-Linux-x86_64.sh"  # Check latest version here: https://repo.anaconda.com/archive/
-INSTALL_TARGET="$HOME/anaconda3"
+INSTALL_TARGET="$HOME/anaconda3" # set real install path for the anaconda
 BIND_TARGET="/anaconda3"
-VIRT_ENV_NAME="MyVirtEnv"
+VIRT_ENV_NAME="myenv"
+VIRT_ENV_DISPLAY_NAME="Python 3 ($VIRT_ENV_NAME)"
+
+##################################################
 
 # Create folders and make bindings where necessarry
 $ sudo mkdir -p "$INSTALL_TARGET"
 $ sudo chown "$USER":"$USER" "$INSTALL_TARGET"
 $ sudo mkdir -p "$BIND_TARGET"
 $ sudo mount --bind "$INSTALL_TARGET" "$BIND_TARGET"
-
-# From now on we will use BIND_TARGET instead of INSTALL_TARGET
 
 # Download and run Anaconda Installer
 $ wget "https://repo.anaconda.com/archive/$ANACONDA_INSTALLER"
@@ -74,45 +91,108 @@ $ bash "$ANACONDA_INSTALLER" -b -u -p "$BIND_TARGET"
 # Activate Anaconda Path
 $ export PATH=${PATH}:$BIND_TARGET/bin
 
-# Update Anaconda
-$ conda update --prefix "$BIND_TARGET" anaconda
+##################################################
+########## base PACKAGES #########################
+##################################################
+
+$ source activate base
+$ conda install -c  conda-forge \
+                    jupyter \
+                    jupyter_contrib_nbextensions \
+                    ipykernel \
+                    nodejs
+
+##################################################
+########## myenv PACKAGES ########################
+##################################################
+
+# Create virtual environment
+$ conda create -y --name "$VIRT_ENV_NAME"
+$ source activate "$VIRT_ENV_NAME"
+
+# Install Data/ML/DL related libraries
+$ conda install -c  conda-forge \
+                    ipykernel \
+                    matplotlib Pillow graphviz pydot opencv \
+                    pandas scipy scikit-image scikit-learn \
+                    sympy \
+                    pytorch torchvision tensorflow
+
+# Install the IPython Kernel
+$ python -m ipykernel install --user --name "$VIRT_ENV_NAME" --display-name "$VIRT_ENV_DISPLAY_NAME"
+
+##################################################
+########## octave PACKAGES #######################
+##################################################
+
+# Create virtual environment
+$ conda create -y --name "octave"
+$ source activate "octave"
+
+# Install related libraries
+$ sudo apt install octave*
+$ conda install -c  conda-forge \
+                    octave_kernel texinfo
+$ python -m octave_kernel install --user
+
+##################################################
+########## cling PACKAGES ########################
+##################################################
+
+# Create virtual environment
+$ conda create -y --name "cling"
+$ source activate "cling"
+
+# Install related libraries
+$ conda install -c conda-forge xeus-cling
+$ python -m xeus-cling install --user
+$ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp11" --sys-prefix
+$ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp14" --sys-prefix
+$ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp17" --sys-prefix
 
 ##################################################
 
-# Create Virtual Env
-$ conda create -y --name "$VIRT_ENV_NAME"
-$ source activate "$VIRT_ENV_NAME"
-$ conda install -c  conda-forge \
-                    python \
-                    jupyter \
-                    jupyter_contrib_nbextensions \
-                    ipykernel
-# If previous command gives error run it again!
-$ python -m ipykernel install --user --name "$VIRT_ENV_NAME" --display-name "$VIRT_ENV_NAME"
+# Make the bindng persistent (Run the command to see the output)
+$ whiptail --msgbox "To complete installation add this line to /etc/fstab:\n\n$INSTALL_TARGET $BIND_TARGET none defaults,bind 0 0" 10 80
 
-# Install Data/ML related libraries
-$ conda install -c  conda-forge \
-                    matplotlib \
-                    scipy \
-                    Pillow \
-                    pandas \
-                    scikit-image \
-                    scikit-learn \
-                    pydot \
-                    graphviz \
-                    opencv \
-                    sympy
-
-# TODO: solving conflict takes a lot of time
-# Install DL related libraries
-$ conda install -c  pytorch \
-                    pytorch \
-                    torchvision \
-                    torchaudio \
-                    cpuonly
-
-$ rm "$ANACONDA_INSTALLER"
+# .bashrc shortcuts
 $ echo "alias ana=\"export PATH=\${PATH}:$BIND_TARGET/bin\"" >> ~/.bashrc
+$ echo "alias jupyter_notebook=\"ana; jupyter-notebook\"" >> ~/.bashrc
+$ echo "alias jupyter_notebook_shared=\"ana; jupyter-notebook --ip 0.0.0.0\"" >> ~/.bashrc
+
+# delete the anaconda installer
+$ rm "$ANACONDA_INSTALLER"
+```
+
+After installing, run jupyter notebook once then close. Copy the content below to `~/.jupyter/nbconfig/notebook.json`
+
+```json
+{
+  "load_extensions": {
+    "code_prettify/autopep8": false,
+    "code_prettify/code_prettify": false,
+    "scroll_down/main": true,
+    "toc2/main": true,
+    "comment-uncomment/main": true,
+    "execute_time/ExecuteTime": true,
+    "export_embedded/main": true,
+    "select_keymap/main": true,
+    "snippets_menu/main": true,
+    "table_beautifier/main": false,
+    "hinterland/hinterland": false,
+    "python-markdown/main": false,
+    "spellchecker/main": true,
+    "jupyter-js-widgets/extension": true,
+    "nbextensions_configurator/config_menu/main": true,
+    "contrib_nbextensions_help_item/main": true,
+    "toggle_all_line_numbers/main": true,
+    "code_font_size/code_font_size": false,
+    "notify/notify": false
+  },
+  "scrollDownIsEnabled": true,
+  "select_keymap_local_storage": false,
+  "stored_keymap": "sublime"
+}
 ```
 
 ### PDF Arranger
