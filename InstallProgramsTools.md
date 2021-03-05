@@ -145,7 +145,6 @@ $ source activate "cling"
 
 # Install related libraries
 $ conda install -c conda-forge xeus-cling
-$ python -m xeus-cling install --user
 $ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp11" --sys-prefix
 $ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp14" --sys-prefix
 $ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp17" --sys-prefix
@@ -203,9 +202,10 @@ Better than `PDF Shuffler` and other variations.
 
 ```bash
 $ sudo apt remove pdfarranger # edit: apt package has some problems
+$ sudo apt-get install python3-pip python3-distutils-extra python3-wheel python3-gi python3-gi-cairo gir1.2-gtk-3.0 gir1.2-poppler-0.18 python3-setuptools
 $ python3 -m pip install --upgrade pip
 $ pip3 install --user pikepdf
-$ pip3 install --user --upgrade https://github.com/pdfarranger/pdfarranger/zipball/master
+$ pip3 install --user --upgrade https://github.com/pdfarranger/pdfarranger/archive/1.7.0rc1.zip
 ```
 
 ### Peek
