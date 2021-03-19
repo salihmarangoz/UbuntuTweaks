@@ -10,6 +10,7 @@
       * [[HDD] Manually Cache Folders (browsers, apps, etc.)](#hdd-manually-cache-folders-browsers-apps-etc)
       * [[HDD] BFQ Disk Scheduler](#hdd-bfq-disk-scheduler)
       * [[HDD] Disable Default Swapfile on Disk](#hdd-disable-default-swapfile-on-disk)
+      * [[HDD] Defrag &amp; Optimize Ext4 Partitions](#hdd-defrag--optimize-ext4-partitions)
       * [[NET] Turn Off Wifi Power Save Feature](#net-turn-off-wifi-power-save-feature)
       * [[NET] Faster TCP (BBR, Fast TCP Open)](#net-faster-tcp-bbr-fast-tcp-open)
       * [[OS] Disable Unnecessary Services](#os-disable-unnecessary-services)
@@ -290,6 +291,19 @@ $ sudo nano /etc/fstab
 ```
 
 - Reboot the PC.
+
+## [HDD] Defrag & Optimize Ext4 Partitions
+
+```bash
+###############################################
+########## VERY IMPORTANT !!! #################
+# BOOT PC FROM A UBUNTU IMAGE USB STICK #######
+###############################################
+$ sudo fsck.ext4 -y -f -v -D /dev/sdX
+# Now mount the partition, then run:
+$ sudo e4defrag -v /dev/sdX
+```
+
 
 
 ## [NET] Turn Off Wifi Power Save Feature
