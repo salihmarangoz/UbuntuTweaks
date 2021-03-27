@@ -111,12 +111,9 @@ $ conda create -y --name "$VIRT_ENV_NAME"
 $ source activate "$VIRT_ENV_NAME"
 
 # Install Data/ML/DL related libraries
-$ conda install -c  conda-forge \
-                    ipykernel \
-                    matplotlib Pillow graphviz pydot opencv \
-                    pandas scipy scikit-image scikit-learn \
-                    sympy \
-                    pytorch torchvision tensorflow
+$ conda install -c pytorch  pytorch torchvision torchaudio cpuonly # cpu only. see pytorch.org
+$ conda install -c anaconda tensorflow 
+$ conda install -c  conda-forge ipykernel matplotlib Pillow pandas scipy scikit-image scikit-learn sympy
 
 # Install the IPython Kernel
 $ python -m ipykernel install --user --name "$VIRT_ENV_NAME" --display-name "$VIRT_ENV_DISPLAY_NAME"
@@ -193,6 +190,19 @@ After installing, run jupyter notebook once then close. Copy the content below t
   "stored_keymap": "sublime"
 }
 ```
+
+After installing close all terminals and open a fresh one then type `jupyter_notebook` (which is an alias we put in .bashrc). Open a notebook with `Python (myenv)` kernel and run these commands:
+
+```python
+import torch
+import tensorflow
+import numpy
+import matplotlib
+print ("Tensorflow", tensorflow.__version__)
+print ("PyTorch", torch.__version__)
+```
+
+
 
 ### PDF Arranger
 
