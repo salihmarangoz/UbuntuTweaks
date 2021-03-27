@@ -39,9 +39,3 @@ compress_video            --> Compress videos with Vary the Constant Rate Factor
 summarize_video           --> Summarizes the video by deleting duplicate frames
 stabilize_video           --> Stabilizes/deshakes video by using vid.stab ffmpeg plugin
 ```
-
-## Todo
-
-#-> add wondershaper
-#-> better checks on already summarized and compressed audio/video files
-#-> better check of if its a file or a folder
