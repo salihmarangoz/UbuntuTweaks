@@ -1,34 +1,35 @@
-# https://github.com/salihmarangoz/UbuntuTweaks
-
-#=============================================== TODO =======================================================
-#-> add wondershaper
-#-> better checks on already summarized and compressed audio/video files
-#-> better check of if its a file or a folder
-
+# For the latest version https://github.com/salihmarangoz/UbuntuTweaks
 
 #=============================================== GLOBALS ====================================================
-BASHRC_EASY_FILES="$HOME/.bashrc.easy.files"
-BASHRC_CPU_THREADS="2" # cpu thread limiter for heavy tasks
+
+export BASHRC_EASY_FILES="$HOME/.bashrc.easy.files"
+export BASHRC_CPU_THREADS="2" # cpu thread limiter for heavy tasks
 
 
-#================================================= MAIN =====================================================
+#================================================= INSTALLER ================================================
 
-if ! "install_bashrc_easy" -v $var &> /dev/null
-then
-    IS_EASYBASHRC_INSTALLED=1
-fi
-function install_bashrc_easy(){
-    if [ $IS_EASYBASHRC_INSTALLED -ne "1" ]; then
-        echo "Added a line to .bashrc file!"
+THIS_FILENAME=`basename "$0"`
+THIS_FILENAME_FULL="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )/$THIS_FILENAME"
+INSTALLER_FILENAME="bashrc_easy_installer.sh"
+if [ "$THIS_FILENAME" = "$INSTALLER_FILENAME" ]; then
+    echo "Installing BashrcEasy:"
+
+    echo "- Copying BashrcEasy script to $HOME/.bashrc.easy"
+    cp -f "$THIS_FILENAME_FULL" "$HOME/.bashrc.easy"
+
+    if [ -z ${IS_EASYBASHRC_INSTALLED+x} ]; then
+        echo "- BashrcEasy installation is not detected"
+        echo "- Adding a line to .bashrc"
         echo "" >> $HOME/.bashrc
         echo 'source $HOME/.bashrc.easy' >> $HOME/.bashrc
+        echo "- .bashrc file is updated. Please close this terminal and create a fresh one."
     fi
-    cp -f ".bashrc.easy" "$HOME/.bashrc.easy"
-    if [ $? -eq "0" ]; then
-        echo "Copied new .bashrc.easy to home folder!"
-    fi
-}
+    echo "Done."
+fi
+export IS_EASYBASHRC_INSTALLED=1
 
+
+#================================================= HELPER FUNCTIONS =========================================
 
 function check_installation(){
     local CHECK_INSTALLATION=0
@@ -151,6 +152,20 @@ temp_chromium_reset(){
 }
 
 
+#EASYBASHRC:enable_bluetooth:Enable bluetooth permanently
+function enable_bluetooth(){
+    sudo systemctl enable bluetooth.service
+    sudo systemctl start bluetooth.service
+}
+
+
+#EASYBASHRC:enable_bluetooth:Disable bluetooth permanently
+function disable_bluetooth(){
+    sudo systemctl disable bluetooth.service
+    sudo systemctl stop bluetooth.service
+}
+
+
 #================================================= DATA PROCESSING ==========================================
 
 #EASYBASHRC:dif:Colorful alternative to "diff", using git diff
@@ -202,7 +217,7 @@ function scan_qr(){
 
 
 #SOURCE: github.com/alexjc/neural-enhance
-#EASYBASHRC:enhance_image:Neural image enhancer with 2x resolution increase.
+#EASYBASHRC:enhance_image:Neural image enhancer with 2x resolution increase
 alias enhance_image='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
 
@@ -243,6 +258,27 @@ function compress_video(){
             continue
         fi
         ffmpeg -i "$INPUT_FILE" -vcodec libx264 -crf 23 -threads "$BASHRC_CPU_THREADS" "$OUTPUT_FILE"
+    done
+    alert "Video compressing job finished"
+}
+
+
+#EASYBASHRC:compress_video_720p_mono:Compress videos to 720p resolution, mono audio channel, 15 fps
+function compress_video_720p_mono(){
+    check_installation "ffmpeg"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install ffmpeg"
+       return 1
+    fi
+    for var in "$@"
+    do
+        INPUT_FILE="$var"
+        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
+        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
+            echo "$INPUT_FILE is already compressed! (according to the filename)"
+            continue
+        fi
+        ffmpeg -i "$INPUT_FILE" -r 15 -preset veryslow -s hd720 -map_channel 0.1.0 -async 1 -threads "$BASHRC_CPU_THREADS" "$OUTPUT_FILE"
     done
     alert "Video compressing job finished"
 }

@@ -3,10 +3,9 @@
 ## Install / Update:
 
 ```bash
-$ git clone git@github.com:salihmarangoz/UbuntuTweaks.git
+$ git clone https://github.com/salihmarangoz/UbuntuTweaks.git
 $ cd UbuntuTweaks
-$ source .bashrc.easy
-$ install_bashrc_easy
+$ bash bashrc_easy_installer.sh
 ```
 
 ## Print Available Commands:
@@ -24,8 +23,8 @@ BASHRC_CPU_THREADS: 2
 
 [*] Available commands:
 fix-skype                 --> Kills Skype background processes without terminating the program
-shortcut                  --> Opens a GUI for creating shortcut of an application or a location
 jekyll_server             --> Starts jekyll docker used for rendering github.io webpages
+android_remote_control    --> Android screenshare to the PC. Enable USB debugging on android, then connect with a USB.
 no_network                --> Start $@ with no internet connection
 py                        --> Shorter version of python3
 gitaddcommitpush          --> Adds all files in the current location, commits @1 and pushes to the origin
@@ -34,10 +33,15 @@ temp_chromium_reset       --> Describes instructions for resetting temp_chromium
 dif                       --> Colorful alternative to "diff", using git diff
 scan_text                 --> Select an area on the screen to run OCR and get text output
 scan_qrcode               --> Select an area on the screen to run zbarimg and get text output
-enhance_image             --> Neural image enhancer with 2x resolution increase. See github.com/alexjc/neural-enhance
+enhance_image             --> Neural image enhancer with 2x resolution increase
 compress_audio            --> Compress audio with MP3
 compress_video            --> Compress videos with Vary the Constant Rate Factor to MP4
 summarize_video           --> Summarizes the video by deleting duplicate frames
 stabilize_video           --> Stabilizes/deshakes video by using vid.stab ffmpeg plugin
 ```
 
+## Todo
+
+#-> add wondershaper
+#-> better checks on already summarized and compressed audio/video files
+#-> better check of if its a file or a folder

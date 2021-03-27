@@ -3,10 +3,10 @@
 Installation commands may be changed in the future, so it is recommended to check the source.
 
    * [Install Programs/Tools](#install-programstools)
-   * [Table of Contents](#table-of-contents)
       * [Open Source Apps](#open-source-apps)
          * [Basic Utilities](#basic-utilities)
          * [Anaconda / Jupyter Notebook](#anaconda--jupyter-notebook)
+            * [Autopep8 Fix](#autopep8-fix)
          * [PDF Arranger](#pdf-arranger)
          * [Peek](#peek)
          * [Typora](#typora)
@@ -53,7 +53,7 @@ $ sudo apt install \
 ### Anaconda / Jupyter Notebook
 
 - Features:
-  - Uses binded folder for the installation so anaconda folder can be moved afterwards and being copied to other computers
+  - Uses binded folder for the installation so anaconda folder can be moved afterwards and being copied to other computers. (Personal note: It is really good to be able to use rsync on anaconda folder between different machines)
   - Python (ML/DL) Kernel
   - Octave Kernel
   - C++ Kernel
@@ -65,8 +65,6 @@ $ sudo apt install \
 - Delete some folder before starting:
   - `~/.local/share/jupyter`
   - `~/.conda`
-- TODO:
-  - Code prettify and autopep8 is not working!
 
 ```bash
 # You can set the parameters according to your system
@@ -100,7 +98,8 @@ $ conda install -c  conda-forge \
                     jupyter \
                     jupyter_contrib_nbextensions \
                     ipykernel \
-                    nodejs
+                    nodejs \
+                    autopep8
 
 ##################################################
 ########## myenv PACKAGES ########################
@@ -165,7 +164,7 @@ After installing, run jupyter notebook once then close. Copy the content below t
 ```json
 {
   "load_extensions": {
-    "code_prettify/autopep8": false,
+    "code_prettify/autopep8": true,
     "code_prettify/code_prettify": false,
     "scroll_down/main": true,
     "toc2/main": true,
@@ -187,7 +186,10 @@ After installing, run jupyter notebook once then close. Copy the content below t
   },
   "scrollDownIsEnabled": true,
   "select_keymap_local_storage": false,
-  "stored_keymap": "sublime"
+  "stored_keymap": "sublime",
+  "autopep8": {
+    "kernel_config_map_json": "{\n    \"python\": {\n        \"library\": \"import json\\nimport sys\\nsys.path.append('/anaconda3/lib/python3.8/site-packages')\\nimport autopep8\",\n        \"prefix\": \"print(json.dumps(autopep8.fix_code(u\",\n        \"postfix\": \")))\"\n    }\n}\n"
+  }
 }
 ```
 
@@ -200,6 +202,52 @@ import numpy
 import matplotlib
 print ("Tensorflow", tensorflow.__version__)
 print ("PyTorch", torch.__version__)
+```
+
+#### Autopep8 Fix
+
+I found a fix for autopep8 addon. If you installed Autopep8 with conda, pip etc., tried everything but still giving error like "autopep8 module not found" apply these steps...
+
+- Find `autopep8.py` folder:
+
+```bash
+BIND_TARGET="/anaconda3"
+$ find $BIND_TARGET -name autopep8.py
+```
+
+- This should give output similar like this.  Second result looks appropriate. Take that result without `/autopep8.py` postfix and update  `notebook.json` file.
+
+```
+/anaconda3/pkgs/autopep8-1.5.4-py_0/site-packages/autopep8.py
+/anaconda3/lib/python3.8/site-packages/autopep8.py
+```
+
+- Open `notebook.json`
+
+```bash
+$ gedit ~/.jupyter/nbconfig/notebook.json
+```
+
+- If you installed anaconda using this document, the part of a file should be looking like below. You need to update the parameter of`sys.path.append`.
+
+```
+...
+  "autopep8": {
+    "kernel_config_map_json": "{\n    \"python\": {\n        \"library\": \"import json\\nimport sys\\nsys.path.append('/anaconda3/lib/python3.8/site-packages')\\nimport autopep8\",\n        \"prefix\": \"print(json.dumps(autopep8.fix_code(u\",\n        \"postfix\": \")))\"\n    }\n}\n"
+  }
+...
+```
+
+- As an alternative way, you can update configuration of Autopep8 using `Nbextensions configuration` page in Jupyter notebook. Update the last parameter to look like this
+
+```
+{
+    "python": {
+        "library": "import json\nimport sys\nsys.path.append('/anaconda3/lib/python3.8/site-packages')\nimport autopep8",
+        "prefix": "print(json.dumps(autopep8.fix_code(u",
+        "postfix": ")))"
+    }
+}
 ```
 
 
