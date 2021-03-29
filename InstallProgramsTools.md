@@ -7,6 +7,7 @@ Installation commands may be changed in the future, so it is recommended to chec
          * [Basic Utilities](#basic-utilities)
          * [Anaconda / Jupyter Notebook](#anaconda--jupyter-notebook)
             * [Autopep8 Fix](#autopep8-fix)
+            * [Jupyter Extensions are not showing up](#jupyter-extensions-are-not-showing-up)
          * [PDF Arranger](#pdf-arranger)
          * [Peek](#peek)
          * [Typora](#typora)
@@ -250,7 +251,7 @@ $ gedit ~/.jupyter/nbconfig/notebook.json
 }
 ```
 
-### Jupyter Extensions are not showing up
+#### Jupyter Extensions are not showing up
 
 Run the following command:
 
