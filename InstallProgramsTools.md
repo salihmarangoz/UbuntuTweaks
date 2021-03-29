@@ -250,6 +250,22 @@ $ gedit ~/.jupyter/nbconfig/notebook.json
 }
 ```
 
+### Jupyter Extensions are not showing up
+
+Run the following command:
+
+```bash
+$ which jupyter-notebook
+```
+
+This should output nothing or give a output indicating your anaconda installation. If not, you need to uninstall pip installation of your jupyter-notebook. Run these to uninstall to do so:
+
+```bash
+$ pip uninstall jupyter jupyter-client jupyter-console jupyter-contrib-core jupyter-contrib-nbextensions jupyter-core jupyter-highlight-selected-word jupyter-latex-envs jupyter-nbextensions-configurator jupyterlab-pygments jupyterlab-widgets
+
+$ python3 -m pip uninstall -y jupyter jupyter_core jupyter-client jupyter-console jupyterlab_pygments notebook qtconsole nbconvert nbformat
+```
+
 
 
 ### PDF Arranger
