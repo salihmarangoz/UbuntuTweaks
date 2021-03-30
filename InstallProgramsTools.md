@@ -72,8 +72,6 @@ $ sudo apt install \
 ANACONDA_INSTALLER="Anaconda3-2020.11-Linux-x86_64.sh"  # Check latest version here: https://repo.anaconda.com/archive/
 INSTALL_TARGET="$HOME/anaconda3" # set real install path for the anaconda
 BIND_TARGET="/anaconda3"
-VIRT_ENV_NAME="myenv"
-VIRT_ENV_DISPLAY_NAME="Python 3 ($VIRT_ENV_NAME)"
 
 ##################################################
 
@@ -103,8 +101,10 @@ $ conda install -c  conda-forge \
                     autopep8
 
 ##################################################
-########## myenv PACKAGES ########################
+########## dlml PACKAGES #########################
 ##################################################
+VIRT_ENV_NAME="dlml"
+VIRT_ENV_DISPLAY_NAME="Python 3 ($VIRT_ENV_NAME)"
 
 # Create virtual environment
 $ conda create -y --name "$VIRT_ENV_NAME"
