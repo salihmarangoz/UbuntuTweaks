@@ -14,10 +14,14 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu L
 
 [Install Programs/Tools](InstallProgramsTools.md)
 
-- Anaconda for Tensorflow, PyTorch, etc.
-
 - Useful Open/Closed Source Useful Programs/Libraries
 - Useful Web-Browser Extensions
+
+[Install Anaconda and Libraries](InstallAnaconda.md)
+
+- Anaconda (Python/Cpp/Octave kernels)
+- Jupyter Notebook, preset extensions and some fixes
+- Compile PyTorch for old GPU's
 
 [Bashrc Easy](BashrcEasy.md)
 
