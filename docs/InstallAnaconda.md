@@ -123,41 +123,9 @@ $ echo "alias jupyter_notebook_shared=\"ana; jupyter-notebook --ip 0.0.0.0\"" >>
 $ rm "$ANACONDA_INSTALLER"
 ```
 
-After installing, run jupyter notebook once then close. Copy the content below to `~/.jupyter/nbconfig/notebook.json`
+- After installing, run jupyter notebook once then close. Copy the `UbuntuTweaks/etc/nbconfig` into the folder `~/.jupyter/`
 
-```json
-{
-  "load_extensions": {
-    "code_prettify/autopep8": true,
-    "code_prettify/code_prettify": false,
-    "scroll_down/main": true,
-    "toc2/main": true,
-    "comment-uncomment/main": true,
-    "execute_time/ExecuteTime": true,
-    "export_embedded/main": true,
-    "select_keymap/main": true,
-    "snippets_menu/main": true,
-    "table_beautifier/main": false,
-    "hinterland/hinterland": false,
-    "python-markdown/main": false,
-    "spellchecker/main": true,
-    "jupyter-js-widgets/extension": true,
-    "nbextensions_configurator/config_menu/main": true,
-    "contrib_nbextensions_help_item/main": true,
-    "toggle_all_line_numbers/main": true,
-    "code_font_size/code_font_size": false,
-    "notify/notify": false
-  },
-  "scrollDownIsEnabled": true,
-  "select_keymap_local_storage": false,
-  "stored_keymap": "sublime",
-  "autopep8": {
-    "kernel_config_map_json": "{\n    \"python\": {\n        \"library\": \"import json\\nimport sys\\nsys.path.append('/anaconda3/lib/python3.8/site-packages')\\nimport autopep8\",\n        \"prefix\": \"print(json.dumps(autopep8.fix_code(u\",\n        \"postfix\": \")))\"\n    }\n}\n"
-  }
-}
-```
-
-After installing close all terminals and open a fresh one then type `jupyter_notebook` (which is an alias we put in .bashrc). Open a notebook with `Python (myenv)` kernel and run these commands:
+- Close all terminals and open a fresh one then type `jupyter_notebook` (which is an alias we put in .bashrc). Open a notebook with `Python (myenv)` kernel and run these commands:
 
 ```python
 import torch

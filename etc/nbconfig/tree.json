@@ -1,0 +1,6 @@
+{
+  "load_extensions": {
+    "tree-filter/index": true,
+    "nbextensions_configurator/tree_tab/main": true
+  }
+}

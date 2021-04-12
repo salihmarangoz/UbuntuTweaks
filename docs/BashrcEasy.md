@@ -4,7 +4,7 @@
 
 ```bash
 $ git clone https://github.com/salihmarangoz/UbuntuTweaks.git
-$ cd UbuntuTweaks
+$ cd UbuntuTweaks/etc
 $ bash bashrc_easy_installer.sh
 ```
 

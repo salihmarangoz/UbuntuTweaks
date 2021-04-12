@@ -4,26 +4,26 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu L
 
 **Attention! Backup your computer in case of any data loss before starting to apply this guide.** Configurations listed in this guide are not recommended for server environments. Read the instructions carefully. Good luck!
 
-[Performance Tweaks](PerformanceTweaks.md)
+[Performance Tweaks](docs/PerformanceTweaks.md)
 
 - CPU / GPU / RAM / IO / Internet Browser related optimizations
 
-[Utility Tweaks](UtilityTweaks.md)
+[Utility Tweaks](docs/UtilityTweaks.md)
 
 - PulseAudio, Gnome, Nautilus, etc.
 
-[Install Programs/Tools](InstallProgramsTools.md)
+[Install Programs/Tools](docs/InstallProgramsTools.md)
 
 - Useful Open/Closed Source Useful Programs/Libraries
 - Useful Web-Browser Extensions
 
-[Install Anaconda and Libraries](InstallAnaconda.md)
+[Install Anaconda and Libraries](docs/InstallAnaconda.md)
 
 - Anaconda (Python/Cpp/Octave kernels)
 - Jupyter Notebook, preset extensions and some fixes
 - Compile PyTorch for old GPU's
 
-[Bashrc Easy](BashrcEasy.md)
+[Bashrc Easy](docs/BashrcEasy.md)
 
 - Image to QR, Image to Text
 - Audio/Video Compression
