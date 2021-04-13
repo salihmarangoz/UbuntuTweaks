@@ -263,8 +263,8 @@ function compress_video(){
 }
 
 
-#EASYBASHRC:compress_video_720p_mono:Compress videos to 720p resolution, mono audio channel, 15 fps
-function compress_video_720p_mono(){
+#EASYBASHRC:archive_video:Compress videos to 720p resolution, mono audio channel, 15 fps
+function archive_video(){
     check_installation "ffmpeg"
     if [ $? -ne "0" ]; then
        echo "Please install it with: sudo apt install ffmpeg"
@@ -273,14 +273,14 @@ function compress_video_720p_mono(){
     for var in "$@"
     do
         INPUT_FILE="$var"
-        OUTPUT_FILE="${INPUT_FILE%.*}.compressed.mp4"
-        if [[ "$INPUT_FILE" == *".compressed."* ]]; then
-            echo "$INPUT_FILE is already compressed! (according to the filename)"
+        OUTPUT_FILE="${INPUT_FILE%.*}.archived.mp4"
+        if [[ "$INPUT_FILE" == *".archived."* ]]; then
+            echo "$INPUT_FILE is already archived! (according to the filename)"
             continue
         fi
         ffmpeg -i "$INPUT_FILE" -r 15 -preset veryslow -s hd720 -map_channel 0.1.0 -async 1 -threads "$BASHRC_CPU_THREADS" "$OUTPUT_FILE"
     done
-    alert "Video compressing job finished"
+    alert "Video archiving job finished"
 }
 
 
