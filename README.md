@@ -17,11 +17,11 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu L
 - Useful Open/Closed Source Useful Programs/Libraries
 - Useful Web-Browser Extensions
 
-[Install Anaconda and Libraries](docs/InstallAnaconda.md)
+[Install Anaconda and Libraries](docs/InstallAnaconda/InstallAnaconda.md)
 
 - Anaconda (Python/Cpp/Octave kernels)
 - Jupyter Notebook, preset extensions and some fixes
-- Compile PyTorch for old GPU's
+- Compile and Package Conda Pkgs of PyTorch for your custom needs (e.g. old GPU's)
 
 [Bashrc Easy](docs/BashrcEasy.md)
 

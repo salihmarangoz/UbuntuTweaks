@@ -1,15 +1,55 @@
 # Compile PyTorch and Create Custom Conda Package
 
-[TOC]
+   * [Compile PyTorch and Create Custom Conda Package](#compile-pytorch-and-create-custom-conda-package)
+      * [This is Dirty! Why Would I Want This?](#this-is-dirty-why-would-i-want-this)
+      * [My GPU has Cuda Compute Capability 3.0 Can I Use Your Binaries?](#my-gpu-has-cuda-compute-capability-30-can-i-use-your-binaries)
+      * [Download Repositories](#download-repositories)
+      * [Tweak Builder](#tweak-builder)
+      * [Compile the Compile Environment with Docker](#compile-the-compile-environment-with-docker)
+      * [Compile Magma](#compile-magma)
+      * [Compile PyTorch](#compile-pytorch)
+      * [Tweak Torchvision](#tweak-torchvision)
+      * [Compile Torchvision](#compile-torchvision)
+      * [Install Packages to Your Anaconda Environment](#install-packages-to-your-anaconda-environment)
+      * [Optional: Reduce Disk Usage](#optional-reduce-disk-usage)
 
-## This is Dirty! Why Would I Want This?
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
-While I was preparing this documentation of PyTorch was not ok for compiling and creating a conda package afterwards. I tried compiling binaries but when I use `conda install` there is a high probability that my package can be overwritten.  So I want conda to manage compiled packages. And lastly you would want to do this way because;
 
-- Your GPU is old so that CUDA compute capability is lower than 3.7 (Even tough you will need CUDA 9.8 at least) **and** you want a conda package, not wheel, not just binaries.
+
+## This is Complicated! Why Would I Want to Do This?
+
+While I was preparing this documentation of PyTorch was not ok for creating a conda package. I tried compiling binaries but when I use `conda install` there is a high probability that my package can be overwritten.  So I want conda to manage compiled packages. And lastly you would want to do this way because;
+
+- Your GPU is old so that CUDA compute capability is lower than 3.5 (Even tough you will need CUDA 9.8 at least) **and** you want a conda package, not wheel, not just binaries.
 - You have very limited disk space in the target computer so you want to build your custom (pruned) conda packages. For example you can compile the packages for a single GPU arch target.
+- There was no other guides for creating conda packages while I was preparing this.
+
+**And lastly for the introduction**, please check everything you have done in this guide because every modification I have done was specific for my setup. Think about every step. Good luck.
 
 
+
+## My GPU has Cuda Compute Capability 3.0 Can I Use Your Binaries?
+
+Yes. You can install them directly instead of compiling. Here they are: https://anaconda.org/modwalker . Please be aware that I may not update these packages.
+
+You can install my packages to an empty environment with this command. Also OpenCV can be installed without a problem. I have included all of them in this commands:
+
+```bash
+$ conda install -c modwalker -c conda-forge pytorch magma-cuda101 torchvision opencv
+```
+
+You can pin installed PyTorch packages so conda will not prefer changing the version of these packages.
+
+```bash
+# If the versions below are wrong you can check running this command:
+# conda search -c modwalker --override-channels
+$ echo "pytorch ==1.8.1" >> ~/anaconda3/envs/YOUR_ENVIRONMENT/conda-meta/pinned
+$ echo "magma-cuda101 ==2.5.2" >> ~/anaconda3/envs/YOUR_ENVIRONMENT/conda-meta/pinned
+$ echo "torchvision ==0.9.1.dev20210422" >> ~/anaconda3/envs/YOUR_ENVIRONMENT/conda-meta/pinned
+```
+
+Note: If you want to update your `numpy=1.19.2` run this (or similar) `$ conda install -c conda-forge numpy=1.20.1`
 
 
 

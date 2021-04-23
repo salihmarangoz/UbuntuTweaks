@@ -5,7 +5,6 @@ Installation commands may be changed in the future, so it is recommended to chec
    * [Install Programs/Tools](#install-programstools)
       * [Open Source Apps](#open-source-apps)
          * [Basic Utilities](#basic-utilities)
-         * [Anaconda   Jupyter Notebook   Compile PyTorch etc.](#anaconda--jupyter-notebook--compile-pytorch-etc)
          * [PDF Arranger](#pdf-arranger)
          * [Peek](#peek)
          * [Typora](#typora)
@@ -49,12 +48,6 @@ $ sudo apt install \
 	octave \
 	pinta gnome-paint gimp
 ```
-
-
-
-### Anaconda + Jupyter Notebook + Compile PyTorch etc.
-
-This section moved here: [InstallAnaconda.md](InstallAnaconda.md)
 
 
 
