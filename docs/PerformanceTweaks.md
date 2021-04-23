@@ -242,6 +242,18 @@ $ sudo crontab -e
 
 https://community.chakralinux.org/t/how-to-enable-the-bfq-i-o-scheduler-on-kernel-4-12/6418
 
+- Edit grub file:
+
+```bash
+$ sudo nano /etc/default/grub
+```
+
+- Add `scsi_mod.use_blk_mq=1` to `GRUB_CMDLINE_LINUX_DEFAULT="..."` then save the file. Update grup configuration:
+
+```bash
+$ sudo update-grub
+```
+
 - Create a new udev rule:
 
 ```bash
