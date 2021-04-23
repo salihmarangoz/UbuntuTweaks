@@ -22,6 +22,7 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu L
 - Anaconda (Python/Cpp/Octave kernels)
 - Jupyter Notebook, preset extensions and some fixes
 - Compile and Package Conda Pkgs of PyTorch for your custom needs (e.g. old GPU's)
+- Nvidia headless drivers: Use Intel for Display, Nvidia for CUDA
 
 [Bashrc Easy](docs/BashrcEasy.md)
 
