@@ -159,7 +159,7 @@ function enable_bluetooth(){
 }
 
 
-#EASYBASHRC:enable_bluetooth:Disable bluetooth permanently
+#EASYBASHRC:disable_bluetooth:Disable bluetooth permanently
 function disable_bluetooth(){
     sudo systemctl disable bluetooth.service
     sudo systemctl stop bluetooth.service
