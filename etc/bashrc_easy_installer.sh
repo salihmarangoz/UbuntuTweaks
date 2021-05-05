@@ -154,6 +154,7 @@ temp_chromium_reset(){
 
 #EASYBASHRC:enable_bluetooth:Enable bluetooth permanently
 function enable_bluetooth(){
+    sudo rfkill unblock bluetooth
     sudo systemctl enable bluetooth.service
     sudo systemctl start bluetooth.service
 }
