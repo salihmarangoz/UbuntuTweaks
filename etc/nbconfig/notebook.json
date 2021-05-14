@@ -10,7 +10,7 @@
     "select_keymap/main": true,
     "snippets_menu/main": true,
     "table_beautifier/main": false,
-    "hinterland/hinterland": false,
+    "hinterland/hinterland": true,
     "python-markdown/main": false,
     "spellchecker/main": true,
     "jupyter-js-widgets/extension": true,
@@ -37,5 +37,8 @@
     "highlight_only_whole_words": false,
     "highlight_color": "#c1ecc1",
     "delay": "0"
+  },
+  "hinterland": {
+    "hint_inside_comments": true
   }
 }

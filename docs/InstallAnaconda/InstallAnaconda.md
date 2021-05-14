@@ -20,3 +20,4 @@ Guides:
   - Xorg will not lag while using CUDA for heavy tasks.
   - Xorg will not use any memory in Nvidia GPU.
   - Bad for gaming, because can't switch between drivers without reinstalling.
+
