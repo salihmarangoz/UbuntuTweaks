@@ -96,6 +96,7 @@ function jekyll_server(){
 #SOURCE: https://github.com/Genymobile/scrcpy
 #EASYBASHRC:android_remote_control:Android screenshare to the PC. Enable USB debugging on android, then connect with a USB.
 function android_remote_control(){
+    check_installation "docker"
     SELECTED_GRAPHICS="intel"           # "intel", "amd", or "nvidia"
     SCRCPY_PARAMS="--max-size 1800"
     adb kill-server
@@ -136,19 +137,20 @@ gitaddcommitpush(){
 }
 
 
-#EASYBASHRC:temp_chromium:Temporary chromium-browser. Can be reset with temp_chromium_reset
-temp_chromium(){
-    EASY_CHROMIUM="$BASHRC_EASY_FILES/chromium"
-    EASY_CHROMIUM_USERDATA="$EASY_CHROMIUM/temp_userdata"
-    touch "$EASY_CHROMIUM/DELETE_tempuserdata_TO_RESET_CHROMIUM"
-    chromium-browser --user-data-dir="$EASY_CHROMIUM_USERDATA"
+#EASYBASHRC:temp_chrome:Temporary google-chrome-browser. Can be reset with temp_chrome_reset
+temp_chrome(){
+    check_installation "google-chrome"
+    EASY_CHROME="$BASHRC_EASY_FILES/chrome"
+    EASY_CHROME_USERDATA="$EASY_CHROME/temp_userdata"
+    touch "$EASY_CHROME/DELETE_temp_userdata_TO_RESET_CHROME"
+    google-chrome --user-data-dir="$EASY_CHROME_USERDATA"
 }
 
 
-#EASYBASHRC:temp_chromium_reset:Describes instructions for resetting temp_chromium profile
-temp_chromium_reset(){
-    EASY_CHROMIUM="$BASHRC_EASY_FILES/chromium"
-    xdg-open "$EASY_CHROMIUM"
+#EASYBASHRC:temp_chrome_reset:Describes instructions for resetting temp_chrome profile
+temp_chrome_reset(){
+    EASY_CHROME="$BASHRC_EASY_FILES/chrome"
+    xdg-open "$EASY_CHROME"
 }
 
 
