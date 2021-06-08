@@ -40,7 +40,7 @@ $ sudo nano /etc/pulse/default.pa
 - Add the following line:
 
 ```
-load-module module-echo-cancel use_master_format=yes
+load-module module-echo-cancel use_master_format=1 rate=48000
 ```
 
 - Reload pulseaudio:
@@ -80,7 +80,7 @@ $ sudo nano /etc/pulse/default.pa
 - Add the following lines: (Replace `YOUR_SINK_MASTER` and `YOUR_SOURCE_MASTER`)
 
 ```
-load-module module-echo-cancel use_master_format=yes sink_name=sink_ec source_name=source_ec sink_master=YOUR_SINK_MASTER source_master=YOUR_SOURCE_MASTER
+load-module module-echo-cancel use_master_format=1 rate=48000 sink_name=sink_ec source_name=source_ec sink_master=YOUR_SINK_MASTER source_master=YOUR_SOURCE_MASTER
 set-default-sink sink_ec
 set-default-source source_ec
 ```
