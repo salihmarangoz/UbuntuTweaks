@@ -89,19 +89,23 @@ function jekyll_server(){
        echo "Please install it with: sudo apt install docker.io; sudo groupadd docker; sudo usermod -aG docker ${USER}"
        return 1
     fi
-    docker run -p 8080:4000 -v $(pwd):/site bretfisher/jekyll-serve
+    sudo docker run -p 8080:4000 -v $(pwd):/site bretfisher/jekyll-serve
 }
 
 
 #SOURCE: https://github.com/Genymobile/scrcpy
 #EASYBASHRC:android_remote_control:Android screenshare to the PC. Enable USB debugging on android, then connect with a USB.
 function android_remote_control(){
-    check_installation "docker"
+    check_installation "docker" "adb"
+    if [ $? -ne "0" ]; then
+       echo "Please install it with: sudo apt install docker.io adb"
+       return 1
+    fi
     SELECTED_GRAPHICS="intel"           # "intel", "amd", or "nvidia"
     SCRCPY_PARAMS="--max-size 1800"
     adb kill-server
     xhost + local:docker
-    docker run --rm -i -t --privileged \
+    sudo docker run --rm -i -t --privileged \
         -v /dev/bus/usb:/dev/bus/usb \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -e DISPLAY=$DISPLAY \
