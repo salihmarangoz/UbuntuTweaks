@@ -66,7 +66,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 - to this then save:
 
 ```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off mitigations=off"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mitigations=off"
 ```
 
 - Apply new configuration:
@@ -286,7 +286,7 @@ $ cat /sys/block/sda/queue/scheduler
 mq-deadline [bfq] none
 ```
 
-## [HDD] Disable Default Swapfile on Disk
+## [HDD/SSD] Disable Default Swapfile on Disk
 
 Ubuntu 18.04 comes with a swapfile enabled. In out-of-memory situations this swapfile may only cause system freeze. If you are using Ubuntu with SSD, you should disable swap in that device to slow down disk aging.
 
@@ -315,6 +315,12 @@ $ sudo fsck.ext4 -y -f -v -D /dev/sdX
 # Now mount the partition, then run:
 $ sudo e4defrag -v /dev/sdX
 ```
+
+
+
+## [SSD] SSD Scheduler
+
+TODO
 
 
 

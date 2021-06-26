@@ -6,7 +6,7 @@
          * [2. Configuration For Multiple Sound Cards](#2-configuration-for-multiple-sound-cards)
       * [[AUDIO] PulseAudio Crackling Sound Solution](#audio-pulseaudio-crackling-sound-solution)
       * [[AUDIO] PulseAudio Better Sound Quality](#audio-pulseaudio-better-sound-quality)
-      * [[GNOME] Hide User List in Ubuntu 18.04 Login Screen](#gnome-hide-user-list-in-ubuntu-1804-login-screen)
+      * [[GNOME] Hide User List in Ubuntu 20.04 Login Screen](#gnome-hide-user-list-in-ubuntu-2004-login-screen)
       * [[GNOME] GnomeTweaks (laptop lid suspend, desktop icons etc.)](#gnome-gnometweaks-laptop-lid-suspend-desktop-icons-etc)
       * [[GNOME] Gnome Extensions](#gnome-gnome-extensions)
          * [1. GSConnect](#1-gsconnect)
@@ -169,11 +169,11 @@ $ watch -n 1 pactl list sinks short
 
 
 
-## [GNOME] Hide User List in Ubuntu 18.04 Login Screen
+## [GNOME] Hide User List in Ubuntu 20.04 Login Screen
 
 The Gnome login screen normally shows a list of available users to log in as. For those who want to disable showing the user list, and manually type a username to login with, below I will show you how.
 
-**Source:** http://ubuntuhandbook.org/index.php/2018/04/hide-user-list-ubuntu-18-04-login-screen/
+**Source:** https://tipsonubuntu.com/2020/05/21/hide-user-list-ubuntu-20-04-login-screen/
 
 - Run command to get access to root:
 
@@ -198,6 +198,7 @@ $ sudo -i
 - Finally hide user list from login screen using Gsettings:
 
 ```bash
+$ export DISPLAY=:0
 $ gsettings set org.gnome.login-screen disable-user-list true
 ```
 
