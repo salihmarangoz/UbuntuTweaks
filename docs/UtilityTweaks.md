@@ -271,6 +271,13 @@ $ gnome-shell-extension-prefs
   - https://extensions.gnome.org/extension/1403/remove-alttab-delay/
   - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
   - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+  - https://extensions.gnome.org/extension/8/places-status-indicator/
+  - https://extensions.gnome.org/extension/97/coverflow-alt-tab/
+  - https://extensions.gnome.org/extension/1460/vitals/
+  - https://extensions.gnome.org/extension/1145/sensory-perception/
+  - https://extensions.gnome.org/extension/302/windowoverlay-icons/
+  - https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
+  - 
 
 ### 1. GSConnect
 
