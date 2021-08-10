@@ -404,18 +404,12 @@ Reduce memory usage on weak systems about ~300Mb. Be careful and do your search 
 # DISABLE UPDATE/UPGRADE SERVICES (If you do it manually and hate upgrade notifications)
 $ sudo apt remove unattended-upgrades # Automatic upgrades
 $ sudo mv /etc/xdg/autostart/update-notifier.desktop /etc/xdg/autostart/update-notifier.desktop.old # Disable update notifer
-$ sudo mv /etc/xdg/autostart/gnome-software-service.desktop /etc/xdg/autostart/gnome-software-service.desktop.old # Disable gnome software updater
-
-# DISABLE PRINTER SERVICES (If you don't use a printer)
-sudo systemctl disable cups 
-sudo systemctl disable cups-browsed
 
 # DISABLE THESE SERVICES ON OLD/WEAK SYSTEMS
 $ sudo apt remove whoopsie # Error Repoting, remove it on weak systems
 $ sudo systemctl mask packagekit.service # Disable if you don't use gnome-software
 $ sudo systemctl mask geoclue.service # CAUTION: Disable if you don't use Night Light or location services
 $ sudo apt remove gnome-software # Software Store. Remove if you don't use it
-$ sudo apt remove deja-dup # Automatic backup tool
 
 # DISABLE EVOLUTION/GNOME-ONLINE-ACCOUNTS (Email, calender, contact sync app. Disable it if you don't use it. It uses a lot of memory)
 $ sudo apt remove gnome-online-accounts # Gnome online accounts plugins
@@ -425,34 +419,17 @@ $ sudo chmod -x /usr/lib/evolution/evolution-source-registry
 ```
 
 
-## [OS] Remove Snap Apps (and replace with native apps)
-
-Snap is a software packaging and deployment system developed by Canonical for the Linux operating system. With snap we can install programs like in our smart phones. But in my perspective it doesn't work well and background services use memory a lot. So I can recommend removing snap.
-
-```bash
-# Remove Snap and its packages:
-$ snap remove gnome-3-34-1804 gnome-calculator gnome-characters gnome-logs gnome-system-monitor gtk-common-themes
-$ snap remove core18
-$ snap remove snapd
-$ sudo apt remove snapd
-
-# Install native version of uninstalled packages:
-$ sudo apt install gnome-calculator gnome-characters gnome-logs gnome-system-monitor
-```
-
-
 
 ## [EXE] Improve Browser Performance
 
 **Source:**  https://gist.github.com/ibLeDy/1495735312943b9dd646fd9ddf618513
 
-### 1.14.1 Chromium
+### 1.14.1 Chrome Stable
 
 I have choosen some flags to set. See the `source` for all usable flags. Type `about:flags` to address bar and do the following modifications:
 
-**Note:** If everything goes wrong start Chromium with `--no-experiments` command line option.
+**Note:** If something goes wrong start Chrome Stable with `--no-experiments` command line option.
 
-- Experimental QUIC protocol (Enabled)
 - Experimental WebAssembly (Enabled)
 - WebAssembly baseline compiler (Enabled)
 - WebAssembly lazy compilation (Enabled)
@@ -461,7 +438,3 @@ I have choosen some flags to set. See the `source` for all usable flags. Type `a
 - WebAssembly tiering (Enabled)
 - Zero-copy rasterizer (Enabled)
 - Parallel downloading (Enabled)
-- Enable lazy image loading (Enabled - Automati...)
-- Enable lazy frame loading  (Enabled - Automati...)
-- Parallelize layers (Enabled)
-- Heavy Ad Intervention (Enabled)

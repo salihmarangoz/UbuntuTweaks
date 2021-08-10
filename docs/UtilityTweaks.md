@@ -246,7 +246,7 @@ Increase your productivity and customize your desktop.
 - Install required packages:
 
 ```bash
-$ sudo apt install gnome-shell-extensions chromium-browser chrome-gnome-shell
+$ sudo apt install gnome-shell-extensions chrome-gnome-shell
 ```
 
 - Install Chromium-Gnome Shell plugin:
@@ -355,8 +355,9 @@ $ sudo apt install touchpad-indicator
   - `General Options` -> `Autostart` -> `ON`
   - `General Options` -> `Start hidden` -> `Unchecked!` (Note: If you check this option top bar icon will be invisible. Not recommended)
 
-
 ## [LOG] Enable S.M.A.R.T.
+
+TODO: DOESNT WORK WITH NVME DEVICES.
 
 Enable S.M.A.R.T. for health checks for disks.
 
@@ -373,18 +374,3 @@ $ smartctl --scan # Print S.M.A.R.T. available disks.
 $ sudo smartctl --smart=on /dev/sda # Enable health check for /dev/sda
 ```
 
-## [LOG] Delete Log Archives Regularly
-
-Old logs sometimes hold a lot of space on disk. 
-
-- Edit cron (you can select `nano` as editor):
-
-```bash
-$ sudo crontab -e
-```
-
-- Add the following line (press `ctrl+x` then answer with `y` to save the file):
-
-```
-@reboot /usr/bin/find /var/log -name "*.gz" -type f -delete
-```

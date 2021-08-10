@@ -40,7 +40,7 @@ $ sudo apt update
 $ sudo apt install \
 	apt-transport-https software-properties-common ubuntu-restricted-extras \
 	aptitude \
-	wget git rar unzip \
+	wget git rar unzip curl \
 	screen net-tools network-manager-openvpn-gnome \
 	gparted htop iotop bmon \
 	thunderbird xul-ext-lightning \
@@ -92,25 +92,22 @@ After installing it would be beneficial to enable `inline math` and `highlight` 
 
 https://www.balena.io/etcher/
 
+See: https://github.com/balena-io/etcher?d_id=2d48faac-d9ce-4800-88d4-68f9c7a57a8aR#debian-and-ubuntu-based-package-repository-gnulinux-x86x64
+
 ```bash
-$ echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list
-$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
-$ sudo apt update
-$ sudo apt install balena-etcher-electron
+curl -1sLf \
+   'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' \
+   | sudo -E bash
+   
+sudo apt-get install balena-etcher-electron
 ```
 
 ### VirtualBox
 
 https://www.virtualbox.org/
 
-After installating VirtualBox, install extension pack: https://download.virtualbox.org/virtualbox/
-
 ```bash
-$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-$ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-$ sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian xenial contrib"
-$ sudo apt update
-$ sudo apt install virtualbox
+$ sudo apt install virtualbox virtualbox-ext-pack
 ```
 
 ### TOC
@@ -142,18 +139,6 @@ set -g mouse on
 EOF
 ```
 
-### Visual Studio Code
-
-https://code.visualstudio.com/
-
-```bash
-$ wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-$ sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-$ sudo rm -f /etc/apt/sources.list.d/vscode.list # somehow adds itself into two different locations. So removing one of them
-$ sudo apt update
-$ sudo apt install code
-```
-
 ### OBS Studio
 
 https://obsproject.com/
@@ -161,9 +146,7 @@ https://obsproject.com/
 Very good recording and streaming app.
 
 ```bash
-$ sudo apt install ffmpeg
 $ sudo add-apt-repository ppa:obsproject/obs-studio
-$ sudo apt update
 $ sudo apt install obs-studio
 ```
 
@@ -213,23 +196,15 @@ $ mkdir -p $HOME/.config/sublime-text-3/Packages/User
 $ cat >$HOME/.config/sublime-text-3/Packages/User/Preferences.sublime-settings << EOF
 {
     "draw_white_space": "all",
-    "translate_tabs_to_spaces": true
+    "translate_tabs_to_spaces": true,
+    "hardware_acceleration": "opengl"
 }
 EOF
 ```
 
-### GitKraken
+### Sublime Merge
 
-https://www.gitkraken.com/
-
-Visualized git operations.
-
-```bash
-$ wget https://release.axocdn.com/linux/gitkraken-amd64.deb
-$ sudo dpkg -i gitkraken-amd64.deb
-$ sudo apt install -f
-$ rm gitkraken-amd64.deb
-```
+See: https://www.sublimemerge.com/docs/linux_repositories
 
 ### Skype
 
