@@ -155,13 +155,13 @@ $ sudo systemctl status rc-local
 
 Get latest Intel/AMD on-board graphics drivers to support latest features like OpenGL 4.5.
 
-**Source:** https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers?field.series_filter=bionic
+**Source:** https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers?field.series_filter=focal
 
 ```bash
 # For Ubuntu 18
 $ sudo add-apt-repository ppa:oibaf/graphics-drivers
 $ sudo apt update
-$ sudo apt install --install-recommends linux-generic-hwe-18.04
+$ sudo apt install --install-recommends linux-generic-hwe-20.04
 $ sudo apt upgrade
 $ sudo apt install -f # if it crashes while upgrading
 ```
