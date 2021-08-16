@@ -1,5 +1,7 @@
 # Ubuntu Tweaks
 
+# UNDER CONSTRUCTION: LINKS MAY NOT WORK!
+
 Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu Linux. Commands here may be specific for an Ubuntu version. Check the repository branch name! 
 
 **Attention! Backup your computer in case of any data loss before starting to apply this guide.** Configurations listed in this guide are not recommended for server environments. Read the instructions carefully. Good luck!
@@ -30,5 +32,4 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu L
 - Audio/Video Compression
 - Video stabilization/deshaking, summarization
 - Android remote control / remote screen from PC
-
 
