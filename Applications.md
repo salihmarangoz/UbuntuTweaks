@@ -46,7 +46,8 @@ $ sudo apt install \
 	thunderbird xul-ext-lightning \
 	gnome-sound-recorder vlc \
 	octave \
-	pinta gnome-paint gimp
+	pinta gnome-paint gimp \
+	libreoffice
 ```
 
 

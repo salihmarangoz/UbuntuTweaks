@@ -86,19 +86,37 @@ WINE_FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv %command%
 Some selected options I think that are useful:
 
 - **`VKD3D_CONFIG=upload_hvv`** -> Enables support for vkd3d/dx12 Resizable BAR which may result in performance improvements in some games up to ~20%. Check if Resizable BAR is enabled on your GPU. GloriousEggroll achieved performance boost in Forza Horizon 4 with just enabling this option and achieving 25 FPS boost (133 to 160). See the video and the description: https://www.youtube.com/watch?v=wKIw2X2-bDg
+
 - **`WINE_FULLSCREEN_FSR=1`** -> Enables AMD FidelityFX Super Resolution (FSR) for upscaling rendered frames. This is similar to Nvidia DLSS technology. If you have a 3K/4K screen then you can render frames in 1080p and upscale to your monitor's resolution with this option. 
 
 - **`DXVK_FRAME_RATE=165`** -> Limits frame rate to 165 FPS. Set this value as you like. Sometimes limiting framerate is not supported in games which may cause overheating or very high noise because of the high fan speeds. I recommend to set this value starting from 60 up to to your monitor's refresh rate.
+
 - **`PULSE_LATENCY_MSEC=100`** -> Sometimes audio may be popping or crackling in some games (e.g. Red Dead Redemption 2). This option may solve your problem.
+
 - **`MANGOHUD=1`** -> Enables MangoHUD for tracking CPU/GPU utilization, frame times, frame rates etc. Needs installation: https://github.com/flightlessmango/MangoHud
 
 - **`__GL_THREADED_OPTIMIZATION=1`** -> May increase FPS in some OpenGL games, but also decrease the performance and stability. Use wisely!
+
+  
+
+Some selected launch options for some games (may not work perfectly for your system):
+
+- **Red Dead Redemption 2** -> `PULSE_LATENCY_MSEC=100  VKD3D_CONFIG=upload_hvv WINE_FULLSCREEN_FSR=1 %command% -height 2560 -width 1440 -fullscreen -high -USEALLAVAILABLECORES -ignorepipelinecache -sgadriver=Vulkan`
+
+- **Bioshock Infinite** -> `PROTON_NO_ESYNC=1 PROTON_NO_FSYNC=1 VKD3D_CONFIG=upload_hvv DXVK_LOG_LEVEL=none %command%`
+- **Grand Theft Auto IV** -> `D3D_CONFIG=upload_hvv WINE_FULLSCREEN_FSR=1 %command%`
+- **The Witcher 3** -> `PROTON_NO_ESYNC=1 DXVK_LOG_LEVEL=none FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv %command%`
+- **Frostpunk** -> `VKD3D_CONFIG=upload_hvv %command%`
 
 
 
 ## CPU Turbo Mode?
 
-Intel and AMD CPU's have Turbo modes where core frequencies can go up to 5GHz in some systems. But increasing frequency 1% doesn't increase power consumption 1% but maybe a few fold. So try to disable Turbo mode and give a room for GPU to boost. Use a CPU manager app/extension to turn it off (see: https://extensions.gnome.org/extension/1082/cpufreq/) and see if any throttling occurs under heavy load (benchmarks, games, etc.).
+**Thread:** https://www.reddit.com/r/tuxedocomputers/comments/p4r2bj/amd_5000_series_turbo_mode_high_temperatures/
+
+TLDR; Disable turbo mode for more silent daily use, and make the GPU be able to boost better and longer times.
+
+Intel and AMD CPU's have Turbo modes where core frequencies can go up to 5GHz in some systems. But increasing frequency by 1% doesn't increase power consumption by 1% but a few fold. So try to disable Turbo mode and give a room for GPU to boost. Use a CPU manager app/extension to turn it off (see: https://extensions.gnome.org/extension/1082/cpufreq/) and see if any throttling occurs under heavy load (benchmarks, games, etc.).
 
 
 
