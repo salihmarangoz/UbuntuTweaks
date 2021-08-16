@@ -1,4 +1,4 @@
-# Anaconda + Jupyter Notebook
+# Miniconda + Jupyter Notebook
 
 - Features:
   - Uses binded folder for the installation so anaconda folder can be moved afterwards and being copied to other computers. (Personal note: It is really good to be able to use rsync on anaconda folder between different machines)
@@ -16,9 +16,9 @@
 
 ```bash
 # You can set the parameters according to your system
-ANACONDA_INSTALLER="Anaconda3-2020.11-Linux-x86_64.sh"  # Check latest version here: https://repo.anaconda.com/archive/
-INSTALL_TARGET="$HOME/anaconda3" # set real install path for the anaconda
-BIND_TARGET="/anaconda3"
+ANACONDA_INSTALLER="Miniconda3-latest-Linux-x86_64.sh"  # Check latest version here: https://repo.anaconda.com/archive/
+INSTALL_TARGET="/veriler/salih/Programming/anaconda3" # set real install path for the anaconda (it is my dir)
+BIND_TARGET="/anaconda3" # it will be root for this case
 
 ##################################################
 
@@ -29,7 +29,7 @@ $ sudo mkdir -p "$BIND_TARGET"
 $ sudo mount --bind "$INSTALL_TARGET" "$BIND_TARGET"
 
 # Download and run Anaconda Installer
-$ wget "https://repo.anaconda.com/archive/$ANACONDA_INSTALLER"
+$ wget "https://repo.anaconda.com/miniconda/$ANACONDA_INSTALLER"
 $ bash "$ANACONDA_INSTALLER" -b -u -p "$BIND_TARGET"
 
 # Activate Anaconda Path
@@ -48,9 +48,9 @@ $ conda install -c  conda-forge \
                     autopep8
 
 ##################################################
-########## dlml PACKAGES #########################
+########## pytorch PACKAGES #########################
 ##################################################
-VIRT_ENV_NAME="dlml"
+VIRT_ENV_NAME="pytorch"
 VIRT_ENV_DISPLAY_NAME="Python 3 ($VIRT_ENV_NAME)"
 
 # Create virtual environment
@@ -58,12 +58,27 @@ $ conda create -y --name "$VIRT_ENV_NAME"
 $ source activate "$VIRT_ENV_NAME"
 
 # Install Data/ML/DL related libraries
-$ conda install -c pytorch  pytorch torchvision torchaudio cpuonly # cpu only. see pytorch.org
-$ conda install -c anaconda tensorflow 
-$ conda install -c  conda-forge ipykernel matplotlib Pillow pandas scipy scikit-image scikit-learn sympy
+$ conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-nightly -c nvidia
+$ conda install -c conda-forge ipykernel matplotlib Pillow pandas scipy scikit-image scikit-learn sympy optuna seaborn tensorboard ipywidgets
 
 # Install the IPython Kernel
 $ python -m ipykernel install --user --name "$VIRT_ENV_NAME" --display-name "$VIRT_ENV_DISPLAY_NAME"
+
+##################################################
+
+# Make the bindng persistent (Run the command to see the output)
+$ whiptail --msgbox "To complete installation add this line to /etc/fstab:\n\n$INSTALL_TARGET $BIND_TARGET none defaults,bind 0 0" 10 80
+
+# .bashrc shortcuts
+$ echo "alias ana=\"export PATH=\${PATH}:$BIND_TARGET/bin\"" >> ~/.bashrc
+$ echo "alias jupyter_notebook=\"ana; jupyter-notebook --ip 0.0.0.0\"" >> ~/.bashrc
+
+# delete the anaconda installer
+$ rm "$ANACONDA_INSTALLER"
+```
+
+```bash
+# EXTRA: 
 
 ##################################################
 ########## octave PACKAGES #######################
@@ -92,31 +107,15 @@ $ conda install -c conda-forge xeus-cling
 $ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp11" --sys-prefix
 $ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp14" --sys-prefix
 $ jupyter kernelspec install "$BIND_TARGET/envs/cling/share/jupyter/kernels/xcpp17" --sys-prefix
-
-##################################################
-
-# Make the bindng persistent (Run the command to see the output)
-$ whiptail --msgbox "To complete installation add this line to /etc/fstab:\n\n$INSTALL_TARGET $BIND_TARGET none defaults,bind 0 0" 10 80
-
-# .bashrc shortcuts
-$ echo "alias ana=\"export PATH=\${PATH}:$BIND_TARGET/bin\"" >> ~/.bashrc
-$ echo "alias jupyter_notebook=\"ana; jupyter-notebook\"" >> ~/.bashrc
-$ echo "alias jupyter_notebook_shared=\"ana; jupyter-notebook --ip 0.0.0.0\"" >> ~/.bashrc
-
-# delete the anaconda installer
-$ rm "$ANACONDA_INSTALLER"
 ```
 
 - After installing, run jupyter notebook once then close. Copy the `UbuntuTweaks/etc/nbconfig` into the folder `~/.jupyter/`
-
 - Close all terminals and open a fresh one then type `jupyter_notebook` (which is an alias we put in .bashrc). Open a notebook with `Python (myenv)` kernel and run these commands:
 
 ```python
 import torch
-import tensorflow
 import numpy
 import matplotlib
-print ("Tensorflow", tensorflow.__version__)
 print ("PyTorch", torch.__version__)
 ```
 

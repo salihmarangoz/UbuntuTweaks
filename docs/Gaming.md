@@ -96,6 +96,18 @@ Some selected options I think that are useful:
 
 
 
+## CPU Turbo Mode?
+
+Intel and AMD CPU's have Turbo modes where core frequencies can go up to 5GHz in some systems. But increasing frequency 1% doesn't increase power consumption 1% but maybe a few fold. So try to disable Turbo mode and give a room for GPU to boost. Use a CPU manager app/extension to turn it off (see: https://extensions.gnome.org/extension/1082/cpufreq/) and see if any throttling occurs under heavy load (benchmarks, games, etc.).
+
+
+
+
+
+
+
+
+
 
 
 
