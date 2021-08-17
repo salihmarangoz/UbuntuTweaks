@@ -114,6 +114,8 @@ Tweak for audiophiles. Increasing sample rate in exchange of CPU time.
 
 **Source:** https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting
 
+https://medium.com/@gamunu/enable-high-quality-audio-on-linux-6f16f3fe7e1f
+
 - Modify pulseaudio config file:
 
 ```bash
@@ -123,10 +125,10 @@ $ sudo nano /etc/pulse/daemon.conf
 - Add the following lines to the end of the file:
 
 ```
-default-sample-format = s24ne
+default-sample-format = float32le
 default-sample-rate = 44100
 alternate-sample-rate = 48000
-resample-method = speex-float-5
+resample-method = soxr-vhq
 ```
 
 - Restart pulseaudio server:
