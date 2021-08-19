@@ -1,0 +1,33 @@
+sudo wget -O /etc/apt/preferences.d/cuda-repository-pin-600 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
+sudo add-apt-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+sudo apt install cuda
+
+# GO TO https://developer.nvidia.com/cudnn AND LOGIN
+# DOWNLOAD https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.2.2/11.4_07062021/Ubuntu20_04-x64/libcudnn8_8.2.2.26-1+cuda11.4_amd64.deb
+sudo apt install ./libcudnn*
+
+# ADD TO BASHRC
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# VERIFY
+nvcc -V
+
+# TEST SAMPLES
+sudo apt install libglfw3
+cd $HOME
+cuda-install-samples-11.4.sh .
+cd NVIDIA_CUDA*Samples
+make
+
+# CD TO BINARIES
+./marchingCubes
+./oceanFFT
+./particles
+./smokeParticles
+./fluidsGL
+./nbody
+
+# ADD IF USING NVIDIA PRIME
+__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia
