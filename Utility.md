@@ -4,6 +4,8 @@
 
 ## [NAUTILUS] Nautilus Git Icons
 
+TODO: Doesn't work on Ubuntu 20.04 !!!
+
 See the source for the installation procedure. Image below taken from the original project repository. 
 
 **Source:** https://github.com/chrisjbillington/git-nautilus-icons
