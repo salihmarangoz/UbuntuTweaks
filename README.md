@@ -18,5 +18,5 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu L
 | [Multi Monitor](MultiMonitor.md) | todo        |
 | [Bashrc Scripts](Bashrc.md)      | todo        |
 
-Also I am sharing [My Specific Configurations](MySpecificConfigurations.md) here. I am using it for my [Tuxedo Stellaris 15](https://www.tuxedocomputers.com/en/Linux-Hardware/Linux-Notebooks/15-16-inch/TUXEDO-Stellaris-15-Gen3.tuxedo).
+Also I am sharing [My Specific Configurations](MySpecificConfigurations.md) here. I am using it for my [Tuxedo Stellaris 15 Gen 3 (AMD version)](https://www.tuxedocomputers.com/en/Linux-Hardware/Linux-Notebooks/15-16-inch/TUXEDO-Stellaris-15-Gen3.tuxedo).
 
