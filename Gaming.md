@@ -120,6 +120,19 @@ Intel and AMD CPU's have Turbo modes where core frequencies can go up to 5GHz in
 
 
 
+## Better Responsive Kernel
+
+**Source:** https://xanmod.org/
+
+```bash
+$ echo 'deb http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-kernel.list
+$ wget -qO - https://dl.xanmod.org/gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/xanmod-kernel.gpg add -
+$ sudo apt update && sudo apt install linux-xanmod
+
+# Setting the FQ-PIE Queuing Discipline
+$ echo 'net.core.default_qdisc = fq_pie' | sudo tee /etc/sysctl.d/90-override.conf
+```
+
 
 
 

@@ -106,7 +106,7 @@ $ sudo nano /usr/bin/zram.sh
 ```
 
 - Paste the following lines: 
-  - Note(1): Modify `ZRAM_MEMORY` according to your PC configuration.
+  - Note(1): Modify `ZRAM_MEMORY` according to your PC configuration. Half of the original RAM would be good to go.
   - Note(2): Change `lz4` to `zstd` to increase compress ratio, but will cost CPU time. Source: https://github.com/facebook/zstd
   - Note(3): Some other scripts on the Internet create zram devices depending on CPU cores, but it is not needed since multiple streams can be set for one single device.
 
@@ -117,7 +117,12 @@ ZRAM_MEMORY=2048
 set -x
 CORES=$(nproc --all)
 modprobe zram
-ZRAM_DEVICE=$(zramctl --find --size "$ZRAM_MEMORY"M --streams $CORES --algorithm lz4)
+ZRAM_DEVICE=
+while [ -z "$ZRAM_DEVICE" ] 
+do
+	ZRAM_DEVICE=$(zramctl --find --size "$ZRAM_MEMORY"M --streams $CORES --algorithm lz4)
+	sleep 5
+done
 mkswap $ZRAM_DEVICE
 swapon --priority 5 $ZRAM_DEVICE
 ```
@@ -125,30 +130,16 @@ swapon --priority 5 $ZRAM_DEVICE
 - Set the script run on boot:
 
 ```bash
-$ sudo nano /etc/rc.local
+$ sudo crontab -e
 ```
 
 - Paste the following lines:
 
 ```
-#!/bin/bash
-bash /usr/bin/zram.sh &
-exit 0
+@reboot /bin/bash /usr/bin/zram.sh
 ```
 
-- Set `rc.local` as executable:
-
-```bash
-$ sudo chmod +x /etc/rc.local
-```
-
-- Reboot the PC.
-
-If there is a problem check rc.local service with:
-
-```bash
-$ sudo systemctl status rc-local
-```
+- Reboot the PC. Check the swap memory via `htop`.
 
 
 ## [GPU] Update On-Board GPU Drivers
