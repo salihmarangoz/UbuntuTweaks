@@ -28,9 +28,7 @@ $ sudo ubuntu-drivers autoinstall
 
 ## Dedicated GPU Driver (AMD)
 
-I don't have any experience with this. Try applying commands in **Integrated GPU Driver (Intel/AMD)**, hope this solves the problem.
-
-**`PULL REQUESTS WELCOME`**
+**`HELP NEEDED HERE. PULL REQUESTS WELCOME`**
 
 
 
@@ -42,12 +40,12 @@ There are some performance tweaks that I can recommend. As these tweaks may chan
 - **Very important for gaming laptops! I personally experienced ~20% performance increase.**  
   - If you have a dedicated GPU, check BIOS for the option for disabling the integrated GPU. For example, with Nvidia Optimus games are being rendered on the Nvidia GPU and the frames are being sent to the integrated GPU via PCI-e. If there is a MUX device for plugging out the internal monitor from the integrated GPU and plugging in to the dedicated GPU this may be controlled in BIOS, or maybe in Nvidia Settings if it is Nvidia Advanced Optimus. 
   - If you don't have the previous option, external display output may be connected to the dedicated GPU. Using an external monitor would increase the performance in this case. Also, check if your GPU and monitor supports Gsync or Freesync, which may increase your gaming experience (removing tearing in low frames, and lower delays compared to Vsync).
-- If there is thermal throttling think about changing thermal paste and maybe undervolting the CPU.
+- If thermal throttling happens think about changing the thermal paste and/or maybe undervolting the CPU.
 - Think about having 2x memory sticks (e.g. 2x 8GB RAM's) to use the benefits of dual channel memory. Also, increasing the available memory gives more room to cache files (if you have an extremely fast SSD, e.g. Samsung 980 Pro plugged to PCI-e 4 slot, then this may not be necessary)
 
 Additional Recommended Tweaks from `Performance.md`:
 
-- Always keep the CPU in `performance` mode. This is a recommended modification for some games. (e.g. Tomb Raider). This may hurt the battery life heavily, so to switch between profiles also see `CPUFREQ`. -> https://github.com/salihmarangoz/UbuntuTweaks/blob/20.04/docs/Performance.md#cpu-performance-processor-scaling-governor 
+- Always keep the CPU in `performance` mode. This is a recommended modification for some games. (e.g. Tomb Raider). This may hurt the battery life heavily, so to switch between profiles also see `CPUFREQ`. -> [Click](Performance.md#cpu-performance-processor-scaling-governor )
 - Disable security mitigations (Spectre, Meltdown) to achieve ~10% performance gain in some CPU's. Be aware about the security risks. This may increase battery life. -> https://github.com/salihmarangoz/UbuntuTweaks/blob/20.04/docs/Performance.md#cpu-disable-security-mitigations
 
 - Disable modifying access times for the files to reduce disk writes. https://github.com/salihmarangoz/UbuntuTweaks/blob/20.04/docs/Performance.md#cpu-disable-security-mitigations
@@ -135,13 +133,33 @@ $ echo 'net.core.default_qdisc = fq_pie' | sudo tee /etc/sysctl.d/90-override.co
 
 
 
+## Extra: Open Source Games
 
+TODO
 
+```
+sudo add-apt-repository ppa:stk/dev
+sudo apt install supertuxkart
 
+sudo add-apt-repository ppa:saiarcot895/flightgear
+sudo apt install flightgear
 
+sudo add-apt-repository ppa:wfg/0ad
+sudo apt install 0ad
 
+Zero-K (via steam)
 
+sudo add-apt-repository ppa:xtradeb/play
+sudo apt install stuntrally
 
+https://snapcraft.io/starruler2
+OR 
+https://github.com/BlindMindStudios/StarRuler2-Source
+
+sudo apt install megaglest
+
+https://github.com/Revolutionary-Games/Thrive-Launcher/releases
+```
 
 
 

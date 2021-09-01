@@ -21,8 +21,7 @@ sudo tuxedo-tomte block tuxedo-repos
 sudo tuxedo-tomte block nvidia-driver
 sudo tuxedo-tomte block kernel
 sudo tuxedo-tomte block mesa-utils
-sudo tuxedo-tomte block tuxedo-control-center
-sudo apt remove tuxedo-control-center
+sudo tuxedo-tomte block amdgpu-dkms
 
 
 # open software % updates
@@ -54,3 +53,27 @@ sudo nano /etc/fstab
 # add noatime like this:  UUID=... / ext4 errors=remount-ro,noatime 0 1
 
 ```
+
+
+
+## .bashrc
+
+```bash
+function disable_touchpad(){
+    DEVICE_ID=`xinput list | grep -Eo 'Touchpad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
+    echo 'Touchpad has been disabled:'
+    xinput list | grep Touchpad
+    xinput set-prop $DEVICE_ID "Device Enabled" 0
+}
+
+function enable_touchpad(){
+    DEVICE_ID=`xinput list | grep -Eo 'Touchpad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
+    echo 'Touchpad has been enabled:'
+    xinput list | grep Touchpad
+    xinput set-prop $DEVICE_ID "Device Enabled" 1
+}
+```
+
+
+
+https://github.com/tuxedocomputers/tuxedo-plymouth-one
