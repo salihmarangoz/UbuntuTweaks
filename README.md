@@ -6,18 +6,18 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu d
 
 
 
-| Title                            | Description |
-| -------------------------------- | ----------- |
-| [Performance](Performance.md)    | todo        |
-| [Gaming](Gaming.md)              | todo        |
-| [PulseAudio](PulseAudio.md)      | todo        |
-| [Utility](Utility.md)            | todo        |
-| [Applications](Applications.md)  | todo        |
-| [Backup](Backup.md)              | todo        |
-| [Gnome](Gnome.md)                | todo        |
-| [Multi Monitor](MultiMonitor.md) | todo        |
-| [Bashrc Scripts](Bashrc.md)      | todo        |
-| [Wine](Wine.md)                  | todo        |
+| Title                            | Description                                                  |
+| -------------------------------- | ------------------------------------------------------------ |
+| [Performance](Performance.md)    | todo                                                         |
+| [Gaming](Gaming.md)              | Gaming related tweaks, GPU drivers, Steam, Proton, custom kernel, open source games, etc. |
+| [PulseAudio](PulseAudio.md)      | todo                                                         |
+| [Utility](Utility.md)            | todo                                                         |
+| [Applications](Applications.md)  | todo                                                         |
+| [Backup](Backup.md)              | todo                                                         |
+| [Gnome](Gnome.md)                | todo                                                         |
+| [Multi Monitor](MultiMonitor.md) | todo                                                         |
+| [Bashrc Scripts](Bashrc.md)      | todo                                                         |
+| [Wine](Wine.md)                  | todo                                                         |
 
 Also, I am sharing [My Specific Configuration](MySpecificConfiguration.md) here. I am using it for my [Tuxedo Stellaris 15 Gen 3 (AMD version)](https://www.tuxedocomputers.com/en/Linux-Hardware/Linux-Notebooks/15-16-inch/TUXEDO-Stellaris-15-Gen3.tuxedo).
 

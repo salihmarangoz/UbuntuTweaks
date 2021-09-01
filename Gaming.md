@@ -45,14 +45,14 @@ There are some performance tweaks that I can recommend. As these tweaks may chan
 
 Additional Recommended Tweaks from `Performance.md`:
 
-- Always keep the CPU in `performance` mode. This is a recommended modification for some games. (e.g. Tomb Raider). This may hurt the battery life heavily, so to switch between profiles also see `CPUFREQ`. -> [Click](Performance.md#cpu-performance-processor-scaling-governor )
-- Disable security mitigations (Spectre, Meltdown) to achieve ~10% performance gain in some CPU's. Be aware about the security risks. This may increase battery life. -> https://github.com/salihmarangoz/UbuntuTweaks/blob/20.04/docs/Performance.md#cpu-disable-security-mitigations
+- Always keep the CPU in `performance` mode. This is a recommended modification for some games. (e.g. Tomb Raider). This may hurt the battery life heavily, so to switch between profiles also see `CPUFREQ`. -> [Performance Processor Scaling Governor](Performance.md#cpu-performance-processor-scaling-governor )
+- Disable security mitigations (Spectre, Meltdown) to achieve ~10% performance gain in some CPU's. Be aware about the security risks. This may increase the battery life. -> [Disable Security Mitigations](Performance.md#cpu-disable-security-mitigations) 
 
-- Disable modifying access times for the files to reduce disk writes. https://github.com/salihmarangoz/UbuntuTweaks/blob/20.04/docs/Performance.md#cpu-disable-security-mitigations
+- Disable modifying access times for the files to reduce disk writes. -> [Ext4 Mount with noatime Option](Performance.md#hdd-ext4-mount-with-noatime-option)
 
-- Disabling Wifi power save feature may decrease the latency and download/upload speeds in some cards. (For me download/upload speeds improved ~15%). This may decrease battery life. -> https://github.com/salihmarangoz/UbuntuTweaks/blob/20.04/docs/Performance.md#net-turn-off-wifi-power-save-feature
+- Disabling Wifi power save feature may decrease the latency and increase download/upload speeds in some cards. (For me download/upload speeds improved ~15%). This may decrease battery life. -> [Turn Off Wifi Power Save Feature](Performance.md#net-turn-off-wifi-power-save-feature)
 
-- Additionally, if you have a slow computer with/without low memory then check the whole document: https://github.com/salihmarangoz/UbuntuTweaks/blob/20.04/docs/Performance.md
+- Additionally, if you have a slow computer with/without low memory then check the whole document: [Performance.md](Performance.md)
 
 
 
@@ -108,7 +108,13 @@ Some selected launch options for some games (may not work perfectly for your sys
 
 
 
-## CPU Turbo Mode?
+## GameMode
+
+TODO
+
+
+
+## CPU Turbo Mode
 
 **Thread:** https://www.reddit.com/r/tuxedocomputers/comments/p4r2bj/amd_5000_series_turbo_mode_high_temperatures/
 
