@@ -114,6 +114,12 @@ TODO
 
 
 
+## Vmtouch
+
+TODO
+
+
+
 ## CPU Turbo Mode
 
 **Thread:** https://www.reddit.com/r/tuxedocomputers/comments/p4r2bj/amd_5000_series_turbo_mode_high_temperatures/

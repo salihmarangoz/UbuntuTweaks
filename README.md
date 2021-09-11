@@ -9,6 +9,7 @@ Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu d
 | Title                            | Description                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
 | [Performance](Performance.md)    | todo                                                         |
+| [Powersave](Powersave.md)        | Powersave features mostly for laptops increasing battery time. |
 | [Gaming](Gaming.md)              | Gaming related tweaks, GPU drivers, Steam, Proton, custom kernel, open source games, etc. |
 | [PulseAudio](PulseAudio.md)      | todo                                                         |
 | [Utility](Utility.md)            | todo                                                         |
