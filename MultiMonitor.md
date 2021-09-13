@@ -18,7 +18,7 @@ $ sudo apt install intltool i2c-tools libxml2-dev libpci-dev libgtk2.0-dev liblz
 
 
 
-## Use a Two or More Devices with a Pair of Keyboard/Mouse (KVM)
+## TODO: Use a Two or More Devices with a Pair of Keyboard/Mouse (KVM)
 
 - https://github.com/debauchee/barrier
 

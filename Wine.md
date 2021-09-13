@@ -1,6 +1,8 @@
 # Wine (<u>W</u>ine <u>I</u>s <u>N</u>ot an <u>E</u>mulator)
 
-TODO: This section needs some work!
+TODO: This section needs some work! 
+
+TODO: Wine installation
 
 
 

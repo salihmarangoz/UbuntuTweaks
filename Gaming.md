@@ -78,7 +78,7 @@ Have numerous fixes for many games to be used with Steam. GloriousEggroll needs 
 Steam allows setting launch options per game. Always check www.protondb.com before playing for the first time for a better experience. Set the launch option similar to this:
 
 ```
-WINE_FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv %command%
+WINE_FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv gamemoderun %command%
 ```
 
 Some selected options I think that are useful:
@@ -95,28 +95,32 @@ Some selected options I think that are useful:
 
 - **`__GL_THREADED_OPTIMIZATION=1`** -> May increase FPS in some OpenGL games, but also decrease the performance and stability. Use wisely!
 
+- **`__NV_PRIME_RENDER_OFFLOAD=1`** -> Forces using Nvidia dGPU. Instead of using this option try to disable iGPU if possible for better performance.
+
   
 
 Some selected launch options for some games (may not work perfectly for your system):
 
-- **Red Dead Redemption 2** -> `PULSE_LATENCY_MSEC=100  VKD3D_CONFIG=upload_hvv WINE_FULLSCREEN_FSR=1 %command% -height 2560 -width 1440 -fullscreen -high -USEALLAVAILABLECORES -ignorepipelinecache -sgadriver=Vulkan`
-
-- **Bioshock Infinite** -> `PROTON_NO_ESYNC=1 PROTON_NO_FSYNC=1 VKD3D_CONFIG=upload_hvv DXVK_LOG_LEVEL=none %command%`
-- **Grand Theft Auto IV** -> `D3D_CONFIG=upload_hvv WINE_FULLSCREEN_FSR=1 %command%`
-- **The Witcher 3** -> `PROTON_NO_ESYNC=1 DXVK_LOG_LEVEL=none FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv %command%`
-- **Frostpunk** -> `VKD3D_CONFIG=upload_hvv %command%`
-
-
-
-## GameMode
-
-TODO
+- **Red Dead Redemption 2** -> `PULSE_LATENCY_MSEC=100  VKD3D_CONFIG=upload_hvv WINE_FULLSCREEN_FSR=1 gamemoderun %command% -height 2560 -width 1440 -fullscreen -high -USEALLAVAILABLECORES -ignorepipelinecache -sgadriver=Vulkan`
+- **Bioshock Infinite** -> `PROTON_NO_ESYNC=1 PROTON_NO_FSYNC=1 VKD3D_CONFIG=upload_hvv DXVK_LOG_LEVEL=none gamemoderun %command%`
+- **Grand Theft Auto IV** -> `D3D_CONFIG=upload_hvv WINE_FULLSCREEN_FSR=1 gamemoderun %command%`
+- **The Witcher 3** -> `PROTON_NO_ESYNC=1 DXVK_LOG_LEVEL=none FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv gamemoderun %command%`
+- **Frostpunk** -> `VKD3D_CONFIG=upload_hvv gamemoderun %command%`
+- **Death Stranding** -> `gamemoderun %command%` (Use Proton 6.3 if you are having online connection problem)
 
 
 
 ## Vmtouch
 
-TODO
+Caches files to the memory. May fix shutters games with bad disk I/O optimizations. I recommend using this if whole game folder can fit to the memory.
+
+```bash
+# Install:
+$ sudo apt install vmtouch
+
+# Cache Whole Game Folder:
+$ vmtouch -t /path/to/game/folder
+```
 
 
 
@@ -141,36 +145,6 @@ $ sudo apt update && sudo apt install linux-xanmod
 
 # Setting the FQ-PIE Queuing Discipline
 $ echo 'net.core.default_qdisc = fq_pie' | sudo tee /etc/sysctl.d/90-override.conf
-```
-
-
-
-## Extra: Open Source Games
-
-TODO
-
-```
-sudo add-apt-repository ppa:stk/dev
-sudo apt install supertuxkart
-
-sudo add-apt-repository ppa:saiarcot895/flightgear
-sudo apt install flightgear
-
-sudo add-apt-repository ppa:wfg/0ad
-sudo apt install 0ad
-
-Zero-K (via steam)
-
-sudo add-apt-repository ppa:xtradeb/play
-sudo apt install stuntrally
-
-https://snapcraft.io/starruler2
-OR 
-https://github.com/BlindMindStudios/StarRuler2-Source
-
-sudo apt install megaglest
-
-https://github.com/Revolutionary-Games/Thrive-Launcher/releases
 ```
 
 

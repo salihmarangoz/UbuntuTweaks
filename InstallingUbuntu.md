@@ -1,0 +1,1 @@
+todo: s2fs for ssd, ext4 for hdd, etc.

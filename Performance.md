@@ -20,6 +20,14 @@
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
+
+
+# TODO: xanmod does some of them. Seperate topics.
+
+
+
+
+
 ## [CPU] Performance Processor Scaling Governor
 
 Intel CPU's reported to be run faster when changed its scaling governor to performance mode. For laptops this may decrease battery life.
