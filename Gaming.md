@@ -107,6 +107,7 @@ Some selected launch options for some games (may not work perfectly for your sys
 - **The Witcher 3** -> `PROTON_NO_ESYNC=1 DXVK_LOG_LEVEL=none FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv gamemoderun %command%`
 - **Frostpunk** -> `VKD3D_CONFIG=upload_hvv gamemoderun %command%`
 - **Death Stranding** -> `gamemoderun %command%` (Use Proton 6.3 if you are having online connection problem)
+- **Tomb Raider** -> `PROTON_NO_ESYNC=1 PROTON_NO_FSYNC=1 __GL_THREADED_OPTIMIZATION=1 WINE_FULLSCREEN_FSR=1 VKD3D_CONFIG=upload_hvv gamemoderun %command%`
 
 
 
