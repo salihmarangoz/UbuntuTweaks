@@ -150,5 +150,32 @@ $ echo 'net.core.default_qdisc = fq_pie' | sudo tee /etc/sysctl.d/90-override.co
 
 
 
+## Mouse Pooling Rate
 
+**Source:** https://www.urbanterror.info/forums/topic/21844-howto-changing-mouse-polling-rate-on-ubuntu/
+
+Ubuntu's default mouse pooling rate is 125Hz. If you have a mouse with higher sampler rate increase as below:
+
+```bash
+sudo gedit /etc/modules
+```
+
+Add these two lines (don't forget to modify `x`):
+
+```
+-r usbhid
+usbhid mousepoll=x
+```
+
+Here the value `x` can be:
+
+```
+1 = 1000Hz
+2 = 500Hz
+4 = 250Hz
+8 = 125Hz
+10 = 100Hz (Default)
+```
+
+If you have `TLP` then disabling usb power management or uninstalling this module can prevent sluggish mouse movements.
 
