@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Ubuntu Tweaks](#ubuntu-tweaks)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Ubuntu Tweaks
 
 Here are some tweaks, utilities, fixes, programs, tools and scripts for Ubuntu that I am using in my daily life. Commands here may be specific for the version. Check the branch name for it!

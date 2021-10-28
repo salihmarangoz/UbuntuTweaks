@@ -1,3 +1,28 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Performance Tweaks](#performance-tweaks)
+- [TODO: xanmod does some of them. Seperate topics.](#todo-xanmod-does-some-of-them-seperate-topics)
+  - [&#91;CPU&#93; Performance Processor Scaling Governor](#cpu-performance-processor-scaling-governor)
+  - [&#91;CPU&#93; Disable Security Mitigations](#cpu-disable-security-mitigations)
+  - [&#91;RAM&#93; Compressed Memory](#ram-compressed-memory)
+  - [&#91;GPU&#93; Update On-Board GPU Drivers](#gpu-update-on-board-gpu-drivers)
+  - [&#91;HDD&#93; Ext4 Mount with noatime Option](#hdd-ext4-mount-with-noatime-option)
+  - [&#91;HDD&#93; Preload](#hdd-preload)
+  - [&#91;HDD&#93; Manually Cache Folders (browsers, apps, etc.)](#hdd-manually-cache-folders-browsers-apps-etc)
+  - [&#91;HDD&#93; BFQ Disk Scheduler](#hdd-bfq-disk-scheduler)
+  - [&#91;HDD/SSD&#93; Disable Default Swapfile on Disk](#hddssd-disable-default-swapfile-on-disk)
+  - [&#91;HDD&#93; Defrag & Optimize Ext4 Partitions](#hdd-defrag--optimize-ext4-partitions)
+  - [&#91;SSD&#93; SSD Scheduler](#ssd-ssd-scheduler)
+  - [&#91;NET&#93; Turn Off Wifi Power Save Feature](#net-turn-off-wifi-power-save-feature)
+  - [&#91;NET&#93; Faster TCP (BBR, Fast TCP Open)](#net-faster-tcp-bbr-fast-tcp-open)
+  - [&#91;OS&#93; Disable Unnecessary Services](#os-disable-unnecessary-services)
+  - [&#91;EXE&#93; Improve Browser Performance](#exe-improve-browser-performance)
+    - [1.14.1 Chrome Stable](#1141-chrome-stable)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Performance Tweaks
 
    * [Performance Tweaks](#performance-tweaks)

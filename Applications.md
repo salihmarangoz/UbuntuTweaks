@@ -2,8 +2,37 @@
 
 Installation commands may be changed in the future, so it is recommended to check the source.
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Open Source Apps](#open-source-apps)
+  - [Basic Utilities](#basic-utilities)
+  - [Apps easy to install](#apps-easy-to-install)
+  - [PDF Arranger](#pdf-arranger)
+  - [TOC](#toc)
+  - [Tmux](#tmux)
+  - [OBS Studio](#obs-studio)
+  - [Fritzing](#fritzing)
+  - [Youtube-dl](#youtube-dl)
+  - [ShrinkPDF](#shrinkpdf)
+  - [Inxi](#inxi)
+  - [Firejail](#firejail)
+  - [Git Icons](#git-icons)
+  - [Media Properties](#media-properties)
+- [Closed Source Apps](#closed-source-apps)
+  - [Sublime Text](#sublime-text)
+  - [Sublime Merge](#sublime-merge)
+  - [Skype](#skype)
+  - [Foxit Reader](#foxit-reader)
+- [Wine (<u>W</u>ine <u>I</u>s <u>N</u>ot an <u>E</u>mulator)](#wine-uwuine-uius-unuot-an-ueumulator)
+  - [SpaceSniffer (with Wine)](#spacesniffer-with-wine)
+  - [Anti-Twin (with Wine)](#anti-twin-with-wine)
+  - [MS Office 2007 (with Wine)](#ms-office-2007-with-wine)
+- [Other/Mixed](#othermixed)
+  - [Chromium / Chrome Addons](#chromium--chrome-addons)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Open Source Apps
 
