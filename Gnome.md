@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Gnome](#gnome)
+  - [Gnome Extensions](#gnome-extensions)
+    - [1. GSConnect](#1-gsconnect)
+  - [Hide Username on the Login Screen](#hide-username-on-the-login-screen)
+  - [GnomeTweaks (laptop lid suspend, desktop icons etc.)](#gnometweaks-laptop-lid-suspend-desktop-icons-etc)
+  - [Remap Default Folders (Desktop, Pictures, Downloads, etc.)](#remap-default-folders-desktop-pictures-downloads-etc)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Gnome
 
 [toc]
