@@ -2,9 +2,6 @@
 
 Installation commands may be changed in the future, so it is recommended to check the source.
 
-<!-- START doctoc -->
-<!-- END doctoc -->
-
 ## Open Source Apps
 
  ### Basic Utilities
