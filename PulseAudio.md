@@ -1,17 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [PulseAudio](#pulseaudio)
-  - [PulseAudio Mic Echo Cancellation Feature](#pulseaudio-mic-echo-cancellation-feature)
-    - [1. Configuration For One Sound Card](#1-configuration-for-one-sound-card)
-    - [2. Configuration For Multiple Sound Cards](#2-configuration-for-multiple-sound-cards)
-  - [PulseAudio Crackling Sound Solution](#pulseaudio-crackling-sound-solution)
-  - [PulseAudio Better Sound Quality](#pulseaudio-better-sound-quality)
-  - [PulseEffects & AutoEQ](#pulseeffects--autoeq)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # PulseAudio
 
 ## PulseAudio Mic Echo Cancellation Feature

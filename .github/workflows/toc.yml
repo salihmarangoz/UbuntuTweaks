@@ -7,5 +7,5 @@ jobs:
     steps:
       - uses: technote-space/toc-generator@v4
         with:
-          TARGET_BRANCH_PREFIX: dev
+          TARGET_BRANCH_PREFIX: 20.04
           TARGET_PATHS: "*.md"

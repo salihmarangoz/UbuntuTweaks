@@ -1,12 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [This File Includes My Custom Installation For Tuxedo Stellaris 15](#this-file-includes-my-custom-installation-for-tuxedo-stellaris-15)
-  - [.bashrc](#bashrc)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # This File Includes My Custom Installation For Tuxedo Stellaris 15
 
 - Installed Ubuntu 20.04
