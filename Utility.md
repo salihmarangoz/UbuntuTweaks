@@ -1,7 +1,15 @@
 # Utility Tweaks
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [&#91;NAUTILUS&#93; Nautilus Git Icons](#nautilus-nautilus-git-icons)
+- [&#91;NAUTILUS&#93; Nautilus Media Properties](#nautilus-nautilus-media-properties)
+- [&#91;UTIL&#93; Disable Touchpad When Mouse is Plugged](#util-disable-touchpad-when-mouse-is-plugged)
+- [&#91;LOG&#93; Enable S.M.A.R.T.](#log-enable-smart)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## [NAUTILUS] Nautilus Git Icons
 
