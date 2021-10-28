@@ -1,3 +1,5 @@
+# Multi Monitor Configuration
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -7,9 +9,6 @@
   - [TODO: Use a Two or More Devices with a Pair of Keyboard/Mouse (KVM)](#todo-use-a-two-or-more-devices-with-a-pair-of-keyboardmouse-kvm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Multi Monitor Configuration
-
 
 
 # DDC/CI Control & Gnome Extension

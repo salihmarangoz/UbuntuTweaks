@@ -1,3 +1,5 @@
+# Install Programs/Tools
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -30,8 +32,6 @@
     - [Chromium / Chrome Addons](#chromium--chrome-addons)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Install Programs/Tools
 
 Installation commands may be changed in the future, so it is recommended to check the source.
 

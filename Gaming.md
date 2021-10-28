@@ -1,3 +1,5 @@
+# Gaming
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -18,10 +20,6 @@
     - [Mouse Pooling Rate](#mouse-pooling-rate)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Gaming
-
-[toc]
 
 ## Drivers
 

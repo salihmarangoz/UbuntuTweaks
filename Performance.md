@@ -1,3 +1,5 @@
+# Performance Tweaks
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -23,34 +25,8 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Performance Tweaks
-
-   * [Performance Tweaks](#performance-tweaks)
-      * [[CPU] Performance Processor Scaling Governor](#cpu-performance-processor-scaling-governor)
-      * [[CPU] Disable Security Mitigations](#cpu-disable-security-mitigations)
-      * [[RAM] Compressed Memory](#ram-compressed-memory)
-      * [[GPU] Update On-Board GPU Drivers](#gpu-update-on-board-gpu-drivers)
-      * [[HDD] Ext4 Mount with noatime Option](#hdd-ext4-mount-with-noatime-option)
-      * [[HDD] Preload](#hdd-preload)
-      * [[HDD] Manually Cache Folders (browsers, apps, etc.)](#hdd-manually-cache-folders-browsers-apps-etc)
-      * [[HDD] BFQ Disk Scheduler](#hdd-bfq-disk-scheduler)
-      * [[HDD] Disable Default Swapfile on Disk](#hdd-disable-default-swapfile-on-disk)
-      * [[HDD] Defrag &amp; Optimize Ext4 Partitions](#hdd-defrag--optimize-ext4-partitions)
-      * [[NET] Turn Off Wifi Power Save Feature](#net-turn-off-wifi-power-save-feature)
-      * [[NET] Faster TCP (BBR, Fast TCP Open)](#net-faster-tcp-bbr-fast-tcp-open)
-      * [[OS] Disable Unnecessary Services](#os-disable-unnecessary-services)
-      * [[OS] Remove Snap Apps (and replace with native apps)](#os-remove-snap-apps-and-replace-with-native-apps)
-      * [[EXE] Improve Browser Performance](#exe-improve-browser-performance)
-         * [1.14.1 Chromium](#1141-chromium)
-
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
-
 
 # TODO: xanmod does some of them. Seperate topics.
-
-
-
 
 
 ## [CPU] Performance Processor Scaling Governor
