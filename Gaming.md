@@ -4,20 +4,19 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Gaming](#gaming)
-  - [Drivers](#drivers)
-    - [Integrated GPU Driver (Intel/AMD)](#integrated-gpu-driver-intelamd)
-    - [Dedicated GPU Driver (Nvidia)](#dedicated-gpu-driver-nvidia)
-    - [Dedicated GPU Driver (AMD)](#dedicated-gpu-driver-amd)
-  - [Steam + Proton](#steam--proton)
-    - [Proton GloriousEggroll](#proton-gloriouseggroll)
-    - [Steam Launch Options](#steam-launch-options)
-  - [Recommended Performance Tweaks](#recommended-performance-tweaks)
-  - [More Tricks](#more-tricks)
-    - [Vmtouch](#vmtouch)
-    - [CPU Turbo Mode](#cpu-turbo-mode)
-    - [Better Responsive Kernel](#better-responsive-kernel)
-    - [Mouse Pooling Rate](#mouse-pooling-rate)
+- [Drivers](#drivers)
+  - [Integrated GPU Driver (Intel/AMD)](#integrated-gpu-driver-intelamd)
+  - [Dedicated GPU Driver (Nvidia)](#dedicated-gpu-driver-nvidia)
+  - [Dedicated GPU Driver (AMD)](#dedicated-gpu-driver-amd)
+- [Steam + Proton](#steam--proton)
+  - [Proton GloriousEggroll](#proton-gloriouseggroll)
+  - [Steam Launch Options](#steam-launch-options)
+- [Recommended Performance Tweaks](#recommended-performance-tweaks)
+- [More Tricks](#more-tricks)
+  - [Vmtouch](#vmtouch)
+  - [CPU Turbo Mode](#cpu-turbo-mode)
+  - [Better Responsive Kernel](#better-responsive-kernel)
+  - [Mouse Pooling Rate](#mouse-pooling-rate)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

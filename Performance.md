@@ -4,7 +4,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Performance Tweaks](#performance-tweaks)
 - [TODO: xanmod does some of them. Seperate topics.](#todo-xanmod-does-some-of-them-seperate-topics)
   - [&#91;CPU&#93; Performance Processor Scaling Governor](#cpu-performance-processor-scaling-governor)
   - [&#91;CPU&#93; Disable Security Mitigations](#cpu-disable-security-mitigations)

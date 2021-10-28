@@ -4,11 +4,10 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Powersave Tweaks](#powersave-tweaks)
-  - [Introduction](#introduction)
-  - [Turn off CPU Turbo](#turn-off-cpu-turbo)
-  - [Turn off NVIDIA dGPU](#turn-off-nvidia-dgpu)
-  - [TLP](#tlp)
+- [Introduction](#introduction)
+- [Turn off CPU Turbo](#turn-off-cpu-turbo)
+- [Turn off NVIDIA dGPU](#turn-off-nvidia-dgpu)
+- [TLP](#tlp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
