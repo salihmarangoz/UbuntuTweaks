@@ -2,34 +2,8 @@
 
 Installation commands may be changed in the future, so it is recommended to check the source.
 
-   * [Install Programs/Tools](#install-programstools)
-      * [Open Source Apps](#open-source-apps)
-         * [Basic Utilities](#basic-utilities)
-         * [PDF Arranger](#pdf-arranger)
-         * [Peek](#peek)
-         * [Typora](#typora)
-         * [Balena Etcher](#balena-etcher)
-         * [VirtualBox](#virtualbox)
-         * [TOC](#toc)
-         * [Tmux](#tmux)
-         * [Visual Studio Code](#visual-studio-code)
-         * [OBS Studio](#obs-studio)
-         * [Fritzing](#fritzing)
-         * [Youtube-dl](#youtube-dl)
-         * [ShrinkPDF](#shrinkpdf)
-      * [Closed Source Apps](#closed-source-apps)
-         * [Sublime Text](#sublime-text)
-         * [GitKraken](#gitkraken)
-         * [Skype](#skype)
-         * [Foxit Reader](#foxit-reader)
-         * [SpaceSniffer (with Wine)](#spacesniffer-with-wine)
-         * [Anti-Twin (with Wine)](#anti-twin-with-wine)
-         * [MS Office 2007 (with Wine)](#ms-office-2007-with-wine)
-      * [Other/Mixed Apps](#othermixed-apps)
-         * [Chromium / Chrome Addons](#chromium--chrome-addons)
-         * [LD_PRELOAD](#ld_preload)
-
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+<!-- START doctoc -->
+<!-- END doctoc -->
 
 ## Open Source Apps
 
@@ -38,17 +12,33 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 ```bash
 $ sudo apt update
 $ sudo apt install \
-	apt-transport-https software-properties-common ubuntu-restricted-extras \
-	aptitude \
+	aptitude apt-transport-https software-properties-common ubuntu-restricted-extras \
 	wget git rar unzip curl \
-	screen net-tools network-manager-openvpn-gnome \
+	screen net-tools \
 	gparted htop iotop bmon \
-	thunderbird xul-ext-lightning \
-	gnome-sound-recorder vlc \
-	octave \
-	pinta gnome-paint gimp \
-	libreoffice
+	thunderbird xul-ext-lightning libreoffice \
+	pinta gimp vlc \
+	octave
+	
+# For Gnome
+$ sudo apt install network-manager-openvpn-gnome \
+				   gnome-music \
+                   gnome-sound-recorder \
+                   gnome-documents \
+                   gnome-system-monitor \
+                   gnome-backgrounds \
+                   gnome-paint \
+                   eog
 ```
+
+### Apps easy to install
+
+| App Name      | Description                                                  | Notes                                                        | Link                                                    |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
+| Typora        | Markdown editor.                                             | After installing it would be beneficial to enable `inline math` and `highlight` syntax support in the settings. | [Here](https://typora.io/#linux)                        |
+| Peek          | Peek makes it easy to create short screencasts of a screen area. |                                                              | [Here](https://github.com/phw/peek#ubuntu)              |
+| Balena Etcher | Flash OS images to SD cards & USB drives, safely and easily. |                                                              | [Here](https://www.balena.io/etcher/)                   |
+| VirtualBox    | VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use. | This may install the app easily `sudo apt install virtualbox virtualbox-ext-pack` | [Here](https://www.virtualbox.org/wiki/Linux_Downloads) |
 
 
 
@@ -66,48 +56,7 @@ $ pip3 install --user pikepdf
 $ pip3 install --user --upgrade https://github.com/pdfarranger/pdfarranger/archive/1.7.0rc1.zip
 ```
 
-### Peek
 
-```bash
-$ sudo add-apt-repository ppa:peek-developers/stable
-$ sudo apt install peek
-```
-
-### Typora
-
-https://typora.io/
-
-Best for markdown files.
-
-```bash
-$ wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
-$ sudo add-apt-repository 'deb https://typora.io/linux ./'
-$ sudo apt install typora
-```
-
-After installing it would be beneficial to enable `inline math` and `highlight` syntax support in the settings.
-
-### Balena Etcher
-
-https://www.balena.io/etcher/
-
-See: https://github.com/balena-io/etcher?d_id=2d48faac-d9ce-4800-88d4-68f9c7a57a8aR#debian-and-ubuntu-based-package-repository-gnulinux-x86x64
-
-```bash
-curl -1sLf \
-   'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' \
-   | sudo -E bash
-   
-sudo apt-get install balena-etcher-electron
-```
-
-### VirtualBox
-
-https://www.virtualbox.org/
-
-```bash
-$ sudo apt install virtualbox virtualbox-ext-pack
-```
 
 ### TOC
 
@@ -177,6 +126,46 @@ http://www.alfredklomp.com/programming/shrinkpdf/
 
 Reduces PDF filesize by lossy recompressing (reducing DPI). The script and its usage can be found in the link.
 
+### Inxi
+
+Command line system information script for console and IRC
+
+```bash
+$ sudo apt install inxi
+$ inxi -Fxxxrz # prints system information
+```
+
+### Firejail
+
+Linux namespaces sandbox program. Makes it possible to limit CPU/RAM/etc. system resources for applications.
+
+```bash
+$ sudo apt install firejail
+# Go to "~/.local/share/applications" or "/usr/share/applications" and modify .desktop files.
+# Add this as a prefix to Exec= section. This will make the app unable to connect to the internet:
+# firejail --noprofile --net=none
+```
+
+### Git Icons
+
+See: https://github.com/chrisjbillington/git-nautilus-icons
+
+![](https://github.com/chrisjbillington/git-nautilus-icons/raw/master/screenshot_nautilus.png)
+
+
+
+### Media Properties
+
+Right-click a file and select properties. Now there is a new tab for media properties.
+
+**Source:** https://github.com/linux-man/nautilus-mediainfo
+
+```bash
+$ sudo add-apt-repository ppa:caldas-lopes/ppa
+$ sudo apt install nautilus-mediainfo
+$ nautilus -q # kill nautilus
+```
+
 
 
 ## Closed Source Apps
@@ -224,11 +213,73 @@ It is possible to highlight some texts and save them.
 
 
 
-# TODO: Continues in Wine.md
+## Wine (<u>W</u>ine <u>I</u>s <u>N</u>ot an <u>E</u>mulator)
+
+Wine is an compatibility layer for running executables for Windows. 
+
+**Note:** Since Wine installation changes time to time it is not noted here. Search for a way on the Internet. Sorry.
 
 
 
-## Other/Mixed Apps
+### SpaceSniffer (with Wine)
+
+http://www.uderzo.it/main_products/space_sniffer/index.html
+
+Beautiful alternative to native Disk Usage Analyzer (baobab).
+
+
+
+### Anti-Twin (with Wine)
+
+http://www.joerg-rosenthal.com/en/antitwin/
+
+Duplicate file finder with byte and image comparison features.
+
+
+
+### MS Office 2007 (with Wine)
+
+THIS SECTION NEEDS TO BE UPDATED!
+
+There is a need to create a seperate wine prefix, because it needs to be 32bit and other programs may conflict with MS Office.
+
+
+```bash
+export WINEPREFIX="$HOME/.msoffice2007"  # set wine device folder
+export WINEARCH=win32
+
+# Ignore this step if you don't have a wine
+# Install Latest Wine with 32bit Support
+$ sudo dpkg --add-architecture i386
+$ sudo apt update
+$ wget -qO- https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository 'deb http://dl.winehq.org/wine-builds/ubuntu/ focal main'
+$ wget -qO- https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_20.04/Release.key | sudo apt-key add -
+$ sudo sh -c 'echo "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_20.04/ ./" > /etc/apt/sources.list.d/obs.list'
+$ sudo apt update
+$ sudo apt-get install --install-recommends winehq-stable
+$ wine --version
+
+# Create wine device and add a DLL exception
+$ mkdir -p $WINEPREFIX
+$ wine wineboot # install both winemono and gecko
+$ winecfg       # In libraries section, add riched20 as a new override and set it as "native windows"
+
+# Install fonts
+$ sudo apt install winetricks
+$ winetricks corefonts
+$ winetricks allfonts
+$ winetricks fontsmooth-rgb
+
+# Mount your MS Office 2007 CD, change dir to the cd folder then run the installer exe
+# Do this without closing the terminal or run the first 2 export commands in the new terminal.
+$ wine ???.exe # Install only excel, powerpoint, word and other office tools. Not onenote, outlook etc.
+```
+
+
+
+## Other/Mixed
 
 ### Chromium / Chrome Addons
 
@@ -247,22 +298,3 @@ It is possible to highlight some texts and save them.
 - [**GNOME Shell integration**](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) (See **UtilityFixTweaks.md** before installing)
 - [**GSConnect**](https://chrome.google.com/webstore/detail/gsconnect/jfnifeihccihocjbfcfhicmmgpjicaec?hl=en) (See **UtilityFixTweaks.md** before installing)
 
-
-
-### LD_PRELOAD
-
-(not tested yet)
-
-- https://github.com/whitequark/unrandom
-- https://github.com/sickill/stderred
-- https://github.com/vi/timeskew
-- https://github.com/FiloSottile/otherport
-- https://github.com/libhugetlbfs/libhugetlbfs
-- https://github.com/jacereda/fsatrace
-- https://github.com/lilydjwg/stdoutisatty
-- https://github.com/jktr/arg-inject
-- https://github.com/taeguk/free_checker
-- https://github.com/msantos/libproxyproto
-- https://github.com/de-vri-es/inet-remap
-- https://github.com/msantos/libsockfilter
-- https://github.com/majek/fluxcapacitor

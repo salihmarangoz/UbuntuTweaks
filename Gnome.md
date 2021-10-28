@@ -45,6 +45,7 @@ $ gnome-shell-extension-prefs
   - https://extensions.gnome.org/extension/21/workspace-indicator/
   - https://extensions.gnome.org/extension/779/clipboard-indicator/
   - https://extensions.gnome.org/extension/72/recent-items/
+  - https://extensions.gnome.org/extension/3843/just-perfection/
 
 ### 1. GSConnect
 
