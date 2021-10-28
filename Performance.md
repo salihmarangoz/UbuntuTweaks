@@ -26,7 +26,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-# TODO: xanmod does some of them. Seperate topics.
+**TODO: xanmod does some of them. Seperate topics.**
 
 
 ## [CPU] Performance Processor Scaling Governor
