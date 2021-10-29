@@ -4,16 +4,28 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Apps Easy to Install](#apps-easy-to-install)
 - [Open Source Apps](#open-source-apps)
   - [Basic Utilities](#basic-utilities)
+  - [Apps easy to install](#apps-easy-to-install)
   - [PDF Arranger](#pdf-arranger)
+  - [TOC](#toc)
   - [Tmux](#tmux)
+  - [OBS Studio](#obs-studio)
   - [Fritzing](#fritzing)
+  - [Youtube-dl](#youtube-dl)
+  - [ShrinkPDF](#shrinkpdf)
+  - [Inxi](#inxi)
   - [Firejail](#firejail)
+  - [Git Icons](#git-icons)
+  - [Media Properties](#media-properties)
 - [Closed Source Apps](#closed-source-apps)
   - [Sublime Text](#sublime-text)
+  - [Sublime Merge](#sublime-merge)
+  - [Skype](#skype)
+  - [Foxit Reader](#foxit-reader)
 - [Wine (<u>W</u>ine <u>I</u>s <u>N</u>ot an <u>E</u>mulator)](#wine-uwuine-uius-unuot-an-ueumulator)
+  - [SpaceSniffer (with Wine)](#spacesniffer-with-wine)
+  - [Anti-Twin (with Wine)](#anti-twin-with-wine)
   - [MS Office 2007 (with Wine)](#ms-office-2007-with-wine)
 - [Other/Mixed](#othermixed)
   - [Chromium / Chrome Addons](#chromium--chrome-addons)
@@ -27,20 +39,22 @@ Installation commands may be changed in the future, so it is recommended to chec
 | Open Source? Wine?                        | App Name           | Description                                                  | Notes                                                        | Link                                                         |
 | ----------------------------------------- | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | :ballot_box_with_check:                   | Typora             | Markdown editor.                                             | After installing it would be beneficial to enable `inline math` and `highlight` syntax support in the settings. | [Here](https://typora.io/#linux)                             |
-| :ballot_box_with_check:                   | Peek               | Peek makes it easy to create short screencasts of a screen area. |                                                              | [Here](https://github.com/phw/peek#ubuntu)                   |
+| :ballot_box_with_check:                   | Peek               | Makes it easy to create short screencasts of a screen area.  |                                                              | [Here](https://github.com/phw/peek#ubuntu)                   |
 | :ballot_box_with_check:                   | Balena Etcher      | Flash OS images to SD cards & USB drives, safely and easily. |                                                              | [Here](https://www.balena.io/etcher/)                        |
-| :ballot_box_with_check:                   | VirtualBox         | VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use. | This may install the app easily `sudo apt install virtualbox virtualbox-ext-pack` | [Here](https://www.virtualbox.org/wiki/Linux_Downloads)      |
+| :ballot_box_with_check:                   | VirtualBox         | General-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use. | This may install the app easily `sudo apt install virtualbox virtualbox-ext-pack` | [Here](https://www.virtualbox.org/wiki/Linux_Downloads)      |
 | :ballot_box_with_check:                   | OBS Studio         | Free and open source software for video recording and live streaming. |                                                              | [Here](https://obsproject.com/wiki/install-instructions#linux) |
 | :ballot_box_with_check:                   | youtube-dl         | download videos from youtube or other video platforms        | Also see: https://github.com/yt-dlp/yt-dlp                   | [Here](https://github.com/ytdl-org/youtube-dl#installation)  |
 | :ballot_box_with_check:                   | Shrinkpdf          | Reduces PDF filesize by lossy recompressing (reducing DPI)   | Always check output files!                                   | [Here](http://www.alfredklomp.com/programming/shrinkpdf/)    |
 | :ballot_box_with_check:                   | git-nautilus-icons | Marks git status to file/folder icons.                       | ![](https://github.com/chrisjbillington/git-nautilus-icons/raw/master/screenshot_nautilus.png) | [Here](https://github.com/chrisjbillington/git-nautilus-icons#installation) |
 | :ballot_box_with_check:                   | nautilus-mediainfo | View media information from the properties tab.              | `sudo add-apt-repository ppa:caldas-lopes/ppa`<br />`sudo apt install nautilus-mediainfo`<br />`nautilus -q # kill nautilus` | [Here](https://github.com/linux-man/nautilus-mediainfo)      |
 | :ballot_box_with_check:                   | Inxi               | Command line system information script for console and IRC   | Can be installed via apt. Run `inxi -Fxxxrz` for demo.       | [Here](https://github.com/smxi/inxi)                         |
-| :negative_squared_cross_mark:             | Sublime Merge      | A Git client from the makers of Sublime Text                 |                                                              | [Here](https://www.sublimemerge.com/docs/linux_repositories) |
+| :ballot_box_with_check:                   | DDC/CI control     | Control your monitor's brightness (and maybe contrast, color scheme, etc.) from the host device using the media cable (e.g. HDMI). | Also see its gnome extension: [Here](https://extensions.gnome.org/extension/2944/ddc-brightness-control/) | [Here](https://github.com/ddccontrol/ddccontrol#installation-from-official-packages) |
+| :negative_squared_cross_mark:             | Sublime Merge      | Git client from the makers of Sublime Text                   |                                                              | [Here](https://www.sublimemerge.com/docs/linux_repositories) |
 | :negative_squared_cross_mark:             | Foxit Reader       | View, annotate, form fill, and sign PDF files.               |                                                              | [Here](https://www.foxit.com/pdf-reader/)                    |
-| :negative_squared_cross_mark:             | Skype              | Skype is a proprietary telecommunications application that specializes in providing VoIP-based videotelephony, videoconferencing and voice calls. |                                                              | [Here](https://www.skype.com/en/get-skype/)                  |
+| :negative_squared_cross_mark:             | Skype              | A proprietary telecommunications application that specializes in providing VoIP-based videotelephony, videoconferencing and voice calls. |                                                              | [Here](https://www.skype.com/en/get-skype/)                  |
 | :negative_squared_cross_mark::wine_glass: | SpaceSniffer       | Beautiful alternative to native Disk Usage Analyzer (baobab). |                                                              | [Here](http://www.uderzo.it/main_products/space_sniffer/index.html) |
 | :negative_squared_cross_mark::wine_glass: | Anti-Twin          | Duplicate file finder with byte and image comparison features. |                                                              | [Here](http://www.joerg-rosenthal.com/en/antitwin/)          |
+
 
 
 ## Open Source Apps
