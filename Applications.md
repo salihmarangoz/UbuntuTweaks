@@ -34,9 +34,30 @@
 
 Installation commands may be changed in the future, so it is recommended to check the source.
 
+## Apps Easy to Install
+
+| Open Source? Wine?                        | App Name           | Description                                                  | Notes                                                        | Link                                                         |
+| ----------------------------------------- | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| :ballot_box_with_check:                   | Typora             | Markdown editor.                                             | After installing it would be beneficial to enable `inline math` and `highlight` syntax support in the settings. | [Here](https://typora.io/#linux)                             |
+| :ballot_box_with_check:                   | Peek               | Peek makes it easy to create short screencasts of a screen area. |                                                              | [Here](https://github.com/phw/peek#ubuntu)                   |
+| :ballot_box_with_check:                   | Balena Etcher      | Flash OS images to SD cards & USB drives, safely and easily. |                                                              | [Here](https://www.balena.io/etcher/)                        |
+| :ballot_box_with_check:                   | VirtualBox         | VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use. | This may install the app easily `sudo apt install virtualbox virtualbox-ext-pack` | [Here](https://www.virtualbox.org/wiki/Linux_Downloads)      |
+| :ballot_box_with_check:                   | OBS Studio         | Free and open source software for video recording and live streaming. |                                                              | [Here](https://obsproject.com/wiki/install-instructions#linux) |
+| :ballot_box_with_check:                   | youtube-dl         | download videos from youtube or other video platforms        | Also see: https://github.com/yt-dlp/yt-dlp                   | [Here](https://github.com/ytdl-org/youtube-dl#installation)  |
+| :ballot_box_with_check:                   | Shrinkpdf          | Reduces PDF filesize by lossy recompressing (reducing DPI)   | Always check output files!                                   | [Here](http://www.alfredklomp.com/programming/shrinkpdf/)    |
+| :ballot_box_with_check:                   | git-nautilus-icons | Marks git status to file/folder icons.                       | ![](https://github.com/chrisjbillington/git-nautilus-icons/raw/master/screenshot_nautilus.png) | [Here](https://github.com/chrisjbillington/git-nautilus-icons#installation) |
+| :ballot_box_with_check:                   | nautilus-mediainfo | View media information from the properties tab.              | `sudo add-apt-repository ppa:caldas-lopes/ppa`<br />`sudo apt install nautilus-mediainfo`<br />`nautilus -q # kill nautilus` | [Here](https://github.com/linux-man/nautilus-mediainfo)      |
+| :ballot_box_with_check:                   | Inxi               | Command line system information script for console and IRC   | Can be installed via apt. Run `inxi -Fxxxrz` for demo.       | [Here](https://github.com/smxi/inxi)                         |
+| :negative_squared_cross_mark:             | Sublime Merge      | A Git client from the makers of Sublime Text                 |                                                              | [Here](https://www.sublimemerge.com/docs/linux_repositories) |
+| :negative_squared_cross_mark:             | Foxit Reader       | View, annotate, form fill, and sign PDF files.               |                                                              | [Here](https://www.foxit.com/pdf-reader/)                    |
+| :negative_squared_cross_mark:             | Skype              | Skype is a proprietary telecommunications application that specializes in providing VoIP-based videotelephony, videoconferencing and voice calls. |                                                              | [Here](https://www.skype.com/en/get-skype/)                  |
+| :negative_squared_cross_mark::wine_glass: | SpaceSniffer       | Beautiful alternative to native Disk Usage Analyzer (baobab). |                                                              | [Here](http://www.uderzo.it/main_products/space_sniffer/index.html) |
+| :negative_squared_cross_mark::wine_glass: | Anti-Twin          | Duplicate file finder with byte and image comparison features. |                                                              | [Here](http://www.joerg-rosenthal.com/en/antitwin/)          |
+
+
 ## Open Source Apps
 
- ### Basic Utilities
+### Basic Utilities
 
 ```bash
 $ sudo apt update
@@ -60,16 +81,6 @@ $ sudo apt install network-manager-openvpn-gnome \
                    eog
 ```
 
-### Apps easy to install
-
-| App Name      | Description                                                  | Notes                                                        | Link                                                    |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
-| Typora        | Markdown editor.                                             | After installing it would be beneficial to enable `inline math` and `highlight` syntax support in the settings. | [Here](https://typora.io/#linux)                        |
-| Peek          | Peek makes it easy to create short screencasts of a screen area. |                                                              | [Here](https://github.com/phw/peek#ubuntu)              |
-| Balena Etcher | Flash OS images to SD cards & USB drives, safely and easily. |                                                              | [Here](https://www.balena.io/etcher/)                   |
-| VirtualBox    | VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use. | This may install the app easily `sudo apt install virtualbox virtualbox-ext-pack` | [Here](https://www.virtualbox.org/wiki/Linux_Downloads) |
-
-
 
 ### PDF Arranger
 
@@ -83,20 +94,6 @@ $ sudo apt-get install python3-pip python3-distutils-extra python3-wheel python3
 $ python3 -m pip install --upgrade pip
 $ pip3 install --user pikepdf
 $ pip3 install --user --upgrade https://github.com/pdfarranger/pdfarranger/archive/1.7.0rc1.zip
-```
-
-
-
-### TOC
-
-https://github.com/ekalinin/github-markdown-toc
-
-Usage: `$ toc README.md`
-
-```bash
-$ wget https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc
-$ sudo mv gh-md-toc /usr/bin/toc
-$ sudo chmod 555 /usr/bin/toc
 ```
 
 ### Tmux
@@ -116,17 +113,6 @@ set -g mouse on
 EOF
 ```
 
-### OBS Studio
-
-https://obsproject.com/
-
-Very good recording and streaming app.
-
-```bash
-$ sudo add-apt-repository ppa:obsproject/obs-studio
-$ sudo apt install obs-studio
-```
-
 ### Fritzing
 
 https://fritzing.org
@@ -138,32 +124,6 @@ $ sudo apt install libqt5printsupport5 libqt5xml5 libqt5sql5 libqt5serialport5 l
 $ sudo apt install fritzing fritzing-data fritzing-parts
 ```
 
-### Youtube-dl
-
-https://github.com/ytdl-org/youtube-dl
-
-Youtube video, subtitle, thumbnail, etc. downloader which supports batch downloadings (downloading a list).
-
-```bash
-$ sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
-$ sudo chmod a+rx /usr/local/bin/youtube-dl
-```
-
-### ShrinkPDF
-
-http://www.alfredklomp.com/programming/shrinkpdf/
-
-Reduces PDF filesize by lossy recompressing (reducing DPI). The script and its usage can be found in the link.
-
-### Inxi
-
-Command line system information script for console and IRC
-
-```bash
-$ sudo apt install inxi
-$ inxi -Fxxxrz # prints system information
-```
-
 ### Firejail
 
 Linux namespaces sandbox program. Makes it possible to limit CPU/RAM/etc. system resources for applications.
@@ -173,26 +133,6 @@ $ sudo apt install firejail
 # Go to "~/.local/share/applications" or "/usr/share/applications" and modify .desktop files.
 # Add this as a prefix to Exec= section. This will make the app unable to connect to the internet:
 # firejail --noprofile --net=none
-```
-
-### Git Icons
-
-See: https://github.com/chrisjbillington/git-nautilus-icons
-
-![](https://github.com/chrisjbillington/git-nautilus-icons/raw/master/screenshot_nautilus.png)
-
-
-
-### Media Properties
-
-Right-click a file and select properties. Now there is a new tab for media properties.
-
-**Source:** https://github.com/linux-man/nautilus-mediainfo
-
-```bash
-$ sudo add-apt-repository ppa:caldas-lopes/ppa
-$ sudo apt install nautilus-mediainfo
-$ nautilus -q # kill nautilus
 ```
 
 
@@ -219,27 +159,6 @@ $ cat >$HOME/.config/sublime-text-3/Packages/User/Preferences.sublime-settings <
 EOF
 ```
 
-### Sublime Merge
-
-See: https://www.sublimemerge.com/docs/linux_repositories
-
-### Skype
-
-https://www.skype.com/en/
-
-```bash
-$ wget -4 https://go.skype.com/skypeforlinux-64.deb
-$ sudo dpkg -i skypeforlinux-64.deb
-$ sudo apt install -f
-$ rm skypeforlinux-64.deb
-```
-
-### Foxit Reader
-
-https://www.foxitsoftware.com/downloads/
-
-It is possible to highlight some texts and save them.
-
 
 
 ## Wine (<u>W</u>ine <u>I</u>s <u>N</u>ot an <u>E</u>mulator)
@@ -247,22 +166,6 @@ It is possible to highlight some texts and save them.
 Wine is an compatibility layer for running executables for Windows. 
 
 **Note:** Since Wine installation changes time to time it is not noted here. Search for a way on the Internet. Sorry.
-
-
-
-### SpaceSniffer (with Wine)
-
-http://www.uderzo.it/main_products/space_sniffer/index.html
-
-Beautiful alternative to native Disk Usage Analyzer (baobab).
-
-
-
-### Anti-Twin (with Wine)
-
-http://www.joerg-rosenthal.com/en/antitwin/
-
-Duplicate file finder with byte and image comparison features.
 
 
 
