@@ -26,11 +26,17 @@
 
 I prefer disabling Secure Boot, because it is creating some issues and extra work for no to little gain.
 
-## 3. Partitioning
+## 3. Installation Type (partitioning)
 
 
 
-## 4. Naming
+## 4. Updates and Other Software
+
+normal installation + third party software
+
+
+
+## 5. Naming
 
 
 
