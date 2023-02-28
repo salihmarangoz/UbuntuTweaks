@@ -5,8 +5,9 @@
 - [Install Ubuntu](#install-ubuntu)
   - [1. Create an Ubuntu Installer Medium](#1-create-an-ubuntu-installer-medium)
   - [2. Reboot into BIOS](#2-reboot-into-bios)
-  - [3. Partitioning](#3-partitioning)
-  - [4. Naming](#4-naming)
+  - [3. Installation Type (partitioning)](#3-installation-type-partitioning)
+  - [4. Updates and Other Software](#4-updates-and-other-software)
+  - [5. Naming](#5-naming)
   - [Possible Problems and Fixes](#possible-problems-and-fixes)
     - [Can't Boot Windows After Installation?](#cant-boot-windows-after-installation)
 

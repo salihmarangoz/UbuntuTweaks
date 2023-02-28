@@ -5,6 +5,8 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 Here are some tweaks, utilities, apps, tools and scripts for Ubuntu (see the branch name for the version) that I use in my setup. This document is mostly tailored for my preferences. Please read the instructions carefully and decide if you need it or not, then apply them. Good luck!

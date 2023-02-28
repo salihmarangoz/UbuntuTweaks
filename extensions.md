@@ -5,8 +5,8 @@
 - [Extensions](#extensions)
   - [Nautilus Extensions](#nautilus-extensions)
   - [GNOME Extensions](#gnome-extensions)
+    - [GSConnect](#gsconnect)
   - [Chrome Extensions](#chrome-extensions)
-  - [Firefox Extensions](#firefox-extensions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
