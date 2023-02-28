@@ -29,6 +29,10 @@ I prefer disabling Secure Boot, because it is creating some issues and extra wor
 
 ## 3. Installation Type (partitioning)
 
+- swap?
+- encryption?
+- ext4/btrfs? btrfs doesn't support swapfile!
+
 
 
 ## 4. Updates and Other Software
@@ -38,6 +42,13 @@ normal installation + third party software
 
 
 ## 5. Naming
+
+
+
+## 6. Recommendations After Reboot
+
+- sudo apt remove unattended-upgrades
+- install nvidia drivers?
 
 
 

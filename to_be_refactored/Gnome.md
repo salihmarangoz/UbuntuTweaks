@@ -12,63 +12,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Gnome Extensions
-
-Increase your productivity and customize your desktop.
-
-- Install Chromium or Google Chrome. 
-
-- Install required packages:
-
-```bash
-$ sudo apt install gnome-shell-extensions chrome-gnome-shell
-```
-
-- Install Chrome-Gnome Shell integration plugin:
-
-https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep
-
-- Now you can browse and add some extensions from here: https://extensions.gnome.org/
-- If you want to enable/disable extensions run this command (or just type Extensions in the search):
-
-```bash
-$ gnome-shell-extension-prefs
-```
-
-- Here is a list of extensions which I combined for myself:
-
-  - https://extensions.gnome.org/extension/6/applications-menu/
-  - https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/
-  - https://extensions.gnome.org/extension/2386/calendar-improved/
-  - https://extensions.gnome.org/extension/1276/night-light-slider/
-  - https://extensions.gnome.org/extension/1236/noannoyance/
-  - https://extensions.gnome.org/extension/750/openweather/
-  - https://extensions.gnome.org/extension/1403/remove-alttab-delay/
-  - https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
-  - https://extensions.gnome.org/extension/906/sound-output-device-chooser/
-  - https://extensions.gnome.org/extension/8/places-status-indicator/
-  - https://extensions.gnome.org/extension/97/coverflow-alt-tab/
-  - https://extensions.gnome.org/extension/1460/vitals/ (if this doesn't run well try psensor)
-  - https://extensions.gnome.org/extension/1145/sensory-perception/ (if this doesn't run well try psensor)
-  - https://extensions.gnome.org/extension/302/windowoverlay-icons/
-  - https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
-  - https://extensions.gnome.org/extension/21/workspace-indicator/
-  - https://extensions.gnome.org/extension/779/clipboard-indicator/
-  - https://extensions.gnome.org/extension/72/recent-items/
-  - https://extensions.gnome.org/extension/3843/just-perfection/
-
-### 1. GSConnect
-
-Connect your smartphone to the PC. File sharing, taking photo, sending SMS, media controls, etc.
-
-Note: If you just want the "Send this page to the mobile phone" feature on your browser, just switch from Chromium to Google Chrome. 
-
-- https://extensions.gnome.org/extension/1319/gsconnect/ (gnome extension)
-- https://chrome.google.com/webstore/detail/gsconnect/jfnifeihccihocjbfcfhicmmgpjicaec/related?hl=en (chrome extension)
-- https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp&hl=en_US&gl=US (to smartphone)
-
-
-
 ## Hide Username on the Login Screen
 
 The Gnome login screen normally shows a list of available users to log in as. For those who want to disable showing the user list, and manually type a username to login with, below I will show you how.

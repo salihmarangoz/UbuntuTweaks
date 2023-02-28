@@ -284,42 +284,6 @@ $ cat /sys/block/sda/queue/scheduler
 mq-deadline [bfq] none
 ```
 
-## [HDD/SSD] Disable Default Swapfile on Disk
-
-Ubuntu 18.04 comes with a swapfile enabled. In out-of-memory situations this swapfile may only cause system freeze. If you are using Ubuntu with SSD, you should disable swap in that device to slow down disk aging.
-
-- Modify `fstab`:
-
-```bash
-$ sudo nano /etc/fstab
-```
-
-- Comment out the line which starts with `/swapfile`. The full line should look like this after editing:
-
-```
-#/swapfile none swap sw 0 0
-```
-
-- Reboot the PC.
-
-## [HDD] Defrag & Optimize Ext4 Partitions
-
-```bash
-###############################################
-########## VERY IMPORTANT !!! #################
-# BOOT PC FROM A UBUNTU IMAGE USB STICK #######
-###############################################
-$ sudo fsck.ext4 -y -f -v -D /dev/sdX
-# Now mount the partition, then run:
-$ sudo e4defrag -v /dev/sdX
-```
-
-
-
-## [SSD] SSD Scheduler
-
-TODO
-
 
 
 ## [NET] Turn Off Wifi Power Save Feature
