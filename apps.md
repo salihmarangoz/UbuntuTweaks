@@ -3,15 +3,7 @@
 **Table of Contents**
 
 - [Applications](#applications)
-  - [App Installation Sources](#app-installation-sources)
-    - [APT](#apt)
-    - [Apps for GNOME](#apps-for-gnome)
-    - [KDE Applications](#kde-applications)
-    - [Flathub](#flathub)
-    - [Snap](#snap)
-    - [AppImage](#appimage)
-    - [Closed Source](#closed-source)
-  - [My Favorites](#my-favorites)
+  - [My Favorite Apps](#my-favorite-apps)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

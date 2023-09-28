@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Install Ubuntu](#install-ubuntu)
+- [Hibernation](#hibernation)
+- [Various Tweaks](#various-tweaks)
+- [Google Chrome](#google-chrome)
+- [Switch from Wayland to Xorg](#switch-from-wayland-to-xorg)
+- [Configure BTRFS](#configure-btrfs)
+- [Lastly, Take Snapshots](#lastly-take-snapshots)
+- [TODO](#todo)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Install Ubuntu
 
 - Install Ubuntu 22.04

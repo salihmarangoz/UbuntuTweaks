@@ -8,6 +8,7 @@
   - [3. Installation Type (partitioning)](#3-installation-type-partitioning)
   - [4. Updates and Other Software](#4-updates-and-other-software)
   - [5. Naming](#5-naming)
+  - [6. Recommendations After Reboot](#6-recommendations-after-reboot)
   - [Possible Problems and Fixes](#possible-problems-and-fixes)
     - [Can't Boot Windows After Installation?](#cant-boot-windows-after-installation)
 
